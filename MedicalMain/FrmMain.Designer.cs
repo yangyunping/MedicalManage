@@ -178,7 +178,7 @@
             // 
             this.基础设置ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.基础设置ToolStripMenuItem.Name = "基础设置ToolStripMenuItem";
-            this.基础设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.基础设置ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.基础设置ToolStripMenuItem.Text = "基础设置";
             this.基础设置ToolStripMenuItem.Click += new System.EventHandler(this.基础设置ToolStripMenuItem_Click);
             // 
@@ -186,7 +186,7 @@
             // 
             this.检查费调整ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.检查费调整ToolStripMenuItem.Name = "检查费调整ToolStripMenuItem";
-            this.检查费调整ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.检查费调整ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.检查费调整ToolStripMenuItem.Text = "检查费调整";
             this.检查费调整ToolStripMenuItem.Click += new System.EventHandler(this.检查费调整ToolStripMenuItem_Click);
             // 
@@ -194,7 +194,7 @@
             // 
             this.密码修改ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.密码修改ToolStripMenuItem.Name = "密码修改ToolStripMenuItem";
-            this.密码修改ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.密码修改ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.密码修改ToolStripMenuItem.Text = "密码修改";
             this.密码修改ToolStripMenuItem.Click += new System.EventHandler(this.密码修改ToolStripMenuItem_Click);
             // 
@@ -202,7 +202,7 @@
             // 
             this.tsmThemes.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.tsmThemes.Name = "tsmThemes";
-            this.tsmThemes.Size = new System.Drawing.Size(180, 22);
+            this.tsmThemes.Size = new System.Drawing.Size(137, 22);
             this.tsmThemes.Text = "主题更换";
             this.tsmThemes.Click += new System.EventHandler(this.tsmThemes_Click);
             // 

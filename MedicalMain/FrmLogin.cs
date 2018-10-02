@@ -120,7 +120,6 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show(@"数据库无法访问！" + ex.ToString());
-                this.Show();
             }
             empID = this.cmbEmpID.Text.Trim();
             //记住用户名
@@ -148,11 +147,10 @@ namespace UI
 
             //主界面
             FrmMain frmMain = new FrmMain();
-
+            this.Hide();
             frmMain.ShowDialog();
             GC.Collect();
             Application.Exit();
-
         }
 
         private void lblClose_Click(object sender, EventArgs e)

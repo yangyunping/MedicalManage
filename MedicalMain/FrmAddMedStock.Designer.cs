@@ -265,7 +265,7 @@
             // 
             this.numSum.Location = new System.Drawing.Point(399, 467);
             this.numSum.Maximum = new decimal(new int[] {
-            10000,
+            1000000,
             0,
             0,
             0});
@@ -337,7 +337,7 @@
             this.dtpDue.Size = new System.Drawing.Size(130, 26);
             this.dtpDue.TabIndex = 64;
             // 
-            // FrmAddMed
+            // FrmAddMedStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -373,7 +373,7 @@
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FrmAddMed";
+            this.Name = "FrmAddMedStock";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "药品库存添加";
             ((System.ComponentModel.ISupportInitialize)(this.numSum)).EndInit();
