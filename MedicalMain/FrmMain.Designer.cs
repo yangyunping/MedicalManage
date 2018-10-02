@@ -40,6 +40,7 @@
             this.基础设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.检查费调整ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.密码修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmThemes = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.picShow = new System.Windows.Forms.PictureBox();
             this.lblWelcome = new System.Windows.Forms.Label();
@@ -48,12 +49,18 @@
             this.lblWeather = new System.Windows.Forms.Label();
             this.tbContent = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tsmThemes = new System.Windows.Forms.ToolStripMenuItem();
+            this.skinEngine = new Sunisoft.IrisSkin.SkinEngine();
+            this.pnlThemes = new System.Windows.Forms.Panel();
+            this.btnCloseTheme = new System.Windows.Forms.Button();
+            this.lstbThemes = new System.Windows.Forms.ListBox();
+            this.btnThemeOrigal = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tsButtons.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picShow)).BeginInit();
             this.panel3.SuspendLayout();
+            this.pnlThemes.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -68,7 +75,7 @@
             // 
             // tsButtons
             // 
-            this.tsButtons.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.tsButtons.BackColor = System.Drawing.Color.Transparent;
             this.tsButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tsButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tsButtons.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -93,7 +100,7 @@
             // 
             this.tsBtnLookPat.BackColor = System.Drawing.Color.Transparent;
             this.tsBtnLookPat.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.tsBtnLookPat.ForeColor = System.Drawing.Color.White;
+            this.tsBtnLookPat.ForeColor = System.Drawing.Color.Black;
             this.tsBtnLookPat.Image = global::UI.Properties.Resources.heart;
             this.tsBtnLookPat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnLookPat.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
@@ -106,7 +113,7 @@
             // btnStaticsSearch
             // 
             this.btnStaticsSearch.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.btnStaticsSearch.ForeColor = System.Drawing.Color.White;
+            this.btnStaticsSearch.ForeColor = System.Drawing.Color.Black;
             this.btnStaticsSearch.Image = global::UI.Properties.Resources.Statistics;
             this.btnStaticsSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnStaticsSearch.Name = "btnStaticsSearch";
@@ -118,7 +125,7 @@
             // sbtnMedicine
             // 
             this.sbtnMedicine.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.sbtnMedicine.ForeColor = System.Drawing.Color.White;
+            this.sbtnMedicine.ForeColor = System.Drawing.Color.Black;
             this.sbtnMedicine.Image = global::UI.Properties.Resources.Home;
             this.sbtnMedicine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sbtnMedicine.Name = "sbtnMedicine";
@@ -130,7 +137,7 @@
             // sbtnEmployee
             // 
             this.sbtnEmployee.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.sbtnEmployee.ForeColor = System.Drawing.Color.White;
+            this.sbtnEmployee.ForeColor = System.Drawing.Color.Black;
             this.sbtnEmployee.Image = global::UI.Properties.Resources.ManageUsers;
             this.sbtnEmployee.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sbtnEmployee.Name = "sbtnEmployee";
@@ -142,13 +149,13 @@
             // btnPations
             // 
             this.btnPations.BackColor = System.Drawing.Color.Transparent;
-            this.btnPations.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.btnPations.ForeColor = System.Drawing.Color.White;
+            this.btnPations.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnPations.ForeColor = System.Drawing.Color.Black;
             this.btnPations.Image = global::UI.Properties.Resources.System_monitoring;
             this.btnPations.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPations.Name = "btnPations";
             this.btnPations.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnPations.Size = new System.Drawing.Size(103, 49);
+            this.btnPations.Size = new System.Drawing.Size(99, 49);
             this.btnPations.Text = "患者管理";
             this.btnPations.Click += new System.EventHandler(this.btnPations_Click);
             // 
@@ -159,19 +166,19 @@
             this.检查费调整ToolStripMenuItem,
             this.密码修改ToolStripMenuItem,
             this.tsmThemes});
-            this.tsmSetting.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.tsmSetting.ForeColor = System.Drawing.Color.White;
+            this.tsmSetting.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tsmSetting.ForeColor = System.Drawing.Color.Black;
             this.tsmSetting.Image = global::UI.Properties.Resources.System;
             this.tsmSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmSetting.Name = "tsmSetting";
-            this.tsmSetting.Size = new System.Drawing.Size(80, 49);
+            this.tsmSetting.Size = new System.Drawing.Size(78, 49);
             this.tsmSetting.Text = "设置";
             // 
             // 基础设置ToolStripMenuItem
             // 
             this.基础设置ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.基础设置ToolStripMenuItem.Name = "基础设置ToolStripMenuItem";
-            this.基础设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.基础设置ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.基础设置ToolStripMenuItem.Text = "基础设置";
             this.基础设置ToolStripMenuItem.Click += new System.EventHandler(this.基础设置ToolStripMenuItem_Click);
             // 
@@ -179,7 +186,7 @@
             // 
             this.检查费调整ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.检查费调整ToolStripMenuItem.Name = "检查费调整ToolStripMenuItem";
-            this.检查费调整ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.检查费调整ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.检查费调整ToolStripMenuItem.Text = "检查费调整";
             this.检查费调整ToolStripMenuItem.Click += new System.EventHandler(this.检查费调整ToolStripMenuItem_Click);
             // 
@@ -187,9 +194,17 @@
             // 
             this.密码修改ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.密码修改ToolStripMenuItem.Name = "密码修改ToolStripMenuItem";
-            this.密码修改ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.密码修改ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.密码修改ToolStripMenuItem.Text = "密码修改";
             this.密码修改ToolStripMenuItem.Click += new System.EventHandler(this.密码修改ToolStripMenuItem_Click);
+            // 
+            // tsmThemes
+            // 
+            this.tsmThemes.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.tsmThemes.Name = "tsmThemes";
+            this.tsmThemes.Size = new System.Drawing.Size(137, 22);
+            this.tsmThemes.Text = "主题更换";
+            this.tsmThemes.Click += new System.EventHandler(this.tsmThemes_Click);
             // 
             // panel2
             // 
@@ -277,19 +292,80 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // tsmThemes
+            // skinEngine
             // 
-            this.tsmThemes.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.tsmThemes.Name = "tsmThemes";
-            this.tsmThemes.Size = new System.Drawing.Size(180, 22);
-            this.tsmThemes.Text = "主题更换";
-            this.tsmThemes.Click += new System.EventHandler(this.tsmThemes_Click);
+            this.skinEngine.@__DrawButtonFocusRectangle = true;
+            this.skinEngine.DisabledButtonTextColor = System.Drawing.Color.Gray;
+            this.skinEngine.DisabledMenuFontColor = System.Drawing.SystemColors.GrayText;
+            this.skinEngine.InactiveCaptionColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.skinEngine.MenuFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinEngine.SerialNumber = "";
+            this.skinEngine.SkinFile = null;
+            this.skinEngine.TitleFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            // 
+            // pnlThemes
+            // 
+            this.pnlThemes.Controls.Add(this.btnCloseTheme);
+            this.pnlThemes.Controls.Add(this.lstbThemes);
+            this.pnlThemes.Controls.Add(this.btnThemeOrigal);
+            this.pnlThemes.Controls.Add(this.btnSave);
+            this.pnlThemes.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlThemes.Location = new System.Drawing.Point(1033, 58);
+            this.pnlThemes.Name = "pnlThemes";
+            this.pnlThemes.Size = new System.Drawing.Size(271, 527);
+            this.pnlThemes.TabIndex = 5;
+            this.pnlThemes.Visible = false;
+            // 
+            // btnCloseTheme
+            // 
+            this.btnCloseTheme.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.btnCloseTheme.Location = new System.Drawing.Point(186, 143);
+            this.btnCloseTheme.Name = "btnCloseTheme";
+            this.btnCloseTheme.Size = new System.Drawing.Size(73, 35);
+            this.btnCloseTheme.TabIndex = 7;
+            this.btnCloseTheme.Text = "关  闭";
+            this.btnCloseTheme.UseVisualStyleBackColor = true;
+            this.btnCloseTheme.Click += new System.EventHandler(this.btnCloseTheme_Click);
+            // 
+            // lstbThemes
+            // 
+            this.lstbThemes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lstbThemes.FormattingEnabled = true;
+            this.lstbThemes.ItemHeight = 19;
+            this.lstbThemes.Location = new System.Drawing.Point(0, 0);
+            this.lstbThemes.Name = "lstbThemes";
+            this.lstbThemes.Size = new System.Drawing.Size(180, 527);
+            this.lstbThemes.TabIndex = 6;
+            this.lstbThemes.SelectedIndexChanged += new System.EventHandler(this.lstbThemes_SelectedIndexChanged);
+            // 
+            // btnThemeOrigal
+            // 
+            this.btnThemeOrigal.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.btnThemeOrigal.Location = new System.Drawing.Point(186, 83);
+            this.btnThemeOrigal.Name = "btnThemeOrigal";
+            this.btnThemeOrigal.Size = new System.Drawing.Size(73, 35);
+            this.btnThemeOrigal.TabIndex = 5;
+            this.btnThemeOrigal.Text = "恢复默认";
+            this.btnThemeOrigal.UseVisualStyleBackColor = true;
+            this.btnThemeOrigal.Click += new System.EventHandler(this.btnThemeOrigal_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.btnSave.Location = new System.Drawing.Point(186, 23);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(73, 35);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "保  存";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1304, 608);
+            this.Controls.Add(this.pnlThemes);
             this.Controls.Add(this.tbContent);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -299,6 +375,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "医疗管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tsButtons.ResumeLayout(false);
@@ -307,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picShow)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.pnlThemes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -333,5 +411,11 @@
         private System.Windows.Forms.Label lblWeather;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.ToolStripMenuItem tsmThemes;
+        private Sunisoft.IrisSkin.SkinEngine skinEngine;
+        private System.Windows.Forms.Panel pnlThemes;
+        private System.Windows.Forms.ListBox lstbThemes;
+        private System.Windows.Forms.Button btnThemeOrigal;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCloseTheme;
     }
 }

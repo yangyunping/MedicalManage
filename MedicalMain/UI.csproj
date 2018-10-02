@@ -156,12 +156,6 @@
     <Compile Include="FrmServerpatMed.Designer.cs">
       <DependentUpon>FrmServerpatMed.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSkinChange.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSkinChange.Designer.cs">
-      <DependentUpon>FrmSkinChange.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmStock.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -232,9 +226,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmServerpatMed.resx">
       <DependentUpon>FrmServerpatMed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSkinChange.resx">
-      <DependentUpon>FrmSkinChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStock.resx">
       <DependentUpon>FrmStock.cs</DependentUpon>

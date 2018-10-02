@@ -13,6 +13,9 @@ namespace UI
 {
     public partial class FrmLogin : Form
     {
+        /// <summary>
+        /// 员工ID
+        /// </summary>
         private string empID = string.Empty;
         /// <summary>
         /// 鼠标位置
@@ -109,6 +112,10 @@ namespace UI
                         txtPassword.Focus();
                         return;
                     }
+                    //Expression<Func<Doctor, bool>> fun = n => n.DutyName == "";
+                    //fun = fun.And(n => Convert.ToDecimal(n.Unusualstandard_DEGRADE_MATERIAL_PERCT) >= Convert.ToDecimal(txtQCInfo_MATERIAL_SCALE.Text));
+                    //fun = fun.And(n => Convert.ToDecimal(n.DEGRADE_OUTTHROWS_PERCT) >= Convert.ToDecimal(txtQCInfo_PAPER_SCALE.Text));
+                    //IEnumerable<> unusualstandard = UnusualstandardDAL.Query(fun).OrderBy(n => n.Unusualstandard_DEGRADE_MOISTURE_PERCT);
                     empID = this.cmbEmpID.Text.Trim();
                     //记住用户名
                     if (chkRemenber.Checked)
@@ -136,6 +143,8 @@ namespace UI
                     {
                         Information.UsePower.Add(dtPower.Rows[i]["PowerID"].ToString(), dtPower.Rows[i]["DocID"].ToString());
                     }
+
+                    //主界面
                     FrmMain frmMain  = new FrmMain();
                     this.Hide();
                     frmMain.ShowDialog();

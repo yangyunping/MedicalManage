@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using UI.Properties;
@@ -11,17 +12,22 @@ namespace UI
 {
     public partial class FrmMain : Form
     {
+        /// <summary>
+        /// 配置文件存放路径
+        /// </summary>
+        private readonly string _configPath = Application.StartupPath + @"\\" + @"Config.ini";
+        private string skinName = string.Empty;
         public FrmMain()
         {
             InitializeComponent();
-            InitiLoad();
+            InitiData();
         }
 
         public bool ThumbnailCallback()
         {
             return false;
         }
-        private void InitiLoad()
+        private void InitiData()
         {
             Image.GetThumbnailImageAbort callBack = new Image.GetThumbnailImageAbort(ThumbnailCallback);
             picShow.Image = Resources.MedicalLogo.GetThumbnailImage(picShow.Width, picShow.Height, callBack, IntPtr.Zero);
@@ -39,12 +45,6 @@ namespace UI
 
             lblWelcome.Text = @"欢迎 " + Information.CurrentUser.Name +"  "+ Information.CurrentUser.DutyName + "         ";
 
-            //dgvMedInfo.Columns.AddRange(
-            //    new DataGridViewTextBoxColumn { Name = @"MedName", DataPropertyName = @"MedName", HeaderText = @"药名", Width = 90 },
-            //       new DataGridViewTextBoxColumn { Name = @"Quantity", DataPropertyName = @"Quantity", HeaderText = @"库存", Width = 60 },
-            //          new DataGridViewTextBoxColumn { Name = @"DueDate", DataPropertyName = @"DueDate", HeaderText = @"到期时间", Width = 100 }
-            //             );
-            //dgvMedInfo.AutoGenerateColumns = false;
             DataTable drInMed = ErpServer.GetInMedDataSet(null).Tables[0];
             string MedStock = string.Empty;
             string MedDate = string.Empty;
@@ -195,22 +195,56 @@ namespace UI
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text ="  时间:"+ DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString();
-            //lblTime.Invoke(new Action(()=>
-            //    {
-            //        lblTime.Text = DateTime.Now.ToLongTimeString();
-            //    }
-            //    ));
         }
 
         private void tsmThemes_Click(object sender, EventArgs e)
         {
-            FrmSkinChange frmSkinChange = new FrmSkinChange()
+            pnlThemes.Visible = true;
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            string skinPath = Application.StartupPath + @"\Skins";
+            lstbThemes.DataSource = new DirectoryInfo(skinPath).GetFiles();
+            lstbThemes.DisplayMember = "Name";
+            //加载皮肤
+            StringBuilder selectOrder = new StringBuilder(255);
+            Information.GetPrivateProfileString("SkinPath", "SkinPathValue", " ", selectOrder, 255,
+                _configPath);
+            skinName = selectOrder.ToString();
+            skinEngine.SkinFile = skinName;
+            skinEngine.SkinAllForm = true;
+            skinEngine.DisableTag = 9999;
+        }
+
+        private void lstbThemes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstbThemes.SelectedItem != null)
             {
-                Name = tsmThemes.Text,
-                Text = tsmThemes.Text,
-                Dock = DockStyle.Fill
-            };
-            CreatNewPag(tsmThemes.Text, frmSkinChange);
+                skinEngine.SkinFile = (lstbThemes.SelectedItem as FileInfo).FullName;
+                skinEngine.Active = true;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string skinType = (lstbThemes.SelectedItem as FileInfo).FullName;
+            if (!string.IsNullOrEmpty(skinType))
+            {
+                Information.WritePrivateProfileString("SkinPath", "SkinPathValue", skinType, _configPath);
+                pnlThemes.Visible = false;
+            }
+        }
+
+        private void btnCloseTheme_Click(object sender, EventArgs e)
+        {
+            pnlThemes.Visible = false;
+            skinEngine.DisableTag = 9999;
+        }
+
+        private void btnThemeOrigal_Click(object sender, EventArgs e)
+        {
+            skinEngine.Active = false;
         }
     }
 }

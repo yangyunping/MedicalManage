@@ -1198,14 +1198,22 @@ namespace UI
 
         private void dgvMedicines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvMedicines.Rows.Count > 0 && dgvMedicines.Columns.Count > 0)
+            try
             {
-                foreach (DataGridViewRow eachRow in dgvMedicines.Rows)
+                if (dgvMedicines.Rows.Count > 0 && dgvMedicines.Columns.Count > 0)
                 {
-                    eachRow.Cells["MedPrice"].Value = Convert.ToDecimal(eachRow.Cells["MedUnitPrice"].Value) *
-                                              Convert.ToDecimal(eachRow.Cells["TimesUse"].Value);
+                    foreach (DataGridViewRow eachRow in dgvMedicines.Rows)
+                    {
+                        eachRow.Cells["MedPrice"].Value = Convert.ToDecimal(eachRow.Cells["MedUnitPrice"].Value) *
+                                                  Convert.ToDecimal(eachRow.Cells["TimesUse"].Value);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("存在费用为0的项目！" + ex.ToString());
+            }
+          
         }
         private void TxtPastHistoryKeyDown(object sender, KeyEventArgs e)
         {
@@ -1218,13 +1226,20 @@ namespace UI
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            txtSumPrice.Text = @"0.00";
-            foreach (DataGridViewRow eachRow in dgvMedicines.Rows)
+            try
             {
-                eachRow.Cells["MedPrice"].Value = Convert.ToDecimal(eachRow.Cells["MedUnitPrice"].Value) *
-                                                  Convert.ToDecimal(eachRow.Cells["TimesUse"].Value);
-                txtSumPrice.Text = (Convert.ToDecimal(txtSumPrice.Text.Trim()) +
-                                    Convert.ToDecimal(eachRow.Cells["MedPrice"].Value)).ToString(CultureInfo.InvariantCulture);
+                txtSumPrice.Text = @"0.00";
+                foreach (DataGridViewRow eachRow in dgvMedicines.Rows)
+                {
+                    eachRow.Cells["MedPrice"].Value = Convert.ToDecimal(eachRow.Cells["MedUnitPrice"].Value) *
+                                                      Convert.ToDecimal(eachRow.Cells["TimesUse"].Value);
+                    txtSumPrice.Text = (Convert.ToDecimal(txtSumPrice.Text.Trim()) +
+                                        Convert.ToDecimal(eachRow.Cells["MedPrice"].Value)).ToString(CultureInfo.InvariantCulture);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("存在费用为0的项目！"+ ex.ToString());
             }
         }
 
@@ -1351,7 +1366,10 @@ namespace UI
             DataRow drNewRow = _dtNewMed.NewRow();
             _dtNewMed.Rows.Add(drNewRow);
             drNewRow["MedID"] = cmbExamination.SelectedValue.ToString();
-            drNewRow["MedName"] = cmbExamination.Text.Trim();
+            drNewRow["MedName"] = "1";
+            drNewRow["MedUnitPrice"] =txtPayCheck.Text.Trim();
+            drNewRow["TimesUse"] = "1";
+            drNewRow["UseAge"] = cmbExamination.Text.Trim();
             drNewRow["MedPrice"] = txtPayCheck.Text.Trim();
             drNewRow["MedStyle"] = @"辅助检查";
             dgvMedicines.AutoGenerateColumns = false;

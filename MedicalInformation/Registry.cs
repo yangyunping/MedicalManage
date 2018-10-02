@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// 记录的账号保存到注册表
+    /// </summary>
     public class Registry
     {
         private readonly string _keyName;
@@ -37,7 +36,6 @@ namespace Model
             {
                 return false;
             }
-
         }
     }
 }
