@@ -1,4 +1,4 @@
-﻿namespace MedicalManage
+﻿namespace UI
 {
     partial class FrmAllServePatInfo
     {
@@ -59,7 +59,7 @@
             // 
             this.btnServePatSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnServePatSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.btnServePatSearch.Image = global::MedicalManage.Properties.Resources.bookmark;
+            this.btnServePatSearch.Image = global::UI.Properties.Resources.bookmark;
             this.btnServePatSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnServePatSearch.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btnServePatSearch.Name = "btnServePatSearch";
@@ -72,7 +72,7 @@
             // 
             this.tsMedBuyInfo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.tsMedBuyInfo.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.tsMedBuyInfo.Image = global::MedicalManage.Properties.Resources.SearchStatistics;
+            this.tsMedBuyInfo.Image = global::UI.Properties.Resources.SearchStatistics;
             this.tsMedBuyInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsMedBuyInfo.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.tsMedBuyInfo.Name = "tsMedBuyInfo";
@@ -85,7 +85,7 @@
             // 
             this.btnNumSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnNumSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.btnNumSearch.Image = global::MedicalManage.Properties.Resources.Calculator_operations;
+            this.btnNumSearch.Image = global::UI.Properties.Resources.Calculator_operations;
             this.btnNumSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNumSearch.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btnNumSearch.Name = "btnNumSearch";

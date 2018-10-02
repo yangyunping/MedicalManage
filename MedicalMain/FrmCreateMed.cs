@@ -11,7 +11,7 @@ using Model;
 using DAL;
 using BLL;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmCreateMed : Form
     {

@@ -1,21 +1,20 @@
 ﻿using DAL;
 using Model;
-using MedicalManage.Properties;
-using Model;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using UI.Properties;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmMain : Form
     {
         public FrmMain()
         {
             InitializeComponent();
-            InitiLoad();//
+            InitiLoad();
         }
 
         public bool ThumbnailCallback()
@@ -34,18 +33,33 @@ namespace MedicalManage
             {
                 string weatherAddress = CallWebPage.CallWeb("http://www.weather.com.cn/data/cityinfo/101040100.html", 60000, Encoding.UTF8);
                 Weather weather = jsonRead.JsonReadInfo(weatherAddress);
-                lblWeather.Text ="城市:" +weather.city + "   天气:"+ weather.weather + "   温度:" + weather.temp1+"-" + weather.temp2;
+                lblWeather.Text ="城市: " +weather.city + "   天气: "+ weather.weather + "   温度: " + weather.temp1+"-" + weather.temp2;
             }
             catch { }
 
             lblWelcome.Text = @"欢迎 " + Information.CurrentUser.Name +"  "+ Information.CurrentUser.DutyName + "         ";
 
-            dgvMedInfo.Columns.AddRange(
-                new DataGridViewTextBoxColumn { Name = @"MedName", DataPropertyName = @"MedName", HeaderText = @"药名", Width = 90 },
-                   new DataGridViewTextBoxColumn { Name = @"Quantity", DataPropertyName = @"Quantity", HeaderText = @"库存", Width = 60 },
-                      new DataGridViewTextBoxColumn { Name = @"DueDate", DataPropertyName = @"DueDate", HeaderText = @"到期时间", Width = 100 }
-                         );
-
+            //dgvMedInfo.Columns.AddRange(
+            //    new DataGridViewTextBoxColumn { Name = @"MedName", DataPropertyName = @"MedName", HeaderText = @"药名", Width = 90 },
+            //       new DataGridViewTextBoxColumn { Name = @"Quantity", DataPropertyName = @"Quantity", HeaderText = @"库存", Width = 60 },
+            //          new DataGridViewTextBoxColumn { Name = @"DueDate", DataPropertyName = @"DueDate", HeaderText = @"到期时间", Width = 100 }
+            //             );
+            //dgvMedInfo.AutoGenerateColumns = false;
+            DataTable drInMed = ErpServer.GetInMedDataSet(null).Tables[0];
+            string MedStock = string.Empty;
+            string MedDate = string.Empty;
+            DataRow[] rowsStock = drInMed.Select("Quantity <= 30");//库存少于30
+            for (int i = 0; i < rowsStock.Length; i++)
+            {
+                MedStock += ", " + rowsStock[i]["MedName"].ToString();
+            }
+            DataRow[] rowsDate = drInMed.Select($@"DueDate <= '{DateTime.Now}'");//药品到了保质期
+            for (int i = 0; i < rowsStock.Length; i++)
+            {
+                MedDate += ", " + rowsStock[i]["MedName"].ToString();
+            }
+            MessageBox.Show("库存少于30的药品："+ MedDate + "\r\n" + "到了保质期的药品："+ MedDate,"提示",MessageBoxButtons.YesNo,MessageBoxIcon.Error);
+            drInMed.Dispose();
             timer1.Start();
         }
 
@@ -148,15 +162,6 @@ namespace MedicalManage
             frmConfig.ShowDialog();
         }
 
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            dgvMedInfo.AutoGenerateColumns = false;
-            DataTable drInMed = ErpServer.GetInMedDataSet(null).Tables[0];
-            dgvMedInfo.DataSource = drInMed;
-            drInMed.Dispose();
-        }
-
-
         private void 基础设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmConfig frmConfig = new FrmConfig();
@@ -195,6 +200,17 @@ namespace MedicalManage
             //        lblTime.Text = DateTime.Now.ToLongTimeString();
             //    }
             //    ));
+        }
+
+        private void tsmThemes_Click(object sender, EventArgs e)
+        {
+            FrmSkinChange frmSkinChange = new FrmSkinChange()
+            {
+                Name = tsmThemes.Text,
+                Text = tsmThemes.Text,
+                Dock = DockStyle.Fill
+            };
+            CreatNewPag(tsmThemes.Text, frmSkinChange);
         }
     }
 }

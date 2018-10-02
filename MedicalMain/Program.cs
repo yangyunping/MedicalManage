@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MedicalManage
+namespace UI
 {
     static class Program
     {

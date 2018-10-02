@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MedicalManage.Temple
+namespace UI.Temple
 {
     public partial class FrmBase : Form
     {

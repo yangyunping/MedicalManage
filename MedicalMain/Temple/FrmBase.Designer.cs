@@ -1,4 +1,4 @@
-﻿namespace MedicalManage.Temple
+﻿namespace UI.Temple
 {
     partial class FrmBase
     {

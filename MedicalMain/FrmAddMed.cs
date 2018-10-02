@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmAddMed : Form
     {

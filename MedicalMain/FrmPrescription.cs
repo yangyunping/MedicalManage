@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmPrescription : UserControl
     {

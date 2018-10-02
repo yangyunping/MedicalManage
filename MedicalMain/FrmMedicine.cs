@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmMedicine : UserControl
     {

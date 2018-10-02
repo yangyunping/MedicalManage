@@ -6,7 +6,7 @@ using System.Data;
 using System.Windows.Forms;
 using BLL;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmConfig : Form
     {

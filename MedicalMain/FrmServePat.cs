@@ -1,6 +1,6 @@
 ﻿using BLL;
 using DAL;
-using MedicalManage.Temple;
+using UI.Temple;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmServePat : UserControl
     {

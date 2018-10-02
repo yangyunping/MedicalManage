@@ -1,4 +1,4 @@
-﻿namespace MedicalManage
+﻿namespace UI
 {
     partial class FrmServerpatMed
     {

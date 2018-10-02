@@ -1,4 +1,4 @@
-﻿namespace MedicalManage
+﻿namespace UI
 {
     partial class FrmMedicine
     {
@@ -59,7 +59,7 @@
             // 
             this.sbtnCreate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.sbtnCreate.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.sbtnCreate.Image = global::MedicalManage.Properties.Resources.Pencil;
+            this.sbtnCreate.Image = global::UI.Properties.Resources.Pencil;
             this.sbtnCreate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sbtnCreate.Name = "sbtnCreate";
             this.sbtnCreate.Size = new System.Drawing.Size(123, 34);
@@ -82,7 +82,7 @@
             // 
             this.sBtnMedSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.sBtnMedSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.sBtnMedSearch.Image = global::MedicalManage.Properties.Resources.Statistics_PieChart;
+            this.sBtnMedSearch.Image = global::UI.Properties.Resources.Statistics_PieChart;
             this.sBtnMedSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sBtnMedSearch.Name = "sBtnMedSearch";
             this.sBtnMedSearch.Padding = new System.Windows.Forms.Padding(3);

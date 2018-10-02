@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Model;
 using DAL;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmCheckPrice : Form
     {

@@ -279,12 +279,7 @@ End";
         /// <returns></returns>
         public static DataSet GetInMedDataSet(string sSql)
         {
-            string sql =
- $@"  select i.MedID,MedName,i.MedBarCode,Production,InDate,ProduteDate,DueDate,ReleaseDay,Quantity,MedBid,MedUnitPrice,Memary,MedUnit,MedStandard,MedStandard,MedTypeID,
-  Name as StyleName,MedApproval,MedSpellFirst
-  from InMed i
-  left join Medicine m on m.MedID = i.MedID
-  left join Config c on c.SignID = m.MedTypeID where 1=1  {sSql} order by Quantity";
+            string sql = $@"  select  *  from View_MedInfo where 1=1  {sSql} order by Quantity";
             return ExecuteQuery(sql);
         }
         /// <summary>

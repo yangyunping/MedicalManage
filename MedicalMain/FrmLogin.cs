@@ -1,5 +1,4 @@
 ﻿using BLL;
-using MedicalManage.Properties;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -8,8 +7,9 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using UI.Properties;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmLogin : Form
     {

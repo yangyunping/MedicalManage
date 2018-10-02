@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 
-namespace MedicalManage
+namespace UI
 {
     public partial class FrmEmpSearch : UserControl
     {
