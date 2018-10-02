@@ -24,7 +24,7 @@ namespace MedicalManage
             cmbEmployees.DisplayMember = @"DocName";
             cmbEmployees.ValueMember = @"DocID";
 
-            DataTable dtUseWay = BllConfig.GetConfigInfo(Config.ConfigStyle.方案类别.ToString()).Tables[0];
+            DataTable dtUseWay = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.方案类别.SafeDbValue<int>()).Tables[0];
             DataRow drRows = dtUseWay.NewRow();
             drRows["Name"] = "全部";
             drRows["SignID"] = "0";

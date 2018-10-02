@@ -11,14 +11,14 @@ namespace Model
     {
         static Information()
         {
-            CurrentUser = new CurrentUser();
+            CurrentUser = new Doctor();
             Medicine = new Medicine();
-            UsePower = new UsePower();
+            UsePower = new Dictionary<string, string>();
         }
         /// <summary>
         /// 员工
         /// </summary>
-        public static CurrentUser CurrentUser { get; set; }
+        public static Doctor CurrentUser { get; set; }
 
         /// <summary>
         /// 药品
@@ -27,7 +27,7 @@ namespace Model
         /// <summary>
         /// 用户
         /// </summary>
-        public static UsePower UsePower { get; set; }
+        public static Dictionary<string,string> UsePower { get; set; }
         /// <summary>
         /// 复制方案信息
         /// </summary>

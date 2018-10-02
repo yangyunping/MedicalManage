@@ -41,9 +41,9 @@ namespace MedicalManage
             {
                 return;
             }
-            添加到治疗单Tsm.Visible = 取消治疗单打印Tsm.Visible = cmbStyle.Text.Equals(Config.ConfigStyle.用法.ToString());
+            添加到治疗单Tsm.Visible = 取消治疗单打印Tsm.Visible = cmbStyle.Text.Equals(CommonInfo.ConfigStyle.用法.ToString());
             dgvShow.AutoGenerateColumns = false;
-            DataTable dtInfo = BllConfig.GetConfigInfo(cmbStyle.Text.ToString()).Tables[0];
+            DataTable dtInfo = BllConfig.GetConfigInfo(cmbStyle.Text.SafeDbValue<int>()).Tables[0];
             dgvShow.DataSource = dtInfo;
         }
 
@@ -103,32 +103,38 @@ namespace MedicalManage
 
         private void btnAddStyle_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbStyle.Text))
+            switch (btnAddStyle.Text)
             {
-                MessageBox.Show(@"请填写需要添加的类别！");
-                return;
-            }
-            if (cmbStyle.SelectedValue != null)
-            {
-                MessageBox.Show(@"该类别已添加！");
-                return;
-            }
-            foreach (DataRowView item in cmbStyle.Items)
-            {
-                if (item["Name"].ToString().Equals(cmbStyle.Text.Trim()))
-                {
-                    MessageBox.Show(@"该类别已添加");
-                    return;
-                }
-            }
-            if (ErpServer.AddConfig(cmbStyle.Text.Trim(), @"10000"))
-            {
-                MessageBox.Show(@"添加成功！");
-                IniteData();
-            }
-            else
-            {
-                MessageBox.Show(@"添加失败，检查后重试！");
+                case "新增类别":
+                    txtType.Visible = btnClose.Visible = true;
+                    btnAddStyle.Text = "保存类别";
+                    break;
+                case "保存类别":
+                    if (string.IsNullOrEmpty(txtType.Text))
+                    {
+                        MessageBox.Show(@"请填写需要添加的类别！");
+                        return;
+                    }
+                    foreach (DataRowView item in cmbStyle.Items)
+                    {
+                        if (item["Name"].ToString().Equals(txtType.Text.Trim()))
+                        {
+                            MessageBox.Show(@"该类别已添加");
+                            return;
+                        }
+                    }
+                    if (ErpServer.AddConfig(cmbStyle.Text.Trim(), @"10000"))
+                    {
+                        MessageBox.Show(@"添加成功！");
+                        IniteData();
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"添加失败，检查后重试！");
+                    }
+                    txtType.Visible = btnClose.Visible = false;
+                    btnAddStyle.Text = "新增类别";
+                    break;
             }
         }
 
@@ -213,6 +219,12 @@ namespace MedicalManage
                     MessageBox.Show("取消成功!");
                 }
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            txtType.Clear();
+            txtType.Visible = btnClose.Visible = false;
         }
     }
 }

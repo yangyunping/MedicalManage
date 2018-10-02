@@ -13,6 +13,10 @@ namespace MedicalManage
 {
     public partial class FrmLogin : Form
     {
+        private string empID = string.Empty;
+        /// <summary>
+        /// 鼠标位置
+        /// </summary>
         private Point _mousePoint;
         /// <summary>
         /// 最多允许记录的用户名个数
@@ -73,14 +77,14 @@ namespace MedicalManage
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbEmpID.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            if (string.IsNullOrEmpty(cmbEmpID.Text.Trim()) || string.IsNullOrEmpty(txtPassword.Text))
             {
                 MessageBox.Show(@"请输入账号和密码！");
                 return;
             }
             if (Globle.TestConnection())
             {
-                using (DataSet dsUser = BllEmployee.GetEmployeeInfo(cmbEmpID.Text))
+                using (DataSet dsUser = BllEmployee.GetEmployeeInfo(cmbEmpID.Text.Trim()))
                 {
                     if (dsUser == null)
                     {
@@ -105,29 +109,32 @@ namespace MedicalManage
                         txtPassword.Focus();
                         return;
                     }
+                    empID = this.cmbEmpID.Text.Trim();
                     //记住用户名
-                    string strLoginName = cmbEmpID.Text;
-                    List<string> lstLoginName = new List<string>
-                                            {
-                                                    strLoginName
-                                            };
-                    string[] registry = ResistryKey.GetRegistry(RegisterValueName);
-                    if (null != registry)
+                    if (chkRemenber.Checked)
                     {
-                        foreach (string name in registry.TakeWhile(name => lstLoginName.Count < MaxLoginNameSaveCount).Where(name => 0 != StringComparer.CurrentCulture.Compare(strLoginName.ToUpper(), name.ToUpper())))
-                            lstLoginName.Add(name);
+                        List<string> lstLoginName = new List<string>
+                                            {
+                                                    empID
+                                            };
+                        string[] registry = ResistryKey.GetRegistry(RegisterValueName);
+                        if (null != registry)
+                        {
+                            foreach (string name in registry.TakeWhile(name => lstLoginName.Count < MaxLoginNameSaveCount).Where(name => 0 != StringComparer.CurrentCulture.Compare(empID.ToUpper(), name.ToUpper())))
+                                lstLoginName.Add(name);
+                        }
+                        ResistryKey.SetRegistry(RegisterValueName, lstLoginName.ToArray());
                     }
-                    ResistryKey.SetRegistry(RegisterValueName, lstLoginName.ToArray());
 
-                    //保存用户信息
+                    //保存登录用户信息
                     Information.CurrentUser = dsUser.Tables[0].Rows[0];
                     dsUser.Dispose();
 
                     //用户权限
-                    DataTable dtPower = BllConfig.GetConfigInfo(Config.ConfigStyle.用户权限.ToString()).Tables[0];
+                    DataTable dtPower = BllEmpPower.GetEmpPower(empID);
                     for (int i = 0; i < dtPower.Rows.Count; i++)
                     {
-                        Information.UsePower.CurrentPower.Add(dtPower.Rows[i]["Name"].ToString());
+                        Information.UsePower.Add(dtPower.Rows[i]["PowerID"].ToString(), dtPower.Rows[i]["DocID"].ToString());
                     }
                     FrmMain frmMain  = new FrmMain();
                     this.Hide();

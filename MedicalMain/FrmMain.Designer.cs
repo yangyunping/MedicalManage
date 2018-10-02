@@ -44,12 +44,12 @@
             this.picShow = new System.Windows.Forms.PictureBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblTime = new System.Windows.Forms.Label();
             this.lblWeather = new System.Windows.Forms.Label();
             this.dgvMedInfo = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tbContent = new System.Windows.Forms.TabControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblTime = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tsButtons.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -239,6 +239,19 @@
             this.panel3.Size = new System.Drawing.Size(1304, 23);
             this.panel3.TabIndex = 1;
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.lblTime.ForeColor = System.Drawing.Color.Maroon;
+            this.lblTime.Location = new System.Drawing.Point(96, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(35, 19);
+            this.lblTime.TabIndex = 7;
+            this.lblTime.Text = "时间";
+            // 
             // lblWeather
             // 
             this.lblWeather.AutoSize = true;
@@ -284,23 +297,11 @@
             this.tbContent.SelectedIndex = 0;
             this.tbContent.Size = new System.Drawing.Size(1090, 527);
             this.tbContent.TabIndex = 4;
+            this.tbContent.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tbContent_MouseDoubleClick);
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lblTime
-            // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblTime.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 9.5F);
-            this.lblTime.ForeColor = System.Drawing.Color.Maroon;
-            this.lblTime.Location = new System.Drawing.Point(96, 0);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(35, 19);
-            this.lblTime.TabIndex = 7;
-            this.lblTime.Text = "时间";
             // 
             // FrmMain
             // 

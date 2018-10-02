@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ERP" Class="MedicalDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DZEKX7NU0G5GWI8;Initial Catalog=ERP;Persist Security Info=True;User ID=sa" SettingsObjectName="Model.Properties.Settings" SettingsPropertyName="ERPConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Patient" Member="Patient">
+    <Type Name="Patient">
+      <Column Name="PatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatName" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="TelPhone" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Addresses" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Medicine" Member="Medicine">
+    <Type Name="Medicine">
+      <Column Name="MedID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MedName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="MedTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MedUnit" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="MedStandard" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MedApproval" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MedSpellFirst" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Config_Medicine" Member="Config" ThisKey="MedTypeID" OtherKey="SignID" Type="Config" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Doctor" Member="Doctor">
+    <Type Name="Doctor">
+      <Column Name="DocID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DocPassword" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DocName" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DocSex" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="DocAge" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DocTel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DocDutyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Config_Doctor" Member="Config" ThisKey="DocDutyID" OtherKey="SignID" Type="Config" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Config" Member="Config">
+    <Type Name="Config">
+      <Column Name="SignID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="StyleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Config_Medicine" Member="Medicine" ThisKey="SignID" OtherKey="MedTypeID" Type="Medicine" />
+      <Association Name="Config_Doctor" Member="Doctor" ThisKey="SignID" OtherKey="DocDutyID" Type="Doctor" />
+    </Type>
+  </Table>
+</Database>

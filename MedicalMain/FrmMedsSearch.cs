@@ -18,7 +18,7 @@ namespace MedicalManage
 
         private void InitData()
         {
-            DataTable dtStyle = BllConfig.GetConfigInfo(Config.ConfigStyle.药品类别.ToString()).Tables[0];
+            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow = dtStyle.NewRow();
             drRow["SignID"] = @"-1";
             drRow["Name"] = @"全部";

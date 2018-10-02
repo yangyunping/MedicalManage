@@ -26,13 +26,13 @@ namespace MedicalManage
 
         private void IniteData()
         {
-            DataTable dtUnit = BllConfig.GetConfigInfo(Config.ConfigStyle.计量单位.ToString()).Tables[0];
+            DataTable dtUnit = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.计量单位.SafeDbValue<int>()).Tables[0];
             cmbUnits.DataSource = dtUnit;
             cmbUnits.ValueMember = @"SignID";
             cmbUnits.DisplayMember = @"Name";
             cmbUnits.SelectedIndex = -1;
 
-            DataTable dtStyle = BllConfig.GetConfigInfo(Config.ConfigStyle.药品类别.ToString()).Tables[0];
+            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             cmbType.DataSource = dtStyle;
             cmbType.ValueMember = @"SignID";
             cmbType.DisplayMember = @"Name";

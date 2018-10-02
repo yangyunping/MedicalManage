@@ -36,6 +36,7 @@
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblClose = new System.Windows.Forms.Label();
             this.cmbEmpID = new System.Windows.Forms.ComboBox();
+            this.chkRemenber = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +92,7 @@
             // 
             this.btnLogin.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnLogin.Location = new System.Drawing.Point(78, 185);
+            this.btnLogin.Location = new System.Drawing.Point(78, 193);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(191, 35);
             this.btnLogin.TabIndex = 5;
@@ -130,12 +131,26 @@
             this.cmbEmpID.Size = new System.Drawing.Size(144, 27);
             this.cmbEmpID.TabIndex = 9;
             // 
+            // chkRemenber
+            // 
+            this.chkRemenber.AutoSize = true;
+            this.chkRemenber.Checked = true;
+            this.chkRemenber.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRemenber.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.chkRemenber.Location = new System.Drawing.Point(142, 166);
+            this.chkRemenber.Name = "chkRemenber";
+            this.chkRemenber.Size = new System.Drawing.Size(75, 21);
+            this.chkRemenber.TabIndex = 10;
+            this.chkRemenber.Text = "记住账号";
+            this.chkRemenber.UseVisualStyleBackColor = true;
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(350, 240);
+            this.Controls.Add(this.chkRemenber);
             this.Controls.Add(this.cmbEmpID);
             this.Controls.Add(this.lblClose);
             this.Controls.Add(this.picLogo);
@@ -167,6 +182,7 @@
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblClose;
         private System.Windows.Forms.ComboBox cmbEmpID;
+        private System.Windows.Forms.CheckBox chkRemenber;
     }
 }
 

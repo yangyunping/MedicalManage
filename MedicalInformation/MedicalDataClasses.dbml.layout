@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.625, 8.5" name="MedicalDataClasses">
+  <DataContextMoniker Name="/MedicalDataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="442cbd82-7990-45c0-830f-0392b3ba6615" absoluteBounds="5.25, 0.75, 2, 2.0916874186197916">
+      <DataClassMoniker Name="/MedicalDataClassesDataContext/Patient" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a8e43e61-a3d6-4619-a41b-76b5123bb15c" absoluteBounds="5.265, 1.21, 1.9700000000000002, 1.5316874186197915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1ad44823-17a1-40f3-9368-1175c93eb47c" absoluteBounds="7.875, 0.5, 2, 2.2764815266927085">
+      <DataClassMoniker Name="/MedicalDataClassesDataContext/Medicine" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6b6ef8e4-a6a5-4e0d-9d6c-94d8841c9e03" absoluteBounds="7.89, 0.96, 1.9700000000000002, 1.7164815266927085" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf549469-ed4f-480e-9476-57dba8e3e72d" absoluteBounds="10.375, 0.5, 2, 2.2764815266927085">
+      <DataClassMoniker Name="/MedicalDataClassesDataContext/Doctor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb3ac3af-532d-4fc7-973d-64c3c9b71a9c" absoluteBounds="10.39, 0.96, 1.9700000000000002, 1.7164815266927085" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="980eb084-7646-4dcf-bbb1-f42018dce9fa" absoluteBounds="9.25, 3.625, 2, 1.3525109863281251">
+      <DataClassMoniker Name="/MedicalDataClassesDataContext/Config" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6bc24c2f-9699-4d97-a0c8-26c188ad8dcc" absoluteBounds="9.265, 4.085, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.5625 : 3.625); (9.5625 : 2.77648152669271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/MedicalDataClassesDataContext/Config/Config_Medicine" />
+      <nodes>
+        <classShapeMoniker Id="980eb084-7646-4dcf-bbb1-f42018dce9fa" />
+        <classShapeMoniker Id="1ad44823-17a1-40f3-9368-1175c93eb47c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.8125 : 3.625); (10.8125 : 2.77648152669271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/MedicalDataClassesDataContext/Config/Config_Doctor" />
+      <nodes>
+        <classShapeMoniker Id="980eb084-7646-4dcf-bbb1-f42018dce9fa" />
+        <classShapeMoniker Id="bf549469-ed4f-480e-9476-57dba8e3e72d" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

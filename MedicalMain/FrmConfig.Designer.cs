@@ -41,12 +41,15 @@
             this.btnAddStyle = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnModify = new System.Windows.Forms.Button();
+            this.txtType = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShow)).BeginInit();
             this.cmsMenues.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbStyle
             // 
+            this.cmbStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStyle.FormattingEnabled = true;
             this.cmbStyle.Location = new System.Drawing.Point(53, 23);
             this.cmbStyle.Name = "cmbStyle";
@@ -74,22 +77,24 @@
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.btnAdd.Location = new System.Drawing.Point(184, 73);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(67, 28);
+            this.btnAdd.Size = new System.Drawing.Size(58, 28);
             this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "新  增";
+            this.btnAdd.Text = "新 增";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(338, 73);
+            this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnDelete.Location = new System.Drawing.Point(321, 73);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 28);
+            this.btnDelete.Size = new System.Drawing.Size(58, 28);
             this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "删除选中";
+            this.btnDelete.Text = "删 除";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -101,13 +106,13 @@
             this.dgvShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvShow.ContextMenuStrip = this.cmsMenues;
             this.dgvShow.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvShow.Location = new System.Drawing.Point(0, 116);
+            this.dgvShow.Location = new System.Drawing.Point(0, 117);
             this.dgvShow.Name = "dgvShow";
             this.dgvShow.ReadOnly = true;
             this.dgvShow.RowHeadersWidth = 11;
             this.dgvShow.RowTemplate.Height = 23;
             this.dgvShow.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvShow.Size = new System.Drawing.Size(423, 341);
+            this.dgvShow.Size = new System.Drawing.Size(440, 340);
             this.dgvShow.TabIndex = 5;
             this.dgvShow.Click += new System.EventHandler(this.dgvShow_Click);
             // 
@@ -136,9 +141,10 @@
             // btnAddStyle
             // 
             this.btnAddStyle.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnAddStyle.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.btnAddStyle.Location = new System.Drawing.Point(184, 23);
             this.btnAddStyle.Name = "btnAddStyle";
-            this.btnAddStyle.Size = new System.Drawing.Size(77, 27);
+            this.btnAddStyle.Size = new System.Drawing.Size(67, 27);
             this.btnAddStyle.TabIndex = 6;
             this.btnAddStyle.Text = "新增类别";
             this.btnAddStyle.UseVisualStyleBackColor = false;
@@ -156,20 +162,44 @@
             // btnModify
             // 
             this.btnModify.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnModify.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.btnModify.Location = new System.Drawing.Point(257, 73);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(75, 28);
+            this.btnModify.Size = new System.Drawing.Size(58, 28);
             this.btnModify.TabIndex = 9;
-            this.btnModify.Text = "修改选中";
+            this.btnModify.Text = "修 改";
             this.btnModify.UseVisualStyleBackColor = false;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
+            // txtType
+            // 
+            this.txtType.Location = new System.Drawing.Point(257, 24);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(122, 24);
+            this.txtType.TabIndex = 10;
+            this.txtType.Visible = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnClose.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnClose.Location = new System.Drawing.Point(384, 22);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(50, 28);
+            this.btnClose.TabIndex = 11;
+            this.btnClose.Text = "取 消";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Visible = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // FrmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(423, 457);
+            this.ClientSize = new System.Drawing.Size(440, 457);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.txtType);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAddStyle);
@@ -205,5 +235,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsMenues;
         private System.Windows.Forms.ToolStripMenuItem 添加到治疗单Tsm;
         private System.Windows.Forms.ToolStripMenuItem 取消治疗单打印Tsm;
+        private System.Windows.Forms.TextBox txtType;
+        private System.Windows.Forms.Button btnClose;
     }
 }

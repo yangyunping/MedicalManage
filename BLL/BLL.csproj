@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="BllConfig.cs" />
     <Compile Include="BllEmployee.cs" />
+    <Compile Include="BllEmpPower.cs" />
     <Compile Include="BllMedicine.cs" />
+    <Compile Include="BllPations.cs" />
     <Compile Include="Globle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

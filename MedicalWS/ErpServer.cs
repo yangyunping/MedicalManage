@@ -107,15 +107,13 @@ namespace DAL
         }
 
         /// <summary>
-        /// 获取config信息
+        /// 获取配置信息
         /// </summary>
-        /// <param name="configName"></param>
+        /// <param name="typeID"></param>
         /// <returns></returns>
-        public static DataSet GetConfigInfo(string configName)
+        public static DataSet GetConfigInfo(int typeID)
         {
-            string sql = $@"declare @StyleID varchar(20)
-  select @StyleID = SignID from Config where Name = '{configName}'
-  select * from Config where StyleID = @StyleID";
+            string sql = $@"select * from View_Config where TypeID = '{typeID}'";
             return ExecuteQuery(sql);
         }
 
@@ -289,35 +287,25 @@ End";
   left join Config c on c.SignID = m.MedTypeID where 1=1  {sSql} order by Quantity";
             return ExecuteQuery(sql);
         }
-
         /// <summary>
         /// 病人信息录入
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="age"></param>
-        /// <param name="sex"></param>
-        /// <param name="telphone"></param>
-        /// <param name="address"></param>
-        /// <param name="operatetype"></param>
-        /// <param name="empId"></param>
+        /// <param name="patient"></param>
+        /// <param name="medLog"></param>
         /// <returns></returns>
-        public static bool InsertPation(string name, string age, string sex, string telphone, string address,
-            string operatetype, string empId)
+        public static bool InsertPation(Patient patient, MedLog medLog)
         {
             string sql =
                 $@"
-IF not exists(select * from Patient where PatName = '{name}' and Addresses = '{address}')
+IF not exists(select * from Patient where ID = '{patient.PatID}')
 Begin
-Insert into Patient(PatName,Age,Gender,TelPhone,Addresses) values('{name}','{age}','{sex}','{
-                    telphone}','{address}')
-insert into MedLog(OperType,Notes,OperateTime,OperateEmpID) values('{
-                    operatetype}','姓名:{name} 年龄:{age} 电话:{telphone} 住址:{address}',GETDATE(),'{empId}')
+Insert into Patient(PatName,Age,Gender,TelPhone,Addresses) values('{patient.PatName}','{patient.Age}','{patient.Gender}','{ patient.TelPhone}','{patient.Addresses}')
+insert into MedLog(OperType,Notes,OperateTime,OperateEmpID) values('{ medLog.OperType}','{medLog.Notes}',GETDATE(),'{medLog.OperateEmpID}')
 End
 ElSE
 Begin
-Update Patient set Age = '{age}' where PatName = '{name}' and Addresses = '{address}'
-End 
-";
+Update Patient set Age = '{patient.Age}', PatName = '{patient.PatName}',Addresses = '{patient.Addresses}',Gender = '{patient.Gender}',TelPhone ={ patient.TelPhone},Addresses = '{patient.Addresses}'  where ID = '{patient.PatID}'
+End ";
             return ExecuteNonQuery(sql) > 0;
         }
 

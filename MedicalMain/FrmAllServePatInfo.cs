@@ -16,7 +16,7 @@ namespace MedicalManage
         public FrmAllServePatInfo()
         {
             InitializeComponent();
-            btnNumSearch.Visible = Information.UsePower.CurrentPower.Contains(Config.UserPowers.门诊量管理.ToString());
+            btnNumSearch.Visible = Information.UsePower.ContainsKey(CommonInfo.UserPowers.门诊量管理.ToString());
         }
 
         private void btnServePatSearch_Click(object sender, EventArgs e)

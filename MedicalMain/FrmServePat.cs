@@ -27,7 +27,7 @@ namespace MedicalManage
         }
         private void InitData()
         {
-            DataTable dtStyle = BllConfig.GetConfigInfo(Config.ConfigStyle.药品类别.ToString()).Tables[0];
+            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow = dtStyle.NewRow();
             drRow["SignID"] = @"-1";
             drRow["Name"] = @"全部";
@@ -36,25 +36,25 @@ namespace MedicalManage
             cmbStyle.DisplayMember = @"Name";
             cmbStyle.DataSource = dtStyle;
 
-            DataTable dtUseWay = BllConfig.GetConfigInfo(Config.ConfigStyle.用法.ToString()).Tables[0];
+            DataTable dtUseWay = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用法.SafeDbValue<int>()).Tables[0];
             cmbUseWay.ValueMember = @"SignID";
             cmbUseWay.DisplayMember = @"Name";
             cmbUseWay.DataSource = dtUseWay;
             cmbUseWay.SelectedIndex = -1;
 
-            DataTable dtEachTimes = BllConfig.GetConfigInfo(Config.ConfigStyle.频率.ToString()).Tables[0];
+            DataTable dtEachTimes = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.频率.SafeDbValue<int>()).Tables[0];
             cmbEachTimes.ValueMember = @"SignID";
             cmbEachTimes.DisplayMember = @"Name";
             cmbEachTimes.DataSource = dtEachTimes;
             cmbEachTimes.SelectedIndex = -1;
 
-            DataTable dtPlan = BllConfig.GetConfigInfo(Config.ConfigStyle.方案类别.ToString()).Tables[0];
+            DataTable dtPlan = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.方案类别.SafeDbValue<int>()).Tables[0];
             cmbPlan.ValueMember = @"SignID";
             cmbPlan.DisplayMember = @"Name";
             cmbPlan.DataSource = dtPlan;
             cmbPlan.SelectedIndex = -1;
 
-            DataTable dtExamination = BllConfig.GetConfigInfo(Config.ConfigStyle.辅助检查.ToString()).Tables[0];
+            DataTable dtExamination = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.辅助检查.SafeDbValue<int>()).Tables[0];
             cmbExamination.ValueMember = @"SignID";
             cmbExamination.DisplayMember = @"Name";
             cmbExamination.DataSource = dtExamination;
@@ -93,7 +93,7 @@ namespace MedicalManage
             {
                 sSql = $@" and MedTypeID = '{cmbStyle.SelectedValue}'";
             }
-            DataTable dtMedicines = ErpServer.GetMedInfo(sSql, Config.ConfigStyle.药品类别.ToString()).Tables[0];
+            DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
             cmbMedicines.ValueMember = @"MedID";
             cmbMedicines.DisplayMember = @"MedName";
             cmbMedicines.DataSource = dtMedicines;
@@ -180,20 +180,20 @@ namespace MedicalManage
                     MessageBox.Show(@"输入病人信息！");
                     return;
                 }
-                if (!ErpServer.InsertPation(txtName.Text.Trim(), txtAge.Text.Trim(), cmbGender.Text.Trim(), txtPhone.Text.Trim(),
-                    txtAddress.Text.Trim(), OperateType.门诊信息保存.ToString(), Information.CurrentUser.Id))
-                {
-                    MessageBox.Show(@"信息有误，请核对病人信息！");
-                    return;
-                }
+               
                 if (dgvMedicines.Rows.Count == 0)
                 {
                     MessageBox.Show(@"请添加药品后操作！");
                     return;
                 }
+                SavePatient();//保存病人信息
 
+                //已添加药品信息
                 List<List<string>> medList = new List<List<string>>();
+
+                //已添加检查信息
                 List<List<string>> CheckList = new List<List<string>>();
+
                 _allMedBid = Decimal.Zero;
                 for (int i = 0; i < dgvMedicines.Rows.Count; i++)
                 {
@@ -272,7 +272,32 @@ namespace MedicalManage
                 cmbGender.Focus();
             }
         }
-
+        /// <summary>
+        /// 保存病人信息
+        /// </summary>
+        private void SavePatient()
+        {
+            Patient patient = new Patient()
+            {
+                PatID = Information.PatId,
+                PatName = txtName.Text.Trim(),
+                Age = txtAge.Text.Trim(),
+                Gender = cmbGender.Text.Trim(),
+                TelPhone = txtPhone.Text.Trim(),
+                Addresses = txtAddress.Text.Trim()
+            };
+            MedLog medLog = new MedLog
+            {
+                OperType = "病人信息保存",
+                Notes = txtName.Text.Trim() + "  " + txtAge.Text.Trim() + "  " + cmbGender.Text.Trim() + "  " + txtPhone.Text.Trim() + "  " + txtAddress.Text.Trim(),
+                OperateEmpID = Information.CurrentUser.Id
+            };
+            if (!BllPations.InsertPation(patient, medLog))
+            {
+                MessageBox.Show(@"信息有误，请核对病人信息！");
+                return;
+            }
+        }
         private void txtName_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRow[] drRows = _dtPat.Select($@"PatName = '{txtName.Text.Trim()}'");
@@ -435,12 +460,9 @@ namespace MedicalManage
                     MessageBox.Show(@"请选择方案类别");
                     return;
                 }
-                if (!ErpServer.InsertPation(txtName.Text.Trim(), txtAge.Text.Trim(), cmbGender.Text.Trim(), txtPhone.Text.Trim(),
-                    txtAddress.Text.Trim(), OperateType.门诊信息保存.ToString(), Information.CurrentUser.Id))
-                {
-                    MessageBox.Show(@"信息有误，请核对病人信息！");
-                    return;
-                }
+                SavePatient();//保存病人信息
+
+                //方案信息
                 List<List<string>> medPlans = new List<List<string>>();
                 for (int i = 0; i < dgvMedicines.Rows.Count; i++)
                 {
@@ -1000,7 +1022,7 @@ namespace MedicalManage
                     MessageBox.Show(@"请输入内容精确进行查询！");
                     return;
                 }
-                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, Config.ConfigStyle.药品类别.ToString()).Tables[0];
+                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
                 cmbMedicines.ValueMember = @"MedID";
                 cmbMedicines.DisplayMember = @"MedName";
                 cmbMedicines.DataSource = dtMedicines;
@@ -1064,7 +1086,7 @@ namespace MedicalManage
                 sSql = $@" and m.MedID = '{cmbMedicines.SelectedValue}'";
                 _medValues = cmbMedicines.SelectedValue.ToString().Trim();
             }
-            dtMedicine = ErpServer.GetMedInfo(sSql, Config.ConfigStyle.药品类别.ToString()).Tables[0];
+            dtMedicine = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
             if (dtMedicine != null && dtMedicine.Rows.Count != 0)
             {
                 _medBarCode = dtMedicine.Rows[0]["MedBarCode"].SafeDbValue<string>();
@@ -1100,7 +1122,7 @@ namespace MedicalManage
                     foreach (DataRow rowInfo in Information.CopyPlanInfo.Rows)
                     {
                         DataTable dtTable =
-                            ErpServer.GetMedInfo($@" and ms.MedID = {rowInfo["MedID"]}", Config.ConfigStyle.药品类别.ToString())
+                            ErpServer.GetMedInfo($@" and ms.MedID = {rowInfo["MedID"]}", CommonInfo.ConfigStyle.药品类别.ToString())
                                 .Tables[0];
                         if (dtTable.Rows.Count == 0)
                         {

@@ -8,19 +8,39 @@ using Model;
 
 namespace Model
 {
+    /// <summary>
+    /// 药品信息
+    /// </summary>
     public class Medicine
     {
         /// <summary>
-        /// 药品信息
+        /// 编号
         /// </summary>
-        public string MedId { get; set; } //ID
-        public string MedName { get; set; }//名字
-        public string MedTypeId { get; set; }//类别
-        public string MedUnit { get; set; }//单位
-        public string MedStandard { get; set; }//标准
-        public string MedApproval { get; set; }//批准文号
-        public string MedSpellFirst { get; set; }//首拼
-
+        public string MedId { get; set; }
+        /// <summary>
+        /// 名字
+        /// </summary>
+        public string MedName { get; set; }
+        /// <summary>
+        /// 类别
+        /// </summary>
+        public string MedTypeId { get; set; }
+        /// <summary>
+        /// 单位
+        /// </summary>
+        public string MedUnit { get; set; }
+        /// <summary>
+        /// 标准
+        /// </summary>
+        public string MedStandard { get; set; }
+        /// <summary>
+        /// 批准文号
+        /// </summary>
+        public string MedApproval { get; set; }
+        /// <summary>
+        /// 首拼
+        /// </summary>
+        public string MedSpellFirst { get; set; }
 
         public static implicit operator Medicine(DataRow drRow)
         {

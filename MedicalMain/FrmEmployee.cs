@@ -21,15 +21,33 @@ namespace MedicalManage
 
         private void IniteData()
         {
-            DataTable dtDuty = BllConfig.GetConfigInfo(Config.ConfigStyle.职称类别.ToString()).Tables[0];
+            DataTable dtDuty = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.职称类别.SafeDbValue<int>()).Tables[0];
             cmbDuty.DataSource = dtDuty;
             cmbDuty.ValueMember = @"SignID";
             cmbDuty.DisplayMember = @"Name";
 
-            DataTable dtPower = BllConfig.GetConfigInfo(Config.ConfigStyle.用户权限.ToString()).Tables[0];
+            DataTable dtPower = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用户权限.SafeDbValue<int>()).Tables[0];
             for (int i = 0; i < dtPower.Rows.Count; i++)
             {
-                twPower.Nodes.Add(dtPower.Rows[i]["SignID"].SafeDbValue<string>(), dtPower.Rows[i]["Name"].SafeDbValue<string>());
+                TreeNode treeNode = new TreeNode();
+                treeNode.Nodes.Add(dtPower.Rows[i]["SignID"].SafeDbValue<string>(), dtPower.Rows[i]["Name"].SafeDbValue<string>());
+                DataTable dtPower1 = BllConfig.GetConfigInfo(dtPower.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
+                for (int j = 0; j < dtPower1.Rows.Count; j++)
+                {
+                    TreeNode treeNode1 = new TreeNode();
+                    treeNode1.Nodes.Add(dtPower1.Rows[i]["SignID"].SafeDbValue<string>(), dtPower1.Rows[i]["Name"].SafeDbValue<string>());
+                    DataTable dtPower2 = BllConfig.GetConfigInfo(dtPower1.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
+                    for (int h = 0; h < dtPower2.Rows.Count; h++)
+                    {
+                        TreeNode treeNode2 = new TreeNode();
+                        treeNode2.Nodes.Add(dtPower2.Rows[i]["SignID"].SafeDbValue<string>(), dtPower2.Rows[i]["Name"].SafeDbValue<string>());
+                        treeNode1.Nodes.Add(treeNode2);
+                    }
+                    dtPower2.Dispose();
+                    treeNode.Nodes.Add(treeNode1);
+                }
+                dtPower1.Dispose();
+                twPower.Nodes.Add(treeNode);
             }
             dtPower.Dispose();
 
@@ -52,21 +70,18 @@ namespace MedicalManage
                 }
                 dtTable.Dispose();
 
-                DataRow[] dtEmpPower = ErpServer.GetEmpPower(EmpId).Tables[0].Select();
-                foreach (DataRow t in dtEmpPower)
+                //勾选员工已有的权限
+                foreach (TreeNode treeNode in twPower.Nodes)
                 {
-                    foreach (TreeNode treeNode in twPower.Nodes)
+                    if (Information.UsePower.ContainsKey(treeNode.Name))
                     {
-                        if (treeNode.Name == t["PowerID"].SafeDbValue<string>())
-                        {
-                            treeNode.Checked = true;
-                        }
+                        treeNode.Checked = true;
                     }
                 }
             }
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void SaveEmp()
         {
             if (string.IsNullOrEmpty(txtID.Text) || string.IsNullOrEmpty(txtName.Text) ||  string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(cmbDuty.Text))
             {
@@ -102,7 +117,7 @@ namespace MedicalManage
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 1;
+            SaveEmp();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

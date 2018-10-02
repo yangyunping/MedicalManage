@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 using DAL;
+using BLL;
 
 namespace MedicalManage
 {
@@ -23,7 +24,7 @@ namespace MedicalManage
 
         private void IniteData()
         {
-            DataTable dtTable = ErpServer.GetEmployeeInfo(string.Empty).Tables[0];
+            DataTable dtTable = BllEmployee.GetEmployeeInfo(string.Empty).Tables[0];
             DataRow drRow1 = dtTable.NewRow();
             drRow1["DocName"] = @"全部";
             drRow1["DocID"] = @"-1";
@@ -32,7 +33,7 @@ namespace MedicalManage
             cmbEmployees.DisplayMember = @"DocName";
             cmbEmployees.ValueMember = @"DocID";
 
-            DataTable dtStyle = ErpServer.GetConfigInfo(Config.ConfigStyle.药品类别.ToString()).Tables[0];
+            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow2 = dtStyle.NewRow();
             drRow2["SignID"] = @"-1";
             drRow2["Name"] = @"全部";
@@ -41,7 +42,7 @@ namespace MedicalManage
             cmbStyle.DisplayMember = @"Name";
             cmbStyle.DataSource = dtStyle;
 
-            DataTable dtPat = ErpServer.GetPationes(string.Empty).Tables[0];
+            DataTable dtPat = BllPations.GetPationes(string.Empty);
             DataRow drRow3 = dtPat.NewRow();
             drRow3["PatID"] = @"-1";
             drRow3["PatName"] = @"全部";
@@ -116,7 +117,7 @@ namespace MedicalManage
             if (cmbStyle.SelectedValue != null)
             {
                 string sSql = $@" and MedTypeID = '{cmbStyle.SelectedValue}'";
-                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, Config.ConfigStyle.药品类别.ToString()).Tables[0];
+                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
                 DataRow drRow = dtMedicines.NewRow();
                 drRow["MedID"] = @"-1";
                 drRow["MedName"] = @"全部";

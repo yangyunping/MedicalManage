@@ -26,20 +26,20 @@ namespace MedicalManage
         {
             try
             {
-                DataTable dtUnit = BllConfig.GetConfigInfo(Config.ConfigStyle.计量单位.ToString()).Tables[0];
+                DataTable dtUnit = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.计量单位.SafeDbValue<int>()).Tables[0];
                 cmbUnits.DataSource = dtUnit;
                 cmbUnits.ValueMember = @"SignID";
                 cmbUnits.DisplayMember = @"Name";
                 cmbUnits.SelectedIndex = -1;
 
-                DataTable dtStyle = BllConfig.GetConfigInfo(Config.ConfigStyle.药品类别.ToString()).Tables[0];
+                DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
                 cmbType.DataSource = dtStyle;
                 cmbType.ValueMember = @"SignID";
                 cmbType.DisplayMember = @"Name";
                 cmbType.SelectedIndex = -1;
 
 
-                DataTable dtProduct = BllConfig.GetConfigInfo(Config.ConfigStyle.生产厂商.ToString()).Tables[0];
+                DataTable dtProduct = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.生产厂商.SafeDbValue<int>()).Tables[0];
                 cmbProduce.DataSource = dtProduct;
                 cmbProduce.ValueMember = @"SignID";
                 cmbProduce.DisplayMember = @"Name";

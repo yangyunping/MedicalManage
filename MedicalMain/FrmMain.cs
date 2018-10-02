@@ -1,5 +1,5 @@
 ﻿using DAL;
-using MedicalInformation;
+using Model;
 using MedicalManage.Properties;
 using Model;
 using System;

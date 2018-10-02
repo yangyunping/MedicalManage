@@ -18,7 +18,7 @@ namespace MedicalManage
         {
             InitializeComponent();
 
-            DataTable dtCheck = ErpServer.GetConfigInfo(Config.ConfigStyle.辅助检查.ToString()).Tables[0];
+            DataTable dtCheck = ErpServer.GetConfigInfo(CommonInfo.ConfigStyle.辅助检查.SafeDbValue<int>()).Tables[0];
             cmbCheckStyle.ValueMember = @"SignID";
             cmbCheckStyle.DisplayMember = @"Name";
             cmbCheckStyle.DataSource = dtCheck;

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Text;
 
 namespace Model
 {
     public class CallWebPage
     {
-        /// 访问URL地址
+        /// <summary>
+        /// 访问URL地址，返回值
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="httpTimeout"></param>
+        /// <param name="postEncoding"></param>
+        /// <returns></returns>
         public static string CallWeb(string url, int httpTimeout, Encoding postEncoding)
         {
             string rStr = "";
