@@ -54,7 +54,7 @@ namespace UI
 
         private void sbtnCreate_Click(object sender, EventArgs e)
         {
-            FrmCreateMed frmCreateMed = new FrmCreateMed(@"创建药品");
+            FrmCreateMed frmCreateMed = new FrmCreateMed();
             frmCreateMed.ShowDialog();
         }
 

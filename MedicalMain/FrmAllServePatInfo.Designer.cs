@@ -50,7 +50,7 @@
             this.trButton.Location = new System.Drawing.Point(0, 0);
             this.trButton.Name = "trButton";
             this.trButton.Padding = new System.Windows.Forms.Padding(1);
-            this.trButton.Size = new System.Drawing.Size(151, 569);
+            this.trButton.Size = new System.Drawing.Size(130, 569);
             this.trButton.TabIndex = 1;
             this.trButton.Text = "toolStrip1";
             this.trButton.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.trButton_ItemClicked);
@@ -64,8 +64,8 @@
             this.btnServePatSearch.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btnServePatSearch.Name = "btnServePatSearch";
             this.btnServePatSearch.Padding = new System.Windows.Forms.Padding(1);
-            this.btnServePatSearch.Size = new System.Drawing.Size(146, 36);
-            this.btnServePatSearch.Text = "门诊药品使用查询";
+            this.btnServePatSearch.Size = new System.Drawing.Size(125, 41);
+            this.btnServePatSearch.Text = "门诊药品使用";
             this.btnServePatSearch.Click += new System.EventHandler(this.btnServePatSearch_Click);
             // 
             // tsMedBuyInfo
@@ -77,8 +77,8 @@
             this.tsMedBuyInfo.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.tsMedBuyInfo.Name = "tsMedBuyInfo";
             this.tsMedBuyInfo.Padding = new System.Windows.Forms.Padding(1);
-            this.tsMedBuyInfo.Size = new System.Drawing.Size(146, 36);
-            this.tsMedBuyInfo.Text = "药品购入记录";
+            this.tsMedBuyInfo.Size = new System.Drawing.Size(125, 41);
+            this.tsMedBuyInfo.Text = "购买查询";
             this.tsMedBuyInfo.Click += new System.EventHandler(this.tsMedBuyInfo_Click);
             // 
             // btnNumSearch
@@ -90,7 +90,7 @@
             this.btnNumSearch.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btnNumSearch.Name = "btnNumSearch";
             this.btnNumSearch.Padding = new System.Windows.Forms.Padding(1);
-            this.btnNumSearch.Size = new System.Drawing.Size(146, 36);
+            this.btnNumSearch.Size = new System.Drawing.Size(138, 41);
             this.btnNumSearch.Text = "医生问诊量查询";
             this.btnNumSearch.Visible = false;
             this.btnNumSearch.Click += new System.EventHandler(this.btnNumSearch_Click);
@@ -98,10 +98,10 @@
             // tbContent
             // 
             this.tbContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbContent.Location = new System.Drawing.Point(151, 0);
+            this.tbContent.Location = new System.Drawing.Point(130, 0);
             this.tbContent.Name = "tbContent";
             this.tbContent.SelectedIndex = 0;
-            this.tbContent.Size = new System.Drawing.Size(993, 569);
+            this.tbContent.Size = new System.Drawing.Size(1014, 569);
             this.tbContent.TabIndex = 2;
             this.tbContent.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tbContent_MouseDoubleClick);
             // 

@@ -9,6 +9,7 @@ namespace UI
 {
     public partial class FrmMedInfo : UserControl
     {
+        BllConfig bllConfig = new BllConfig();
         public FrmMedInfo()
         {
             InitializeComponent();
@@ -18,7 +19,7 @@ namespace UI
 
         private void InitData()
         {
-            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow = dtStyle.NewRow();
             drRow["SignID"] = @"-1";
             drRow["Name"] = @"全部";
@@ -62,16 +63,8 @@ namespace UI
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddMedInfo();
-            FrmAddMed frmAddMed = new FrmAddMed(@"添加",null,null);
+            FrmAddMedStock frmAddMed = new FrmAddMedStock(@"添加",null,null);
             frmAddMed.ShowDialog();
-        }
-
-        private void btnModify_Click(object sender, EventArgs e)
-        {
-            AddMedInfo();
-            FrmCreateMed frmCreateMed = new FrmCreateMed(@"修改药品");
-            frmCreateMed.ShowDialog();
-            btnSearch_Click(null,null);
         }
 
         private void AddMedInfo()
@@ -85,13 +78,6 @@ namespace UI
             if (dtTable != null)
                 Information.Medicine =
                     dtTable.Select($@" MedID ='{dgvMedicine.CurrentRow.Cells["MedID"].Value.ToString()}'")[0];
-            //Information.Medicine.MedId = dgvMedicine.CurrentRow.Cells["MedID"].Value.ToString();
-            //Information.Medicine.MedName = dgvMedicine.CurrentRow.Cells["MedName"].Value.ToString();
-            //Information.Medicine.MedStandard = dgvMedicine.CurrentRow.Cells["MedStandard"].Value.ToString();
-            //Information.Medicine.MedTypeId = dgvMedicine.CurrentRow.Cells["MedTypeID"].Value.ToString();
-            //Information.Medicine.MedUnit = dgvMedicine.CurrentRow.Cells["MedUnit"].Value.ToString();
-            //Information.Medicine.MedApproval = dgvMedicine.CurrentRow.Cells["MedApproval"].Value.ToString();
-            //Information.Medicine.MedSpellFirst = dgvMedicine.CurrentRow.Cells["MedSpellFirst"].Value.ToString();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -133,10 +119,7 @@ namespace UI
 
         private void 修改药品ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddMedInfo();
-            FrmCreateMed frmCreateMed = new FrmCreateMed(@"修改药品");
-            frmCreateMed.ShowDialog();
-            btnSearch_Click(null, null);
+            btnModify_Click(null,null);
         }
 
         private void txtKeys_KeyDown(object sender, KeyEventArgs e)
@@ -151,6 +134,36 @@ namespace UI
         {
             FrmCheckPrice frmCheckPrice = new FrmCheckPrice();
             frmCheckPrice.ShowDialog();
+        }
+
+        private void btnAddNewMed_Click(object sender, EventArgs e)
+        {
+            FrmCreateMed frmCreateMed = new FrmCreateMed();
+            frmCreateMed.ShowDialog();
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (dgvMedicine.CurrentRow != null)
+            {
+                Medicine medicine = new Medicine()
+                {
+                    MedId = dgvMedicine.CurrentRow.Cells["MedID"].Value.ToString(),
+                    MedName = dgvMedicine.CurrentRow.Cells["MedName"].Value.ToString(),
+                    MedStandard = dgvMedicine.CurrentRow.Cells["MedStandard"].Value.ToString(),
+                    MedTypeId = dgvMedicine.CurrentRow.Cells["MedTypeID"].Value.ToString(),
+                    MedUnit = dgvMedicine.CurrentRow.Cells["MedUnit"].Value.ToString(),
+                    MedApproval = dgvMedicine.CurrentRow.Cells["MedApproval"].Value.ToString(),
+                    MedSpellFirst = dgvMedicine.CurrentRow.Cells["MedSpellFirst"].Value.ToString()
+                };
+                FrmCreateMed frmCreateMed = new FrmCreateMed(medicine);
+                frmCreateMed.ShowDialog();
+                btnSearch_Click(null, null);
+            }
+            else
+            {
+                MessageBox.Show(@"请选择需要操作的药品！");
+            }
         }
     }
 }

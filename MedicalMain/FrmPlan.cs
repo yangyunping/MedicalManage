@@ -11,6 +11,7 @@ namespace UI
 {
     public partial class FrmPlan : Form
     {
+        BllConfig bllConfig = new BllConfig();
         public FrmPlan()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace UI
             cmbEmployees.DisplayMember = @"DocName";
             cmbEmployees.ValueMember = @"DocID";
 
-            DataTable dtUseWay = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.方案类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtUseWay = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.方案类别.SafeDbValue<int>()).Tables[0];
             DataRow drRows = dtUseWay.NewRow();
             drRows["Name"] = "全部";
             drRows["SignID"] = "0";

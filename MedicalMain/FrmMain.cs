@@ -204,17 +204,31 @@ namespace UI
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            string skinPath = Application.StartupPath + @"\Skins";
-            lstbThemes.DataSource = new DirectoryInfo(skinPath).GetFiles();
-            lstbThemes.DisplayMember = "Name";
-            //加载皮肤
-            StringBuilder selectOrder = new StringBuilder(255);
-            Information.GetPrivateProfileString("SkinPath", "SkinPathValue", " ", selectOrder, 255,
-                _configPath);
-            skinName = selectOrder.ToString();
-            skinEngine.SkinFile = skinName;
-            skinEngine.SkinAllForm = true;
-            skinEngine.DisableTag = 9999;
+            try
+            {
+                string skinPath = Application.StartupPath + @"\Skins";
+                lstbThemes.DataSource = new DirectoryInfo(skinPath).GetFiles();
+                lstbThemes.DisplayMember = "Name";
+                //加载皮肤
+                StringBuilder selectOrder = new StringBuilder(255);
+                Information.GetPrivateProfileString("SkinPath", "SkinPathValue", " ", selectOrder, 255,
+                    _configPath);
+                if (!string.IsNullOrEmpty(selectOrder.ToString()))
+                {
+                    skinName = selectOrder.ToString();
+                    skinEngine.SkinFile = skinName;
+                    skinEngine.SkinAllForm = true;
+                    skinEngine.DisableTag = 9999;
+                }
+                else
+                {
+                    skinEngine.Active = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void lstbThemes_SelectedIndexChanged(object sender, EventArgs e)
@@ -239,12 +253,12 @@ namespace UI
         private void btnCloseTheme_Click(object sender, EventArgs e)
         {
             pnlThemes.Visible = false;
-            skinEngine.DisableTag = 9999;
         }
 
         private void btnThemeOrigal_Click(object sender, EventArgs e)
         {
             skinEngine.Active = false;
+            Information.WritePrivateProfileString("SkinPath", "SkinPathValue", null, _configPath);
         }
     }
 }

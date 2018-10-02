@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,11 +61,11 @@
     <Compile Include="FrmCheckPrice.Designer.cs">
       <DependentUpon>FrmCheckPrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAddMed.cs">
+    <Compile Include="FrmAddMedStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAddMed.Designer.cs">
-      <DependentUpon>FrmAddMed.cs</DependentUpon>
+    <Compile Include="FrmAddMedStock.Designer.cs">
+      <DependentUpon>FrmAddMedStock.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmAllServePatInfo.cs">
       <SubType>UserControl</SubType>
@@ -179,8 +180,8 @@
     <EmbeddedResource Include="FrmCheckPrice.resx">
       <DependentUpon>FrmCheckPrice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAddMed.resx">
-      <DependentUpon>FrmAddMed.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAddMedStock.resx">
+      <DependentUpon>FrmAddMedStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAllServePatInfo.resx">
       <DependentUpon>FrmAllServePatInfo.cs</DependentUpon>
@@ -269,7 +270,7 @@
       <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicalWS\DAL.csproj">
-      <Project>{ffadfcc6-af8c-4ff2-ab86-df5c8481fd19}</Project>
+      <Project>{FFADFCC6-AF8C-4FF2-AB86-DF5C8481FD19}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>

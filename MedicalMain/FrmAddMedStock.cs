@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class FrmAddMed : Form
+    public partial class FrmAddMedStock : Form
     {
         private readonly string _operateStyle;
         private readonly AddMedicine _addMedicine;
         private readonly Medicine _medicine;
-        public FrmAddMed(string operateStyle,AddMedicine addMedicine,Medicine medicine)
+        BllConfig bllConfig = new BllConfig();
+        public FrmAddMedStock(string operateStyle,AddMedicine addMedicine,Medicine medicine)
         {
             InitializeComponent();
             _operateStyle = operateStyle;
@@ -26,20 +27,20 @@ namespace UI
         {
             try
             {
-                DataTable dtUnit = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.计量单位.SafeDbValue<int>()).Tables[0];
+                DataTable dtUnit = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.计量单位.SafeDbValue<int>()).Tables[0];
                 cmbUnits.DataSource = dtUnit;
                 cmbUnits.ValueMember = @"SignID";
                 cmbUnits.DisplayMember = @"Name";
                 cmbUnits.SelectedIndex = -1;
 
-                DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+                DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
                 cmbType.DataSource = dtStyle;
                 cmbType.ValueMember = @"SignID";
                 cmbType.DisplayMember = @"Name";
                 cmbType.SelectedIndex = -1;
 
 
-                DataTable dtProduct = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.生产厂商.SafeDbValue<int>()).Tables[0];
+                DataTable dtProduct = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.生产厂商.SafeDbValue<int>()).Tables[0];
                 cmbProduce.DataSource = dtProduct;
                 cmbProduce.ValueMember = @"SignID";
                 cmbProduce.DisplayMember = @"Name";

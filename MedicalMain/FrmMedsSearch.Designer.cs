@@ -31,9 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnAddNewMed = new System.Windows.Forms.Button();
             this.lblMedSum = new System.Windows.Forms.Label();
             this.cmbStyle = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,6 +68,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.btnModify);
+            this.panel1.Controls.Add(this.btnAddNewMed);
             this.panel1.Controls.Add(this.lblMedSum);
             this.panel1.Controls.Add(this.cmbStyle);
             this.panel1.Controls.Add(this.label2);
@@ -79,6 +84,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(907, 69);
             this.panel1.TabIndex = 2;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.btnDelete.Location = new System.Drawing.Point(521, 13);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(54, 31);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnModify
+            // 
+            this.btnModify.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnModify.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.btnModify.Location = new System.Drawing.Point(456, 13);
+            this.btnModify.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(61, 31);
+            this.btnModify.TabIndex = 10;
+            this.btnModify.Text = "修改";
+            this.btnModify.UseVisualStyleBackColor = false;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
+            // btnAddNewMed
+            // 
+            this.btnAddNewMed.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnAddNewMed.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.btnAddNewMed.Location = new System.Drawing.Point(693, 13);
+            this.btnAddNewMed.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnAddNewMed.Name = "btnAddNewMed";
+            this.btnAddNewMed.Size = new System.Drawing.Size(78, 31);
+            this.btnAddNewMed.TabIndex = 9;
+            this.btnAddNewMed.Text = "添加新药";
+            this.btnAddNewMed.UseVisualStyleBackColor = false;
+            this.btnAddNewMed.Click += new System.EventHandler(this.btnAddNewMed_Click);
             // 
             // lblMedSum
             // 
@@ -96,7 +140,7 @@
             this.cmbStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmbStyle.FormattingEnabled = true;
-            this.cmbStyle.Location = new System.Drawing.Point(79, 18);
+            this.cmbStyle.Location = new System.Drawing.Point(79, 14);
             this.cmbStyle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cmbStyle.Name = "cmbStyle";
             this.cmbStyle.Size = new System.Drawing.Size(113, 28);
@@ -106,7 +150,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label2.Location = new System.Drawing.Point(14, 23);
+            this.label2.Location = new System.Drawing.Point(14, 20);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 17);
@@ -117,7 +161,7 @@
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F);
-            this.btnSearch.Location = new System.Drawing.Point(387, 17);
+            this.btnSearch.Location = new System.Drawing.Point(387, 13);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(65, 31);
@@ -129,7 +173,7 @@
             // txtKeys
             // 
             this.txtKeys.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtKeys.Location = new System.Drawing.Point(267, 19);
+            this.txtKeys.Location = new System.Drawing.Point(267, 15);
             this.txtKeys.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtKeys.Name = "txtKeys";
             this.txtKeys.Size = new System.Drawing.Size(99, 26);
@@ -140,7 +184,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label1.Location = new System.Drawing.Point(202, 23);
+            this.label1.Location = new System.Drawing.Point(202, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 17);
@@ -151,7 +195,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 9.5F);
-            this.btnAdd.Location = new System.Drawing.Point(471, 17);
+            this.btnAdd.Location = new System.Drawing.Point(611, 13);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(78, 31);
@@ -168,14 +212,6 @@
             this.dgvMedicine.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMedicine.BackgroundColor = System.Drawing.Color.White;
             this.dgvMedicine.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMedicine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMedicine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMedicine.ContextMenuStrip = this.contextMenuStrip2;
             this.dgvMedicine.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -185,13 +221,13 @@
             this.dgvMedicine.MultiSelect = false;
             this.dgvMedicine.Name = "dgvMedicine";
             this.dgvMedicine.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMedicine.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMedicine.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMedicine.RowHeadersWidth = 10;
             this.dgvMedicine.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgvMedicine.RowTemplate.Height = 23;
@@ -264,5 +300,8 @@
         private System.Windows.Forms.ComboBox cmbStyle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblMedSum;
+        private System.Windows.Forms.Button btnAddNewMed;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnModify;
     }
 }

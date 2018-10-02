@@ -20,6 +20,7 @@ namespace UI
         private string _medBarCode = string.Empty;
         private string _medStandard = string.Empty;
         private string _medStyleName = string.Empty;
+        BllConfig bllConfig = new BllConfig();
         public FrmServePat()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace UI
         }
         private void InitData()
         {
-            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow = dtStyle.NewRow();
             drRow["SignID"] = @"-1";
             drRow["Name"] = @"全部";
@@ -36,25 +37,25 @@ namespace UI
             cmbStyle.DisplayMember = @"Name";
             cmbStyle.DataSource = dtStyle;
 
-            DataTable dtUseWay = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用法.SafeDbValue<int>()).Tables[0];
+            DataTable dtUseWay = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用法.SafeDbValue<int>()).Tables[0];
             cmbUseWay.ValueMember = @"SignID";
             cmbUseWay.DisplayMember = @"Name";
             cmbUseWay.DataSource = dtUseWay;
             cmbUseWay.SelectedIndex = -1;
 
-            DataTable dtEachTimes = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.频率.SafeDbValue<int>()).Tables[0];
+            DataTable dtEachTimes = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.频率.SafeDbValue<int>()).Tables[0];
             cmbEachTimes.ValueMember = @"SignID";
             cmbEachTimes.DisplayMember = @"Name";
             cmbEachTimes.DataSource = dtEachTimes;
             cmbEachTimes.SelectedIndex = -1;
 
-            DataTable dtPlan = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.方案类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtPlan = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.方案类别.SafeDbValue<int>()).Tables[0];
             cmbPlan.ValueMember = @"SignID";
             cmbPlan.DisplayMember = @"Name";
             cmbPlan.DataSource = dtPlan;
             cmbPlan.SelectedIndex = -1;
 
-            DataTable dtExamination = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.辅助检查.SafeDbValue<int>()).Tables[0];
+            DataTable dtExamination = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.辅助检查.SafeDbValue<int>()).Tables[0];
             cmbExamination.ValueMember = @"SignID";
             cmbExamination.DisplayMember = @"Name";
             cmbExamination.DataSource = dtExamination;
@@ -91,9 +92,9 @@ namespace UI
             string sSql = string.Empty;
             if (!cmbStyle.Text.Equals(@"全部"))
             {
-                sSql = $@" and MedTypeID = '{cmbStyle.SelectedValue}'";
+                sSql = $@" and  MedTypeID = '{cmbStyle.SelectedValue}'";
             }
-            DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
+            DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             cmbMedicines.ValueMember = @"MedID";
             cmbMedicines.DisplayMember = @"MedName";
             cmbMedicines.DataSource = dtMedicines;
@@ -153,7 +154,7 @@ namespace UI
                 txtSumPrice.Text = (Convert.ToDecimal(txtSumPrice.Text.Trim()) + Convert.ToDecimal(txtPrice.Text.Trim()) * Convert.ToDecimal(txtSumUse.Text.Trim())).ToString(CultureInfo.InvariantCulture);
                 txtStock.Text = txtSingular.Text = txtPrice.Text = cmbMedicines.Text = txtPrice.Text = txtDayCnt.Text
                     = txtSumUse.Text = txtUnit.Text = txtUnites.Text = string.Empty;
-                cmbMedicines.SelectedIndex = cmbEachTimes.SelectedIndex = cmbUseWay.SelectedIndex = -1;
+               // cmbMedicines.SelectedIndex = cmbEachTimes.SelectedIndex = cmbUseWay.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -1022,7 +1023,7 @@ namespace UI
                     MessageBox.Show(@"请输入内容精确进行查询！");
                     return;
                 }
-                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
+                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
                 cmbMedicines.ValueMember = @"MedID";
                 cmbMedicines.DisplayMember = @"MedName";
                 cmbMedicines.DataSource = dtMedicines;
@@ -1083,10 +1084,10 @@ namespace UI
                   = txtSumUse.Text = txtUnit.Text = txtUnites.Text = cmbEachTimes.Text = cmbUseWay.Text = string.Empty;
             if (!string.IsNullOrEmpty(cmbMedicines.Text))
             {
-                sSql = $@" and m.MedID = '{cmbMedicines.SelectedValue}'";
+                sSql = $@" and  MedID = '{cmbMedicines.SelectedValue}'";
                 _medValues = cmbMedicines.SelectedValue.ToString().Trim();
             }
-            dtMedicine = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
+            dtMedicine = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             if (dtMedicine != null && dtMedicine.Rows.Count != 0)
             {
                 _medBarCode = dtMedicine.Rows[0]["MedBarCode"].SafeDbValue<string>();
@@ -1122,7 +1123,7 @@ namespace UI
                     foreach (DataRow rowInfo in Information.CopyPlanInfo.Rows)
                     {
                         DataTable dtTable =
-                            ErpServer.GetMedInfo($@" and ms.MedID = {rowInfo["MedID"]}", CommonInfo.ConfigStyle.药品类别.ToString())
+                            ErpServer.GetMedInfo($@" and  MedID = {rowInfo["MedID"]}", CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>())
                                 .Tables[0];
                         if (dtTable.Rows.Count == 0)
                         {
@@ -1381,15 +1382,22 @@ namespace UI
 
         private void cmbExamination_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dtCheck = ErpServer.GetExamineInfo($@"  and CheckID = '{cmbExamination.SelectedValue}'").Tables[0];
-            if (dtCheck.Rows.Count > 0)
+            try
             {
-                txtPayCheck.Text = dtCheck.Rows[0]["CheckPrice"].ToString();
+                if (cmbExamination.SelectedValue != null)
+                {
+                    DataTable dtCheck = ErpServer.GetExamineInfo().Tables[0].Select($@" CheckID = '{cmbExamination.SelectedValue}'").CopyToDataTable();
+                    if (dtCheck.Rows.Count > 0)
+                    {
+                        txtPayCheck.Text = dtCheck.Rows[0]["CheckPrice"].ToString();
+                    }
+                    else
+                    {
+                        txtPayCheck.Text = @"0.00";
+                    }
+                }
             }
-            else
-            {
-                txtPayCheck.Text = @"0.00";
-            }
+            catch { }
         }
     }
 }

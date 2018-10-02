@@ -11,6 +11,7 @@ namespace UI
 {
     public partial class FrmEmployee : Form
     {
+        BllConfig bllConfig = new BllConfig();
         private readonly string EmpId;
         public FrmEmployee(string empId)
         {
@@ -21,22 +22,22 @@ namespace UI
 
         private void IniteData()
         {
-            DataTable dtDuty = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.职称类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtDuty = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.职称类别.SafeDbValue<int>()).Tables[0];
             cmbDuty.DataSource = dtDuty;
             cmbDuty.ValueMember = @"SignID";
             cmbDuty.DisplayMember = @"Name";
 
-            DataTable dtPower = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用户权限.SafeDbValue<int>()).Tables[0];
+            DataTable dtPower = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用户权限.SafeDbValue<int>()).Tables[0];
             for (int i = 0; i < dtPower.Rows.Count; i++)
             {
-                TreeNode treeNode = new TreeNode();
-                treeNode.Nodes.Add(dtPower.Rows[i]["SignID"].SafeDbValue<string>(), dtPower.Rows[i]["Name"].SafeDbValue<string>());
-                DataTable dtPower1 = BllConfig.GetConfigInfo(dtPower.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
+       
+                twPower.Nodes.Add(dtPower.Rows[i]["SignID"].SafeDbValue<string>(), dtPower.Rows[i]["Name"].SafeDbValue<string>());
+                DataTable dtPower1 = bllConfig.GetConfigInfo(dtPower.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
                 for (int j = 0; j < dtPower1.Rows.Count; j++)
                 {
                     TreeNode treeNode1 = new TreeNode();
                     treeNode1.Nodes.Add(dtPower1.Rows[i]["SignID"].SafeDbValue<string>(), dtPower1.Rows[i]["Name"].SafeDbValue<string>());
-                    DataTable dtPower2 = BllConfig.GetConfigInfo(dtPower1.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
+                    DataTable dtPower2 = bllConfig.GetConfigInfo(dtPower1.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
                     for (int h = 0; h < dtPower2.Rows.Count; h++)
                     {
                         TreeNode treeNode2 = new TreeNode();
@@ -44,10 +45,9 @@ namespace UI
                         treeNode1.Nodes.Add(treeNode2);
                     }
                     dtPower2.Dispose();
-                    treeNode.Nodes.Add(treeNode1);
+                    twPower.Nodes.Add(treeNode1);
                 }
                 dtPower1.Dispose();
-                twPower.Nodes.Add(treeNode);
             }
             dtPower.Dispose();
 

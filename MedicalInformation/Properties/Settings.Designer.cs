@@ -26,11 +26,10 @@ namespace Model.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DZEKX7NU0G5GWI8;Initial Catalog=ERP;Persist Security Info=True;User I" +
-            "D=sa")]
-        public string ERPConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;User Id=\'sa\';Password=\'yangyunping1991\';Initial Catalog=\'ERP\'")]
+        public string DataConnect {
             get {
-                return ((string)(this["ERPConnectionString"]));
+                return ((string)(this["DataConnect"]));
             }
         }
     }

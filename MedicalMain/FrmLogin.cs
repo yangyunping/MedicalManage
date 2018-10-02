@@ -85,7 +85,7 @@ namespace UI
                 MessageBox.Show(@"请输入账号和密码！");
                 return;
             }
-            if (Globle.TestConnection())
+            try
             {
                 using (DataSet dsUser = BllEmployee.GetEmployeeInfo(cmbEmpID.Text.Trim()))
                 {
@@ -112,48 +112,47 @@ namespace UI
                         txtPassword.Focus();
                         return;
                     }
-                    //Expression<Func<Doctor, bool>> fun = n => n.DutyName == "";
-                    //fun = fun.And(n => Convert.ToDecimal(n.Unusualstandard_DEGRADE_MATERIAL_PERCT) >= Convert.ToDecimal(txtQCInfo_MATERIAL_SCALE.Text));
-                    //fun = fun.And(n => Convert.ToDecimal(n.DEGRADE_OUTTHROWS_PERCT) >= Convert.ToDecimal(txtQCInfo_PAPER_SCALE.Text));
-                    //IEnumerable<> unusualstandard = UnusualstandardDAL.Query(fun).OrderBy(n => n.Unusualstandard_DEGRADE_MOISTURE_PERCT);
-                    empID = this.cmbEmpID.Text.Trim();
-                    //记住用户名
-                    if (chkRemenber.Checked)
-                    {
-                        List<string> lstLoginName = new List<string>
-                                            {
-                                                    empID
-                                            };
-                        string[] registry = ResistryKey.GetRegistry(RegisterValueName);
-                        if (null != registry)
-                        {
-                            foreach (string name in registry.TakeWhile(name => lstLoginName.Count < MaxLoginNameSaveCount).Where(name => 0 != StringComparer.CurrentCulture.Compare(empID.ToUpper(), name.ToUpper())))
-                                lstLoginName.Add(name);
-                        }
-                        ResistryKey.SetRegistry(RegisterValueName, lstLoginName.ToArray());
-                    }
-
                     //保存登录用户信息
                     Information.CurrentUser = dsUser.Tables[0].Rows[0];
                     dsUser.Dispose();
-
-                    //用户权限
-                    DataTable dtPower = BllEmpPower.GetEmpPower(empID);
-                    for (int i = 0; i < dtPower.Rows.Count; i++)
-                    {
-                        Information.UsePower.Add(dtPower.Rows[i]["PowerID"].ToString(), dtPower.Rows[i]["DocID"].ToString());
-                    }
-
-                    //主界面
-                    FrmMain frmMain  = new FrmMain();
-                    this.Hide();
-                    frmMain.ShowDialog();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(@"网络连接失败，检查网络后重试！");
+                MessageBox.Show(@"数据库无法访问！" + ex.ToString());
+                this.Show();
             }
+            empID = this.cmbEmpID.Text.Trim();
+            //记住用户名
+            if (chkRemenber.Checked)
+            {
+                List<string> lstLoginName = new List<string>
+                                            {
+                                                    empID
+                                            };
+                string[] registry = ResistryKey.GetRegistry(RegisterValueName);
+                if (null != registry)
+                {
+                    foreach (string name in registry.TakeWhile(name => lstLoginName.Count < MaxLoginNameSaveCount).Where(name => 0 != StringComparer.CurrentCulture.Compare(empID.ToUpper(), name.ToUpper())))
+                        lstLoginName.Add(name);
+                }
+                ResistryKey.SetRegistry(RegisterValueName, lstLoginName.ToArray());
+            }
+
+            //用户权限
+            DataTable dtPower = BllEmpPower.GetEmpPower(empID);
+            for (int i = 0; i < dtPower.Rows.Count; i++)
+            {
+                Information.UsePower.Add(dtPower.Rows[i]["PowerID"].ToString(), dtPower.Rows[i]["DocID"].ToString());
+            }
+
+            //主界面
+            FrmMain frmMain = new FrmMain();
+
+            frmMain.ShowDialog();
+            GC.Collect();
+            Application.Exit();
+
         }
 
         private void lblClose_Click(object sender, EventArgs e)

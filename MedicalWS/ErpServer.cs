@@ -176,15 +176,9 @@ End";
         /// <param name="key"></param>
         /// <param name="styleName"></param>
         /// <returns></returns>
-        public static DataSet GetMedInfo(string key, string styleName)
+        public static DataSet GetMedInfo(string key, int styleId)
         {
-            string sql = $@"  
-  declare @StyleID varchar(20)
-  select  @StyleID = SignID from Config where  Name = '{styleName}'
-  select ms.MedID,m.MedBarCode,MedName,MedUnit,MedStandard,MedApproval,MedSpellFirst,Memary,MedTypeID,MedBid,MedUnitPrice,Quantity,ProduteDate,ReleaseDay,Name as StyleName 
-  from InMed m
-  left join Medicine ms on ms.MedID = m.MedID
-  left join Config c on c.SignID = ms.MedTypeID  where  c.StyleID = @StyleID  {key} order by ms.MedID";
+            string sql = $@"  select * from View_MedInfo  where  StyleID = {styleId}  {key}  order by MedID";
             return ExecuteQuery(sql);
         }
         /// <summary>
@@ -382,12 +376,7 @@ Insert into Examination(CheckID,CheckName,DoctorID,PatID,CheckPrice,CheckDate) v
         /// <returns></returns>
         public static DataSet GetMedOutInfo(string strSql)
         {
-            string sSql = $@" select om.ID,om.MedID,om.SpliteNum,MedBarCode,om.MedName,m.MedSpellFirst,om.TimesUse,c.SignID,c.Name as MedStyle,MedUnit,MedStandard,MedSpellFirst,DocID,DocName,p.PatID, PatName,MedUnitPrice,MedPrice,LookDate,Useage,Frequency,OneTimeUse,Days,TimesUse from  OutMed  om
-  left join Medicine m on m.MedID = om.MedID
-  left join Doctor d on d.DocID = om.DoctorID
-  left join Patient p on p.PatID = om.PatID
-  left join Config c on c.SignID = m.MedTypeID
-  where 1=1 {strSql}";
+            string sSql = $@" select * from View_OutMed where 1=1 {strSql}";
             return ExecuteQuery(sSql);
         }
         /// <summary>
@@ -534,16 +523,16 @@ order by id) as newRow,*  from MedPlan where IsDelete = 0) as a
         /// <param name="checkName"></param>
         /// <param name="checkPrice"></param>
         /// <returns></returns>
-        public static bool AddExamine(string checkId,string  checkName, decimal checkPrice)
+        public static bool AddExamine(ExaminePrice examinePrice)
         {
             string sSql = $@"
-IF NOT EXISTS(Select * from ExaminePrice where CheckID = '{checkId}')
+IF NOT EXISTS(Select * from ExaminePrice where CheckID = '{examinePrice.CheckID}')
 Begin
-Insert into ExaminePrice(CheckID,CheckName,CheckPrice) values('{checkId}','{checkName}','{checkPrice}')
+Insert into ExaminePrice(CheckID,CheckName,CheckPrice) values('{examinePrice.CheckID}','{examinePrice.CheckName}','{examinePrice.CheckPrice}')
 End
 ElSE
 Begin
-Update ExaminePrice set CheckName = '{checkName}',CheckPrice = '{checkPrice}'  where CheckID = '{checkId}'
+Update ExaminePrice set CheckName = '{examinePrice.CheckName}',CheckPrice = '{examinePrice.CheckPrice}'  where CheckID = '{examinePrice.CheckID}'
 End 
 ";
             return ExecuteNonQuery(sSql) > 0;
@@ -553,9 +542,9 @@ End
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static DataSet GetExamineInfo(string sql)
+        public static DataSet GetExamineInfo()
         {
-            string sSql = $@" Select * from ExaminePrice where 1=1 {sql}";
+            string sSql = " Select * from ExaminePrice";
             return ExecuteQuery(sSql);
         }
         /// <summary>

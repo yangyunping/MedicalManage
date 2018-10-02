@@ -107,6 +107,7 @@
             this.dgvShow.ContextMenuStrip = this.cmsMenues;
             this.dgvShow.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvShow.Location = new System.Drawing.Point(0, 117);
+            this.dgvShow.MultiSelect = false;
             this.dgvShow.Name = "dgvShow";
             this.dgvShow.ReadOnly = true;
             this.dgvShow.RowHeadersWidth = 11;

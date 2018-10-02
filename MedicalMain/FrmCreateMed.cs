@@ -1,52 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BLL;
 using Model;
-using DAL;
-using BLL;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace UI
 {
     public partial class FrmCreateMed : Form
     {
-        private readonly string _operteType;
-
-        public FrmCreateMed(string operteType)
+        private readonly string _operteType;//操作类型
+        BllConfig bllConfig = new BllConfig();
+        private string medId = string.Empty;
+        public FrmCreateMed(Medicine medicine)
         {
-            _operteType = operteType;
+            InitializeComponent();
+            IniteData();
+            medId = medicine.MedId;
+            txtName.Text = medicine.MedName;
+            txtStandard.Text = medicine.MedStandard;
+            cmbUnits.Text = medicine.MedUnit;
+            cmbType.SelectedValue = medicine.MedTypeId;
+            txtMedApproval.Text = medicine.MedApproval;
+            txtSpellFirst.Text = medicine.MedSpellFirst;
+        }
+        public FrmCreateMed()
+        {
             InitializeComponent();
             IniteData();
         }
-
         private void IniteData()
         {
-            DataTable dtUnit = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.计量单位.SafeDbValue<int>()).Tables[0];
+            DataTable dtUnit = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.计量单位.SafeDbValue<int>()).Tables[0];
             cmbUnits.DataSource = dtUnit;
             cmbUnits.ValueMember = @"SignID";
             cmbUnits.DisplayMember = @"Name";
             cmbUnits.SelectedIndex = -1;
 
-            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             cmbType.DataSource = dtStyle;
             cmbType.ValueMember = @"SignID";
             cmbType.DisplayMember = @"Name";
             cmbType.SelectedIndex = -1;
-
-            if (_operteType == @"修改药品")
-            {
-                txtName.Text = Information.Medicine.MedName;
-                txtStandard.Text = Information.Medicine.MedStandard;
-                cmbUnits.Text = Information.Medicine.MedUnit;
-                cmbType.SelectedValue = Information.Medicine.MedTypeId;
-                txtMedApproval.Text = Information.Medicine.MedApproval;
-                txtSpellFirst.Text = Information.Medicine.MedSpellFirst;
-            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -56,10 +50,10 @@ namespace UI
                 MessageBox.Show(@"请完善药品信息！");
                 return;
             }
-            if (_operteType == @"修改药品")
+            if (!string.IsNullOrEmpty(medId))
             {
                 Medicine medicine = new Medicine();
-                medicine.MedId = Information.Medicine.MedId;
+                medicine.MedId = medId;
                 medicine.MedName = txtName.Text.Trim();
                 medicine.MedApproval = txtMedApproval.Text.Trim();
                 medicine.MedStandard = txtStandard.Text.Trim();
@@ -77,7 +71,7 @@ namespace UI
                     MessageBox.Show(@"修改失败，检查后重试！");
                 }
             }
-            else if (_operteType == @"创建药品")
+            else
             {
                 Medicine medicine = new Medicine();
                 medicine.MedId = string.Empty;

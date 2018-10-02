@@ -241,6 +241,7 @@
             this.twPower.Name = "twPower";
             this.twPower.Size = new System.Drawing.Size(268, 454);
             this.twPower.TabIndex = 1;
+            this.twPower.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.twPower_AfterSelect);
             // 
             // FrmEmployee
             // 

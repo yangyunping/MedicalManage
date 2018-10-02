@@ -1,15 +1,11 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using Model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Model;
-using DAL;
-using BLL;
 
 namespace UI
 {
@@ -33,7 +29,7 @@ namespace UI
             cmbEmployees.DisplayMember = @"DocName";
             cmbEmployees.ValueMember = @"DocID";
 
-            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtStyle = ErpServer.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow2 = dtStyle.NewRow();
             drRow2["SignID"] = @"-1";
             drRow2["Name"] = @"全部";
@@ -88,7 +84,7 @@ namespace UI
             }
             if (!string.IsNullOrEmpty(cmbPations.Text) && !cmbPations.Text.Equals(@"全部"))
             {
-                sSql += $@" and p.PatID = '{cmbPations.SelectedValue}'";
+                sSql += $@" and  PatID = '{cmbPations.SelectedValue}'";
             }
             if (!string.IsNullOrEmpty(cmbStyle.Text) && !cmbStyle.Text.Equals(@"全部"))
             {
@@ -96,7 +92,7 @@ namespace UI
             }
             if (!string.IsNullOrEmpty(cmbMedicines.Text) && !cmbMedicines.Text.Equals(@"全部"))
             {
-                sSql += $@" and  om.MedID = '{cmbMedicines.SelectedValue}'";
+                sSql += $@" and  MedID = '{cmbMedicines.SelectedValue}'";
             }
 
             if (!string.IsNullOrEmpty(txtKey.Text.Trim()))
@@ -117,7 +113,7 @@ namespace UI
             if (cmbStyle.SelectedValue != null)
             {
                 string sSql = $@" and MedTypeID = '{cmbStyle.SelectedValue}'";
-                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.ToString()).Tables[0];
+                DataTable dtMedicines = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
                 DataRow drRow = dtMedicines.NewRow();
                 drRow["MedID"] = @"-1";
                 drRow["MedName"] = @"全部";

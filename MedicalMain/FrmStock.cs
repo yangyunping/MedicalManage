@@ -15,6 +15,7 @@ namespace UI
 {
     public partial class FrmStock : UserControl
     {
+        BllConfig bllConfig = new BllConfig();
         public FrmStock()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace UI
 
         private void IniteData()
         {
-            DataTable dtStyle = BllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow = dtStyle.NewRow();
             drRow["SignID"] = @"-1";
             drRow["Name"] = @"全部";
@@ -33,22 +34,22 @@ namespace UI
             cmbStyle.DisplayMember = @"Name";
          
             dgvMedicine.Columns.AddRange(
-                new DataGridViewTextBoxColumn { Name = @"MedID", DataPropertyName = @"MedID", HeaderText = @"药品编号", Width = 120 },
-                 new DataGridViewTextBoxColumn { Name = @"MedName", DataPropertyName = @"MedName", HeaderText = @"药品名称", Width = 120 },
-                  new DataGridViewTextBoxColumn { Name = @"MedBarCode", DataPropertyName = @"MedBarCode", HeaderText = @"药品条码", Width = 120 },
-                   new DataGridViewTextBoxColumn { Name = @"Production", DataPropertyName = @"Production", HeaderText = @"生产厂商", Width = 120 },
-                     new DataGridViewTextBoxColumn { Name = @"ProduteDate", DataPropertyName = @"ProduteDate", HeaderText = @"生产日期", Width = 140 },
-                     new DataGridViewTextBoxColumn { Name = @"DueDate", DataPropertyName = @"DueDate", HeaderText = @"到期日期", Width = 120 },
-                      new DataGridViewTextBoxColumn { Name = @"InDate", DataPropertyName = @"InDate", HeaderText = @"入库时间", Width = 140 },
-                      new DataGridViewTextBoxColumn { Name = @"ReleaseDay", DataPropertyName = @"ReleaseDay", HeaderText = @"保质期", Width = 80 },
-                       new DataGridViewTextBoxColumn { Name = @"Quantity", DataPropertyName = @"Quantity", HeaderText = @"库存", Width = 100 },
-                        new DataGridViewTextBoxColumn { Name = @"MedBid", DataPropertyName = @"MedBid", HeaderText = @"进价", Width = 70 },
-                         new DataGridViewTextBoxColumn { Name = @"MedUnitPrice", DataPropertyName = @"MedUnitPrice", HeaderText = @"售价", Width = 70 },
-                          new DataGridViewTextBoxColumn { Name = @"MedUnit", DataPropertyName = @"MedUnit", HeaderText = @"单位", Width = 70 },
-                           new DataGridViewTextBoxColumn { Name = @"MedStandard", DataPropertyName = @"MedStandard", HeaderText = @"规格", Width = 120 },
-                            new DataGridViewTextBoxColumn { Name = @"StyleName", DataPropertyName = @"StyleName", HeaderText = @"类别", Width = 80 },
-                             new DataGridViewTextBoxColumn { Name = @"Memary", DataPropertyName = @"Memary", HeaderText = @"备注", Width = 120 },
-                             new DataGridViewTextBoxColumn { Name = @"MedApproval", DataPropertyName = @"MedApproval", HeaderText = @"标准", Width = 120 }
+                new DataGridViewTextBoxColumn { Name = @"MedID", DataPropertyName = @"MedID", HeaderText = @"药品编号", Width = 100 },
+                new DataGridViewTextBoxColumn { Name = @"MedName", DataPropertyName = @"MedName", HeaderText = @"药品名称", Width = 120 },
+                new DataGridViewTextBoxColumn { Name = @"Production", DataPropertyName = @"Production", HeaderText = @"生产厂商", Width = 120 },
+                new DataGridViewTextBoxColumn { Name = @"ProduteDate", DataPropertyName = @"ProduteDate", HeaderText = @"生产日期", Width = 140 },
+                new DataGridViewTextBoxColumn { Name = @"DueDate", DataPropertyName = @"DueDate", HeaderText = @"到期日期", Width = 120 },
+                new DataGridViewTextBoxColumn { Name = @"InDate", DataPropertyName = @"InDate", HeaderText = @"入库时间", Width = 140 },
+                new DataGridViewTextBoxColumn { Name = @"ReleaseDay", DataPropertyName = @"ReleaseDay", HeaderText = @"保质期", Width = 80 },
+                new DataGridViewTextBoxColumn { Name = @"Quantity", DataPropertyName = @"Quantity", HeaderText = @"库存", Width = 100 },
+                new DataGridViewTextBoxColumn { Name = @"MedBid", DataPropertyName = @"MedBid", HeaderText = @"进价", Width = 70 },
+                new DataGridViewTextBoxColumn { Name = @"MedUnitPrice", DataPropertyName = @"MedUnitPrice", HeaderText = @"售价", Width = 70 },
+                new DataGridViewTextBoxColumn { Name = @"MedUnit", DataPropertyName = @"MedUnit", HeaderText = @"单位", Width = 70 },
+                new DataGridViewTextBoxColumn { Name = @"MedStandard", DataPropertyName = @"MedStandard", HeaderText = @"规格", Width = 120 },
+                new DataGridViewTextBoxColumn { Name = @"StyleName", DataPropertyName = @"StyleName", HeaderText = @"类别", Width = 80 },
+                new DataGridViewTextBoxColumn { Name = @"MedApproval", DataPropertyName = @"MedApproval", HeaderText = @"标准", Width = 120 },
+                new DataGridViewTextBoxColumn { Name = @"Memary", DataPropertyName = @"Memary", HeaderText = @"备注", Width = 120 },
+                new DataGridViewTextBoxColumn { Name = @"MedBarCode", DataPropertyName = @"MedBarCode", HeaderText = @"药品条码", Width = 120 }
                 );
         }
 
@@ -105,7 +106,7 @@ namespace UI
             medicine.MedStandard = dgvMedicine.CurrentRow.Cells["MedStandard"].Value.ToString();
             medicine.MedTypeId = dgvMedicine.CurrentRow.Cells["StyleName"].Value.ToString();
             medicine.MedApproval = dgvMedicine.CurrentRow.Cells["MedApproval"].Value.ToString();
-            FrmAddMed frmAddMed = new FrmAddMed(@"修改", addMedicine, medicine);
+            FrmAddMedStock frmAddMed = new FrmAddMedStock(@"修改", addMedicine, medicine);
             frmAddMed.ShowDialog();
             btnSearch_Click(null,null);
         }

@@ -44,13 +44,13 @@
             this.trButton.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.trButton.ImageScalingSize = new System.Drawing.Size(35, 35);
             this.trButton.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sbtnCreate,
             this.SbtnAddMed,
-            this.sBtnMedSearch});
+            this.sBtnMedSearch,
+            this.sbtnCreate});
             this.trButton.Location = new System.Drawing.Point(0, 0);
             this.trButton.Name = "trButton";
             this.trButton.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.trButton.Size = new System.Drawing.Size(130, 515);
+            this.trButton.Size = new System.Drawing.Size(109, 515);
             this.trButton.TabIndex = 0;
             this.trButton.Text = "toolStrip1";
             this.trButton.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.trButton_ItemClicked);
@@ -62,8 +62,9 @@
             this.sbtnCreate.Image = global::UI.Properties.Resources.Pencil;
             this.sbtnCreate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sbtnCreate.Name = "sbtnCreate";
-            this.sbtnCreate.Size = new System.Drawing.Size(123, 34);
-            this.sbtnCreate.Text = "创建新药品";
+            this.sbtnCreate.Size = new System.Drawing.Size(102, 39);
+            this.sbtnCreate.Text = "创建药品";
+            this.sbtnCreate.Visible = false;
             this.sbtnCreate.Click += new System.EventHandler(this.sbtnCreate_Click);
             // 
             // SbtnAddMed
@@ -74,8 +75,9 @@
             this.SbtnAddMed.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SbtnAddMed.Name = "SbtnAddMed";
             this.SbtnAddMed.Padding = new System.Windows.Forms.Padding(3);
-            this.SbtnAddMed.Size = new System.Drawing.Size(123, 40);
-            this.SbtnAddMed.Text = "药品库存添加";
+            this.SbtnAddMed.Size = new System.Drawing.Size(102, 45);
+            this.SbtnAddMed.Text = "库存新增";
+            this.SbtnAddMed.ToolTipText = "库存新增";
             this.SbtnAddMed.Click += new System.EventHandler(this.SbtnAddMed_Click);
             // 
             // sBtnMedSearch
@@ -86,17 +88,18 @@
             this.sBtnMedSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sBtnMedSearch.Name = "sBtnMedSearch";
             this.sBtnMedSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.sBtnMedSearch.Size = new System.Drawing.Size(123, 40);
-            this.sBtnMedSearch.Text = "药品库存查询";
+            this.sBtnMedSearch.Size = new System.Drawing.Size(102, 45);
+            this.sBtnMedSearch.Text = "库存查询";
+            this.sBtnMedSearch.ToolTipText = "库存查询";
             this.sBtnMedSearch.Click += new System.EventHandler(this.sBtnMedSearch_Click);
             // 
             // tbContent
             // 
             this.tbContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbContent.Location = new System.Drawing.Point(130, 0);
+            this.tbContent.Location = new System.Drawing.Point(109, 0);
             this.tbContent.Name = "tbContent";
             this.tbContent.SelectedIndex = 0;
-            this.tbContent.Size = new System.Drawing.Size(863, 515);
+            this.tbContent.Size = new System.Drawing.Size(884, 515);
             this.tbContent.TabIndex = 1;
             this.tbContent.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tbContent_MouseDoubleClick);
             // 

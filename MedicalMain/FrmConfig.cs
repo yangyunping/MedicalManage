@@ -1,15 +1,16 @@
-﻿using Model;
-using DAL;
+﻿using BLL;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using BLL;
 
 namespace UI
 {
     public partial class FrmConfig : Form
     {
+        BllConfig bllConfig = new BllConfig();
+        BllTreatment bllTreatment = new BllTreatment();
         public FrmConfig()
         {
             InitializeComponent();
@@ -19,10 +20,11 @@ namespace UI
 
         private void IniteData()
         {
-            DataTable dtTable = ErpServer.GetConfigStyleInfo().Tables[0];
-            cmbStyle.ValueMember = @"SignID";
-            cmbStyle.DisplayMember = @"Name";
-            cmbStyle.DataSource = dtTable;
+            IEnumerable<Config> configs = bllConfig.GetConfigStyleInfo();
+            DataTable dtConfig  = Information.ListToDataTable(configs);
+            cmbStyle.ValueMember = "SignID";
+            cmbStyle.DisplayMember = "Name";
+            cmbStyle.DataSource = dtConfig;
         }
 
         private void DgvColumns()
@@ -41,9 +43,9 @@ namespace UI
             {
                 return;
             }
-            添加到治疗单Tsm.Visible = 取消治疗单打印Tsm.Visible = cmbStyle.Text.Equals(CommonInfo.ConfigStyle.用法.ToString());
+            添加到治疗单Tsm.Visible = 取消治疗单打印Tsm.Visible = cmbStyle.SelectedValue.Equals(CommonInfo.ConfigStyle.用法.SafeDbValue<int>());
             dgvShow.AutoGenerateColumns = false;
-            DataTable dtInfo = BllConfig.GetConfigInfo(cmbStyle.Text.SafeDbValue<int>()).Tables[0];
+            DataTable dtInfo = bllConfig.GetConfigInfo(cmbStyle.SelectedValue.SafeDbValue<int>()).Tables[0];
             dgvShow.DataSource = dtInfo;
         }
 
@@ -65,7 +67,13 @@ namespace UI
                         return;
                     }
                 }
-                if (ErpServer.AddConfig(txtContent.Text, cmbStyle.SelectedValue.ToString()))
+                Config config = new Config()
+                {
+                    Name = txtContent.Text,
+                    StyleID = Convert.ToInt32(cmbStyle.SelectedValue)
+                };
+
+                if (bllConfig.AddConfig(config))
                 {
                     MessageBox.Show(@"添加修改成功！");
                     txtContent.Clear();
@@ -84,20 +92,23 @@ namespace UI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvShow.SelectedRows.Count > 0)
+            if (dgvShow.CurrentRow != null)
             {
-                for (int i = 0; i < dgvShow.SelectedRows.Count; i++)
+                try
                 {
-                    try
+                    Config config = new Config()
                     {
-                        if (ErpServer.DeleteConfig(dgvShow.SelectedRows[i].Cells["Name"].Value.ToString(), dgvShow.SelectedRows[i].Cells["SignID"].Value.ToString(), Information.CurrentUser.Id))
-                        {
-                            MessageBox.Show(@"删除成功！");
-                            dgvShow.Rows.Remove(dgvShow.SelectedRows[i]);
-                        }
+                        SignID = Convert.ToInt32(dgvShow.CurrentRow.Cells["SignID"].Value),
+                        Name = dgvShow.CurrentRow.Cells["Name"].Value.ToString(),
+                        StyleID = Convert.ToInt32(dgvShow.CurrentRow.Cells["StyleID"].Value)
+                    };
+                    if (bllConfig.DeleteConfig(config))
+                    {
+                        MessageBox.Show(@"删除成功！");
+                        dgvShow.Rows.Remove(dgvShow.CurrentRow);
                     }
-                    catch { continue; }
                 }
+                catch { }
             }
         }
 
@@ -123,7 +134,12 @@ namespace UI
                             return;
                         }
                     }
-                    if (ErpServer.AddConfig(cmbStyle.Text.Trim(), @"10000"))
+                    Config config = new Config()
+                    {
+                        Name = cmbStyle.Text.Trim(),
+                        StyleID = 10000
+                    };
+                    if (bllConfig.AddConfig(config))
                     {
                         MessageBox.Show(@"添加成功！");
                         IniteData();
@@ -159,6 +175,7 @@ namespace UI
         {
             if (dgvShow.CurrentRow == null)
             {
+                MessageBox.Show("请选中指定行！");
                 return;
             }
             try
@@ -168,7 +185,13 @@ namespace UI
                     MessageBox.Show(@"请补充完成的信息！");
                     return;
                 }
-                if (ErpServer.ModifyConfig(dgvShow.CurrentRow.Cells["SignID"].Value.ToString(),txtContent.Text))
+                Config config = new Config()
+                {
+                    SignID = Convert.ToInt32(dgvShow.CurrentRow.Cells["SignID"].Value),
+                    Name = txtContent.Text,
+                    StyleID = Convert.ToInt32(dgvShow.CurrentRow.Cells["StyleID"].Value)
+                };
+                if (bllConfig.ModifyConfig(config))
                 {
                     MessageBox.Show(@"添加修改成功！");
                     txtContent.Clear();
@@ -187,14 +210,14 @@ namespace UI
 
         private void 添加到治疗单Tsm_Click(object sender, EventArgs e)
         {
-            if (dgvShow.SelectedRows.Count > 0)
+            if (dgvShow.CurrentRow != null)
             {
-                Dictionary<string, string> treatments = new Dictionary<string, string>();
-                for (int i = 0; i < dgvShow.SelectedRows.Count; i++)
+                Treatment treatment = new Treatment()
                 {
-                    treatments.Add(dgvShow.SelectedRows[i].Cells["SignID"].Value.ToString(), dgvShow.SelectedRows[i].Cells["Name"].Value.ToString());
-                }
-                if (ErpServer.AddTreatment(treatments))
+                    SignID = dgvShow.CurrentRow.Cells["SignID"].Value.ToString(),
+                    SignName = dgvShow.CurrentRow.Cells["SignName"].Value.ToString()
+                };
+                if (bllTreatment.AddTreatment(treatment))
                 {
                     MessageBox.Show("添加成功!");
                 }
@@ -207,14 +230,14 @@ namespace UI
 
         private void 取消治疗单打印Tsm_Click(object sender, EventArgs e)
         {
-            if (dgvShow.SelectedRows.Count > 0)
+            if (dgvShow.CurrentRow != null)
             {
-                List<string> signIds = new List<string>();
-                for (int i = 0; i < dgvShow.SelectedRows.Count; i++)
+                Treatment treatment = new Treatment()
                 {
-                    signIds.Add(dgvShow.SelectedRows[i].Cells["SignID"].Value.ToString());
-                }
-                if (ErpServer.DeleteTreatment(signIds))
+                    SignID = dgvShow.CurrentRow.Cells["SignID"].Value.ToString(),
+                    SignName = dgvShow.CurrentRow.Cells["SignName"].Value.ToString()
+                };
+                if (bllTreatment.DeleteTreatment(treatment))
                 {
                     MessageBox.Show("取消成功!");
                 }
@@ -224,6 +247,7 @@ namespace UI
         private void btnClose_Click(object sender, EventArgs e)
         {
             txtType.Clear();
+            btnAddStyle.Text = "新增类别";
             txtType.Visible = btnClose.Visible = false;
         }
     }

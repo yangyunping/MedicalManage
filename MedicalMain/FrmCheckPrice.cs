@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BLL;
 using Model;
-using DAL;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace UI
 {
     public partial class FrmCheckPrice : Form
     {
+        BllConfig bllConfig = new BllConfig();
         public FrmCheckPrice()
         {
             InitializeComponent();
-
-            DataTable dtCheck = ErpServer.GetConfigInfo(CommonInfo.ConfigStyle.辅助检查.SafeDbValue<int>()).Tables[0];
+            DataTable dtCheck = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.辅助检查.SafeDbValue<int>()).Tables[0];
             cmbCheckStyle.ValueMember = @"SignID";
             cmbCheckStyle.DisplayMember = @"Name";
             cmbCheckStyle.DataSource = dtCheck;
@@ -26,16 +20,25 @@ namespace UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (ErpServer.AddExamine(cmbCheckStyle.SelectedValue.ToString(),cmbCheckStyle.Text.Trim(),Convert.ToDecimal(txtPrice.Text.Trim())))
+            if (!string.IsNullOrEmpty(cmbCheckStyle.Text.Trim()))
             {
-                MessageBox.Show(@"修改保存成功！");
-                cmbCheckStyle.SelectedIndex = 0;
+                ExaminePrice examinePrice = new ExaminePrice()
+                {
+                    CheckID = cmbCheckStyle.SelectedValue.ToString(),
+                    CheckName = cmbCheckStyle.Text.Trim(),
+                    CheckPrice = Convert.ToDecimal(txtPrice.Text.Trim())
+                };
+                if (BllExaminePrice.AddExamine(examinePrice))
+                {
+                    MessageBox.Show(@"修改保存成功！");
+                    cmbCheckStyle.SelectedIndex = 0;
+                }
             }
         }
 
         private void cmbCheckStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dtCheck = ErpServer.GetExamineInfo($@"  and CheckID = '{cmbCheckStyle.SelectedValue}'").Tables[0];
+            DataTable dtCheck = BllExaminePrice.GetExamineInfo().Select($@" CheckID = '{cmbCheckStyle.SelectedValue}'").CopyToDataTable();
             if (dtCheck.Rows.Count > 0)
             {
                 txtPrice.Text = dtCheck.Rows[0]["CheckPrice"].ToString();
