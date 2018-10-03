@@ -58,12 +58,9 @@ namespace UI
             {
                 MedDate += ", " + rowsStock[i]["MedName"].ToString();
             }
-            if (string.IsNullOrEmpty(MedDate) && string.IsNullOrEmpty(MedDate))
-            {
-                drInMed.Dispose();
-                timer1.Start();
-            }
-            else
+            drInMed.Dispose();
+            timer1.Start();
+            if (!string.IsNullOrEmpty(MedDate) || !string.IsNullOrEmpty(MedDate))
             {
                 MessageBox.Show("库存少于30的药品：" + MedDate + "\r\n" + "到了保质期的药品：" + MedDate, "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
             }

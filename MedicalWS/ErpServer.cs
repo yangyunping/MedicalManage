@@ -286,14 +286,14 @@ End";
         {
             string sql =
                 $@"
-IF not exists(select * from Patient where ID = '{patient.PatID}')
+IF not exists(select * from Patient where PatID = '{patient.PatID}')
 Begin
 Insert into Patient(PatName,Age,Gender,TelPhone,Addresses) values('{patient.PatName}','{patient.Age}','{patient.Gender}','{ patient.TelPhone}','{patient.Addresses}')
 insert into MedLog(OperType,Notes,OperateTime,OperateEmpID) values('{ medLog.OperType}','{medLog.Notes}',GETDATE(),'{medLog.OperateEmpID}')
 End
 ElSE
 Begin
-Update Patient set Age = '{patient.Age}', PatName = '{patient.PatName}',Addresses = '{patient.Addresses}',Gender = '{patient.Gender}',TelPhone ={ patient.TelPhone},Addresses = '{patient.Addresses}'  where ID = '{patient.PatID}'
+Update Patient set Age = '{patient.Age}', PatName = '{patient.PatName}',Addresses = '{patient.Addresses}',Gender = '{patient.Gender}',TelPhone ={ patient.TelPhone}  where PatID = '{patient.PatID}'
 End ";
             return ExecuteNonQuery(sql) > 0;
         }

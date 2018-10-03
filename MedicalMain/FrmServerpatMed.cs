@@ -97,7 +97,7 @@ namespace UI
 
             if (!string.IsNullOrEmpty(txtKey.Text.Trim()))
             {
-                sSql += $@" and  (PatName like '%{txtKey.Text.Trim()}%' or  DocName like '%{txtKey.Text.Trim()}%' or  om.MedName like '%{txtKey.Text.Trim()}%' or  m.MedSpellFirst like '%{txtKey.Text.Trim()}%')";
+                sSql += $@" and  (PatName like '%{txtKey.Text.Trim()}%' or  DocName like '%{txtKey.Text.Trim()}%' or  MedName like '%{txtKey.Text.Trim()}%' or  MedSpellFirst like '%{txtKey.Text.Trim()}%')";
             }
 
             DataTable dtMedTable = ErpServer.GetMedOutInfo(sSql).Tables[0];
