@@ -338,7 +338,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(71, 35);
             this.btnClose.TabIndex = 65;
-            this.btnClose.Text = "保    存";
+            this.btnClose.Text = "关  闭";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 

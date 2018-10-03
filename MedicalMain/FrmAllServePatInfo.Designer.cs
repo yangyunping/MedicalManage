@@ -31,7 +31,7 @@
             this.trButton = new System.Windows.Forms.ToolStrip();
             this.btnServePatSearch = new System.Windows.Forms.ToolStripButton();
             this.tsMedBuyInfo = new System.Windows.Forms.ToolStripButton();
-            this.btnNumSearch = new System.Windows.Forms.ToolStripButton();
+            this.btnServerSearch = new System.Windows.Forms.ToolStripButton();
             this.tbContent = new System.Windows.Forms.TabControl();
             this.trButton.SuspendLayout();
             this.SuspendLayout();
@@ -46,11 +46,11 @@
             this.trButton.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnServePatSearch,
             this.tsMedBuyInfo,
-            this.btnNumSearch});
+            this.btnServerSearch});
             this.trButton.Location = new System.Drawing.Point(0, 0);
             this.trButton.Name = "trButton";
             this.trButton.Padding = new System.Windows.Forms.Padding(1);
-            this.trButton.Size = new System.Drawing.Size(104, 569);
+            this.trButton.Size = new System.Drawing.Size(143, 569);
             this.trButton.TabIndex = 1;
             this.trButton.Text = "toolStrip1";
             this.trButton.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.trButton_ItemClicked);
@@ -64,7 +64,7 @@
             this.btnServePatSearch.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.btnServePatSearch.Name = "btnServePatSearch";
             this.btnServePatSearch.Padding = new System.Windows.Forms.Padding(1);
-            this.btnServePatSearch.Size = new System.Drawing.Size(99, 41);
+            this.btnServePatSearch.Size = new System.Drawing.Size(138, 41);
             this.btnServePatSearch.Text = "门诊查询";
             this.btnServePatSearch.Click += new System.EventHandler(this.btnServePatSearch_Click);
             // 
@@ -77,31 +77,30 @@
             this.tsMedBuyInfo.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.tsMedBuyInfo.Name = "tsMedBuyInfo";
             this.tsMedBuyInfo.Padding = new System.Windows.Forms.Padding(1);
-            this.tsMedBuyInfo.Size = new System.Drawing.Size(99, 41);
+            this.tsMedBuyInfo.Size = new System.Drawing.Size(138, 41);
             this.tsMedBuyInfo.Text = "购买查询";
             this.tsMedBuyInfo.Click += new System.EventHandler(this.tsMedBuyInfo_Click);
             // 
-            // btnNumSearch
+            // btnServerSearch
             // 
-            this.btnNumSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnNumSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.btnNumSearch.Image = global::UI.Properties.Resources.Calculator_operations;
-            this.btnNumSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNumSearch.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.btnNumSearch.Name = "btnNumSearch";
-            this.btnNumSearch.Padding = new System.Windows.Forms.Padding(1);
-            this.btnNumSearch.Size = new System.Drawing.Size(138, 41);
-            this.btnNumSearch.Text = "医生问诊量查询";
-            this.btnNumSearch.Visible = false;
-            this.btnNumSearch.Click += new System.EventHandler(this.btnNumSearch_Click);
+            this.btnServerSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnServerSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
+            this.btnServerSearch.Image = global::UI.Properties.Resources.Calculator_operations;
+            this.btnServerSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnServerSearch.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.btnServerSearch.Name = "btnServerSearch";
+            this.btnServerSearch.Padding = new System.Windows.Forms.Padding(1);
+            this.btnServerSearch.Size = new System.Drawing.Size(138, 41);
+            this.btnServerSearch.Text = "医生问诊量查询";
+            this.btnServerSearch.Click += new System.EventHandler(this.btnNumSearch_Click);
             // 
             // tbContent
             // 
             this.tbContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbContent.Location = new System.Drawing.Point(104, 0);
+            this.tbContent.Location = new System.Drawing.Point(143, 0);
             this.tbContent.Name = "tbContent";
             this.tbContent.SelectedIndex = 0;
-            this.tbContent.Size = new System.Drawing.Size(1040, 569);
+            this.tbContent.Size = new System.Drawing.Size(1001, 569);
             this.tbContent.TabIndex = 2;
             this.tbContent.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tbContent_MouseDoubleClick);
             // 
@@ -126,7 +125,7 @@
 
         private System.Windows.Forms.ToolStrip trButton;
         private System.Windows.Forms.ToolStripButton btnServePatSearch;
-        private System.Windows.Forms.ToolStripButton btnNumSearch;
+        private System.Windows.Forms.ToolStripButton btnServerSearch;
         private System.Windows.Forms.TabControl tbContent;
         private System.Windows.Forms.ToolStripButton tsMedBuyInfo;
     }

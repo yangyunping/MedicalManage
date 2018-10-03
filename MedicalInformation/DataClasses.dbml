@@ -86,10 +86,4 @@
       <Column Name="PastHistory" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Treatment" Member="Treatment">
-    <Type Name="Treatment">
-      <Column Name="SignID" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SignName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
 </Database>

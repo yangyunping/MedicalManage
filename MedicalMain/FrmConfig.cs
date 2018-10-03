@@ -39,6 +39,7 @@ namespace UI
         private void cmbStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvShow.DataSource = null;
+            txtContent.Clear();
             if (string.IsNullOrEmpty(cmbStyle.Text))
             {
                 return;
@@ -210,37 +211,55 @@ namespace UI
 
         private void 添加到治疗单Tsm_Click(object sender, EventArgs e)
         {
-            if (dgvShow.CurrentRow != null)
+            try
             {
-                Treatment treatment = new Treatment()
+                if (dgvShow.CurrentRow != null)
                 {
-                    SignID = dgvShow.CurrentRow.Cells["SignID"].Value.ToString(),
-                    SignName = dgvShow.CurrentRow.Cells["SignName"].Value.ToString()
-                };
-                if (bllTreatment.AddTreatment(treatment))
-                {
-                    MessageBox.Show("添加成功!");
+                    Treatment treatment = new Treatment()
+                    {
+                        SignID = dgvShow.CurrentRow.Cells["SignID"].Value.ToString(),
+                        SignName = dgvShow.CurrentRow.Cells["Name"].Value.ToString()
+                    };
+                    if (bllTreatment.AddTreatment(treatment))
+                    {
+                        MessageBox.Show("添加成功!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("已添加!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("已添加!");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
         private void 取消治疗单打印Tsm_Click(object sender, EventArgs e)
         {
-            if (dgvShow.CurrentRow != null)
+            try
             {
-                Treatment treatment = new Treatment()
+                if (dgvShow.CurrentRow != null)
                 {
-                    SignID = dgvShow.CurrentRow.Cells["SignID"].Value.ToString(),
-                    SignName = dgvShow.CurrentRow.Cells["SignName"].Value.ToString()
-                };
-                if (bllTreatment.DeleteTreatment(treatment))
-                {
-                    MessageBox.Show("取消成功!");
+                    Treatment treatment = new Treatment()
+                    {
+                        SignID = dgvShow.CurrentRow.Cells["SignID"].Value.ToString(),
+                        SignName = dgvShow.CurrentRow.Cells["Name"].Value.ToString()
+                    };
+                    if (bllTreatment.DeleteTreatment(treatment))
+                    {
+                        MessageBox.Show("取消成功!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("已取消!");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 

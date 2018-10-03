@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Registry.cs" />
     <Compile Include="EmpPower.cs" />
+    <Compile Include="Treatment.cs" />
     <Compile Include="XmlConvert.cs" />
   </ItemGroup>
   <ItemGroup>

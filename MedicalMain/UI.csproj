@@ -133,11 +133,11 @@
     <Compile Include="FrmPationsSearch.Designer.cs">
       <DependentUpon>FrmPationsSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPlan.cs">
+    <Compile Include="FrmPlanSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPlan.Designer.cs">
-      <DependentUpon>FrmPlan.cs</DependentUpon>
+    <Compile Include="FrmPlanSearch.Designer.cs">
+      <DependentUpon>FrmPlanSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPrescription.cs">
       <SubType>UserControl</SubType>
@@ -151,17 +151,17 @@
     <Compile Include="FrmServePat.Designer.cs">
       <DependentUpon>FrmServePat.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmServerpatMed.cs">
+    <Compile Include="FrmServerPatSearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmServerpatMed.Designer.cs">
-      <DependentUpon>FrmServerpatMed.cs</DependentUpon>
+    <Compile Include="FrmServerPatSearch.Designer.cs">
+      <DependentUpon>FrmServerPatSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmStock.cs">
+    <Compile Include="FrmStockSearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmStock.Designer.cs">
-      <DependentUpon>FrmStock.cs</DependentUpon>
+    <Compile Include="FrmStockSearch.Designer.cs">
+      <DependentUpon>FrmStockSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,8 +216,8 @@
     <EmbeddedResource Include="FrmPationsSearch.resx">
       <DependentUpon>FrmPationsSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPlan.resx">
-      <DependentUpon>FrmPlan.cs</DependentUpon>
+    <EmbeddedResource Include="FrmPlanSearch.resx">
+      <DependentUpon>FrmPlanSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrescription.resx">
       <DependentUpon>FrmPrescription.cs</DependentUpon>
@@ -225,11 +225,11 @@
     <EmbeddedResource Include="FrmServePat.resx">
       <DependentUpon>FrmServePat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmServerpatMed.resx">
-      <DependentUpon>FrmServerpatMed.cs</DependentUpon>
+    <EmbeddedResource Include="FrmServerPatSearch.resx">
+      <DependentUpon>FrmServerPatSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmStock.resx">
-      <DependentUpon>FrmStock.cs</DependentUpon>
+    <EmbeddedResource Include="FrmStockSearch.resx">
+      <DependentUpon>FrmStockSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Model;
+using System;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Model;
 
 namespace UI
 {
@@ -24,7 +18,7 @@ namespace UI
             {
                 Dock = DockStyle.Fill
             };
-            CreatNewPag(SbtnAddMed.Text, frmMedInfo);
+            CreatNewPag(tsmMedSearch.Text, frmMedInfo);
         }
         private void CreatNewPag(string name, Control control)
         {
@@ -48,8 +42,8 @@ namespace UI
         }
         private void sBtnMedSearch_Click(object sender, EventArgs e)
         {
-            FrmStock frmStock = new FrmStock() { Dock = DockStyle.Fill };
-            CreatNewPag(sBtnMedSearch.Text, frmStock);
+            FrmStockSearch frmStock = new FrmStockSearch() { Dock = DockStyle.Fill };
+            CreatNewPag(tsmMedStockSearch.Text, frmStock);
         }
 
         private void sbtnCreate_Click(object sender, EventArgs e)

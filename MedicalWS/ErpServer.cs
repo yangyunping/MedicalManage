@@ -570,17 +570,14 @@ End
         /// </summary>
         /// <param name="signId"></param>
         /// <returns></returns>
-        public static bool AddTreatment(Dictionary<string,string> sign)
+        public static bool AddTreatment(Treatment treatment)
         {
-            string sSql = string.Empty;
-            for (int i = 0; i < sign.Count; i++)
-            {
-                sSql += $@" 
-IF NOT EXISTS(Select * from Treatment where SignID = '{sign.Keys.ToArray()[i]}')
+            string sSql = $@" 
+IF NOT EXISTS(Select * from Treatment where SignID = '{treatment.SignID}')
 BEGIN
-Insert into Treatment(SignID,SignName) values('{sign.Keys.ToArray()[i]}','{sign.Values.ToArray()[i]}')
+Insert into Treatment(SignID,SignName) values('{treatment.SignID}','{treatment.SignName}')
 END";
-            }
+            
             return ExecuteNonQuery(sSql) > 0;
         }
         /// <summary>
@@ -588,14 +585,9 @@ END";
         /// </summary>
         /// <param name="signId"></param>
         /// <returns></returns>
-        public static bool DeleteTreatment(List<string> signId)
+        public static bool DeleteTreatment(Treatment treatment)
         {
-            string sSql = string.Empty;
-            for (int i = 0; i < signId.Count; i++)
-            {
-                sSql += $@" 
-Delete from Treatment where  SignID = '{signId[i]}' ";
-            }
+            string sSql = $@" Delete from Treatment where  SignID = '{treatment.SignID}'";
             return ExecuteNonQuery(sSql) > 0;
         }
     }

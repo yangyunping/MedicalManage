@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class FrmServerpatMed
+    partial class FrmServerPatSearch
     {
         /// <summary> 
         /// 必需的设计器变量。

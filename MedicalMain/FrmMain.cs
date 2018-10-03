@@ -38,8 +38,11 @@ namespace UI
                 tsmSettingMenues.DropDownClosed += (sender, args) => tsmSettingMenues.ForeColor = Color.White;
 
                 //权限
-              // btnPations.Enabled = tsBtnLookPat.Enabled = sbtnMedicine.Enabled  = Information.UsePower.ContainsKey(CommonInfo.UserPowers.一般权限.SafeDbValue<int>());
-              // tsmCheckSetting.Enabled = tsmSetting.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.高级权限.SafeDbValue<int>());
+                tmsLookPat.Enabled =  Information.UsePower.ContainsKey(CommonInfo.UserPowers.门诊处方.SafeDbValue<int>());
+                tsmCheckSetting.Enabled =  Information.UsePower.ContainsKey(CommonInfo.UserPowers.检查费调整.SafeDbValue<int>());
+                tsmSetting.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.基础设置.SafeDbValue<int>());
+                tsmThemes.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.主题变换.SafeDbValue<int>());
+                tsmPws.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.密码修改.SafeDbValue<int>());
 
                 //加载底部信息栏
                 JsonRead jsonRead = new JsonRead();
@@ -83,7 +86,7 @@ namespace UI
 
 
                 //时间实时刷新
-                timer1.Start();
+                //timer1.Start();
             }
             catch (Exception ex)
             {
@@ -171,7 +174,7 @@ namespace UI
         private void tsBtnLookPat_Click(object sender, EventArgs e)
         {
             FrmServePat frmServePat = new FrmServePat() { Dock = DockStyle.Fill };
-            CreatNewPag(tsBtnLookPat.Text, frmServePat);
+            CreatNewPag(tmsLookPat.Text, frmServePat);
         }
 
         private void btnStaticsSearch_Click(object sender, EventArgs e)

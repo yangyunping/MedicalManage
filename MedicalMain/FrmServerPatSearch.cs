@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class FrmServerpatMed : UserControl
+    public partial class FrmServerPatSearch : UserControl
     {
         BllPations bllPations = new BllPations();
         BllConfig bllConfig = new BllConfig();
         BllEmployee bllEmployee = new BllEmployee();
-        public FrmServerpatMed()
+        public FrmServerPatSearch()
         {
             InitializeComponent();
             DgvColumn();
@@ -23,6 +23,9 @@ namespace UI
 
         private void IniteData()
         {
+            //权限
+            btnSearch.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.门诊查询.SafeDbValue<int>());
+
             DataTable dtTable = bllEmployee.GetEmployeeInfo(string.Empty);
             DataRow drRow1 = dtTable.NewRow();
             drRow1["DocName"] = @"全部";
@@ -76,38 +79,45 @@ namespace UI
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string sSql = string.Empty;
-            if (chkDate.Checked)
+            try
             {
-                sSql += $@" and DATEDIFF(dd,LookDate,'{dtpBegin.Value}')<=0 and DATEDIFF(dd,LookDate,'{dtpEnd.Value}')>=0";
-            }
-            if (!string.IsNullOrEmpty(cmbEmployees.Text) && !cmbEmployees.Text.Equals(@"全部"))
-            {
-                sSql += $@" and DocID = '{cmbEmployees.SelectedValue}'";
-            }
-            if (!string.IsNullOrEmpty(cmbPations.Text) && !cmbPations.Text.Equals(@"全部"))
-            {
-                sSql += $@" and  PatID = '{cmbPations.SelectedValue}'";
-            }
-            if (!string.IsNullOrEmpty(cmbStyle.Text) && !cmbStyle.Text.Equals(@"全部"))
-            {
-                sSql += $@" and SignID = '{cmbStyle.SelectedValue}'";
-            }
-            if (!string.IsNullOrEmpty(cmbMedicines.Text) && !cmbMedicines.Text.Equals(@"全部"))
-            {
-                sSql += $@" and  MedID = '{cmbMedicines.SelectedValue}'";
-            }
+                string sSql = string.Empty;
+                if (chkDate.Checked)
+                {
+                    sSql += $@" and DATEDIFF(dd,LookDate,'{dtpBegin.Value}')<=0 and DATEDIFF(dd,LookDate,'{dtpEnd.Value}')>=0";
+                }
+                if (!string.IsNullOrEmpty(cmbEmployees.Text) && !cmbEmployees.Text.Equals(@"全部"))
+                {
+                    sSql += $@" and DoctorID = '{cmbEmployees.SelectedValue}'";
+                }
+                if (!string.IsNullOrEmpty(cmbPations.Text) && !cmbPations.Text.Equals(@"全部"))
+                {
+                    sSql += $@" and  PatID = '{cmbPations.SelectedValue}'";
+                }
+                if (!string.IsNullOrEmpty(cmbStyle.Text) && !cmbStyle.Text.Equals(@"全部"))
+                {
+                    sSql += $@" and SignID = '{cmbStyle.SelectedValue}'";
+                }
+                if (!string.IsNullOrEmpty(cmbMedicines.Text) && !cmbMedicines.Text.Equals(@"全部"))
+                {
+                    sSql += $@" and  MedID = '{cmbMedicines.SelectedValue}'";
+                }
 
-            if (!string.IsNullOrEmpty(txtKey.Text.Trim()))
-            {
-                sSql += $@" and  (PatName like '%{txtKey.Text.Trim()}%' or  DocName like '%{txtKey.Text.Trim()}%' or  MedName like '%{txtKey.Text.Trim()}%' or  MedSpellFirst like '%{txtKey.Text.Trim()}%')";
-            }
+                if (!string.IsNullOrEmpty(txtKey.Text.Trim()))
+                {
+                    sSql += $@" and  (PatName like '%{txtKey.Text.Trim()}%' or  DocName like '%{txtKey.Text.Trim()}%' or  MedName like '%{txtKey.Text.Trim()}%' or  MedSpellFirst like '%{txtKey.Text.Trim()}%')";
+                }
 
-            DataTable dtMedTable = ErpServer.GetMedOutInfo(sSql).Tables[0];
-            dgvMedsInfo.AutoGenerateColumns = false;
-            dgvMedsInfo.DataSource = dtMedTable;
-            lblMoneySum.Text = @"数量：" + dtMedTable.Rows.Count;
-            dtMedTable.Dispose();
+                DataTable dtMedTable = ErpServer.GetMedOutInfo(sSql).Tables[0];
+                dgvMedsInfo.AutoGenerateColumns = false;
+                dgvMedsInfo.DataSource = dtMedTable;
+                lblMoneySum.Text = @"数量：" + dtMedTable.Rows.Count;
+                dtMedTable.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void cmbStyle_SelectedIndexChanged(object sender, EventArgs e)

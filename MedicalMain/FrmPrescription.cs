@@ -73,18 +73,6 @@ namespace UI
             dtpBegin.Enabled = dtpEnd.Enabled = chkDate.Checked;
         }
 
-        private void dgvServePats_DoubleClick(object sender, EventArgs e)
-        {
-            if (dgvServePats.CurrentRow != null)
-            {
-                Information.PatId = dgvServePats.CurrentRow.Cells["PatID"].Value.ToString();
-                if (this.Parent is Form)
-                {
-                    ((Form) this.Parent).Close();
-                }
-            }
-        }
-
         private void txtKeys_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

@@ -1112,7 +1112,7 @@ namespace UI
 
         private void btnPlanSearch_Click(object sender, EventArgs e)
         {
-            FrmPlan frmPlan = new FrmPlan();
+            FrmPlanSearch frmPlan = new FrmPlanSearch();
             frmPlan.Show();
         }
 
@@ -1191,7 +1191,7 @@ namespace UI
 
         private void btnMemary_Click(object sender, EventArgs e)
         {
-            FrmServerpatMed frmServerpatMed = new FrmServerpatMed();
+            FrmServerPatSearch frmServerpatMed = new FrmServerPatSearch();
             FrmBase frmBase = new FrmBase();
             frmBase.Controls.Add(frmServerpatMed);
             frmBase.Text = frmServerpatMed.Text;
@@ -1249,11 +1249,11 @@ namespace UI
         private void btnPatSearch_Click(object sender, EventArgs e)
         {
             Information.PatId = string.Empty;
-            FrmPrescription frmPrescription = new FrmPrescription();
+            FrmPationsSearch FrmPationsSearch = new FrmPationsSearch();
             FrmBase frmBase = new FrmBase();
-            frmPrescription.Dock = DockStyle.Fill;
+            FrmPationsSearch.Dock = DockStyle.Fill;
             frmBase.Text = @"门诊病人记录";
-            frmBase.Controls.Add(frmPrescription);
+            frmBase.Controls.Add(FrmPationsSearch);
             frmBase.ShowDialog();
             _dtPat = bllPations.GetPationes($@" and  PatID like '%{ Information.PatId}%'");
             txtName.DataSource = _dtPat;
@@ -1369,10 +1369,10 @@ namespace UI
             DataRow drNewRow = _dtNewMed.NewRow();
             _dtNewMed.Rows.Add(drNewRow);
             drNewRow["MedID"] = cmbExamination.SelectedValue.ToString();
-            drNewRow["MedName"] = "1";
+            drNewRow["MedName"] = cmbExamination.Text.Trim();
             drNewRow["MedUnitPrice"] =txtPayCheck.Text.Trim();
             drNewRow["TimesUse"] = "1";
-            drNewRow["UseAge"] = cmbExamination.Text.Trim();
+            drNewRow["UseAge"] = "";
             drNewRow["MedPrice"] = txtPayCheck.Text.Trim();
             drNewRow["MedStyle"] = @"辅助检查";
             dgvMedicines.AutoGenerateColumns = false;

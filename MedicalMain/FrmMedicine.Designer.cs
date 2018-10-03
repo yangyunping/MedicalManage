@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMedicine));
             this.trButton = new System.Windows.Forms.ToolStrip();
-            this.SbtnAddMed = new System.Windows.Forms.ToolStripButton();
-            this.sBtnMedSearch = new System.Windows.Forms.ToolStripButton();
+            this.tsmMedSearch = new System.Windows.Forms.ToolStripButton();
+            this.tsmMedStockSearch = new System.Windows.Forms.ToolStripButton();
             this.sbtnCreate = new System.Windows.Forms.ToolStripButton();
             this.tbContent = new System.Windows.Forms.TabControl();
             this.trButton.SuspendLayout();
@@ -44,8 +44,8 @@
             this.trButton.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.trButton.ImageScalingSize = new System.Drawing.Size(35, 35);
             this.trButton.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SbtnAddMed,
-            this.sBtnMedSearch,
+            this.tsmMedSearch,
+            this.tsmMedStockSearch,
             this.sbtnCreate});
             this.trButton.Location = new System.Drawing.Point(0, 0);
             this.trButton.Name = "trButton";
@@ -55,31 +55,31 @@
             this.trButton.Text = "toolStrip1";
             this.trButton.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.trButton_ItemClicked);
             // 
-            // SbtnAddMed
+            // tsmMedSearch
             // 
-            this.SbtnAddMed.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.SbtnAddMed.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.SbtnAddMed.Image = ((System.Drawing.Image)(resources.GetObject("SbtnAddMed.Image")));
-            this.SbtnAddMed.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SbtnAddMed.Name = "SbtnAddMed";
-            this.SbtnAddMed.Padding = new System.Windows.Forms.Padding(3);
-            this.SbtnAddMed.Size = new System.Drawing.Size(102, 45);
-            this.SbtnAddMed.Text = "药品查询";
-            this.SbtnAddMed.ToolTipText = "库存新增";
-            this.SbtnAddMed.Click += new System.EventHandler(this.SbtnAddMed_Click);
+            this.tsmMedSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tsmMedSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
+            this.tsmMedSearch.Image = ((System.Drawing.Image)(resources.GetObject("tsmMedSearch.Image")));
+            this.tsmMedSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmMedSearch.Name = "tsmMedSearch";
+            this.tsmMedSearch.Padding = new System.Windows.Forms.Padding(3);
+            this.tsmMedSearch.Size = new System.Drawing.Size(102, 45);
+            this.tsmMedSearch.Text = "药品查询";
+            this.tsmMedSearch.ToolTipText = "库存新增";
+            this.tsmMedSearch.Click += new System.EventHandler(this.SbtnAddMed_Click);
             // 
-            // sBtnMedSearch
+            // tsmMedStockSearch
             // 
-            this.sBtnMedSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.sBtnMedSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.sBtnMedSearch.Image = global::UI.Properties.Resources.Statistics_PieChart;
-            this.sBtnMedSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.sBtnMedSearch.Name = "sBtnMedSearch";
-            this.sBtnMedSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.sBtnMedSearch.Size = new System.Drawing.Size(102, 45);
-            this.sBtnMedSearch.Text = "库存查询";
-            this.sBtnMedSearch.ToolTipText = "库存查询";
-            this.sBtnMedSearch.Click += new System.EventHandler(this.sBtnMedSearch_Click);
+            this.tsmMedStockSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tsmMedStockSearch.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
+            this.tsmMedStockSearch.Image = global::UI.Properties.Resources.Statistics_PieChart;
+            this.tsmMedStockSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmMedStockSearch.Name = "tsmMedStockSearch";
+            this.tsmMedStockSearch.Padding = new System.Windows.Forms.Padding(3);
+            this.tsmMedStockSearch.Size = new System.Drawing.Size(102, 45);
+            this.tsmMedStockSearch.Text = "库存查询";
+            this.tsmMedStockSearch.ToolTipText = "库存查询";
+            this.tsmMedStockSearch.Click += new System.EventHandler(this.sBtnMedSearch_Click);
             // 
             // sbtnCreate
             // 
@@ -123,8 +123,8 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip trButton;
-        private System.Windows.Forms.ToolStripButton SbtnAddMed;
-        private System.Windows.Forms.ToolStripButton sBtnMedSearch;
+        private System.Windows.Forms.ToolStripButton tsmMedSearch;
+        private System.Windows.Forms.ToolStripButton tsmMedStockSearch;
         private System.Windows.Forms.TabControl tbContent;
         private System.Windows.Forms.ToolStripButton sbtnCreate;
     }

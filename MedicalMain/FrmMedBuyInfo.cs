@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
+using Model;
 
 namespace UI
 {
@@ -17,6 +18,9 @@ namespace UI
         {
             InitializeComponent();
             DgvColumns();
+
+            //权限
+           btnSearch.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.购买查询.SafeDbValue<int>());
         }
 
         private void DgvColumns()
@@ -45,6 +49,8 @@ namespace UI
             dgvShow.AutoGenerateColumns = false;
             DataTable dtMedIndo = ErpServer.GetMedBuyInfo(sSql).Tables[0];
             dgvShow.DataSource = dtMedIndo;
+            lblSum.Text = "总数：" + dtMedIndo.Rows.Count;
+            dtMedIndo.Dispose();
         }
     }
 }

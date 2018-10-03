@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class FrmPlan : Form
+    public partial class FrmPlanSearch : Form
     {
         BllConfig bllConfig = new BllConfig();
         BllEmployee bllEmployee = new BllEmployee();
-        public FrmPlan()
+        public FrmPlanSearch()
         {
             InitializeComponent();
             DgvColumns();

@@ -33,21 +33,19 @@
             this.txtKey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.cmbPatName = new System.Windows.Forms.ComboBox();
-            this.lnl = new System.Windows.Forms.Label();
             this.dgvPat = new System.Windows.Forms.DataGridView();
+            this.lblSum = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPat)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblSum);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.txtKey);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.cmbPatName);
-            this.panel1.Controls.Add(this.lnl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -57,7 +55,7 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnDelete.Location = new System.Drawing.Point(543, 17);
+            this.btnDelete.Location = new System.Drawing.Point(329, 17);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(64, 30);
             this.btnDelete.TabIndex = 49;
@@ -67,7 +65,7 @@
             // 
             // txtKey
             // 
-            this.txtKey.Location = new System.Drawing.Point(309, 20);
+            this.txtKey.Location = new System.Drawing.Point(95, 20);
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(125, 24);
             this.txtKey.TabIndex = 47;
@@ -76,7 +74,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label1.Location = new System.Drawing.Point(255, 24);
+            this.label1.Location = new System.Drawing.Point(41, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 17);
             this.label1.TabIndex = 46;
@@ -85,32 +83,13 @@
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnSearch.Location = new System.Drawing.Point(459, 17);
+            this.btnSearch.Location = new System.Drawing.Point(245, 17);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(64, 30);
             this.btnSearch.TabIndex = 45;
             this.btnSearch.Text = "查   询";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // cmbPatName
-            // 
-            this.cmbPatName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPatName.FormattingEnabled = true;
-            this.cmbPatName.Location = new System.Drawing.Point(98, 19);
-            this.cmbPatName.Name = "cmbPatName";
-            this.cmbPatName.Size = new System.Drawing.Size(129, 27);
-            this.cmbPatName.TabIndex = 44;
-            // 
-            // lnl
-            // 
-            this.lnl.AutoSize = true;
-            this.lnl.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lnl.Location = new System.Drawing.Point(27, 24);
-            this.lnl.Name = "lnl";
-            this.lnl.Size = new System.Drawing.Size(56, 17);
-            this.lnl.TabIndex = 43;
-            this.lnl.Text = "病人姓名";
             // 
             // dgvPat
             // 
@@ -125,6 +104,16 @@
             this.dgvPat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPat.Size = new System.Drawing.Size(872, 494);
             this.dgvPat.TabIndex = 1;
+            this.dgvPat.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPat_MouseDoubleClick);
+            // 
+            // lblSum
+            // 
+            this.lblSum.AutoSize = true;
+            this.lblSum.Location = new System.Drawing.Point(428, 34);
+            this.lblSum.Name = "lblSum";
+            this.lblSum.Size = new System.Drawing.Size(48, 19);
+            this.lblSum.TabIndex = 50;
+            this.lblSum.Text = "数量：";
             // 
             // FrmPationsSearch
             // 
@@ -147,11 +136,10 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvPat;
-        private System.Windows.Forms.ComboBox cmbPatName;
-        private System.Windows.Forms.Label lnl;
         private System.Windows.Forms.TextBox txtKey;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblSum;
     }
 }

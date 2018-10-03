@@ -35,12 +35,14 @@
             this.dtpBegin = new System.Windows.Forms.DateTimePicker();
             this.chkDate = new System.Windows.Forms.CheckBox();
             this.dgvShow = new System.Windows.Forms.DataGridView();
+            this.lblSum = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShow)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblSum);
             this.panel1.Controls.Add(this.chkInMed);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.dtpEnd);
@@ -121,6 +123,15 @@
             this.dgvShow.Size = new System.Drawing.Size(880, 423);
             this.dgvShow.TabIndex = 1;
             // 
+            // lblSum
+            // 
+            this.lblSum.AutoSize = true;
+            this.lblSum.Location = new System.Drawing.Point(572, 42);
+            this.lblSum.Name = "lblSum";
+            this.lblSum.Size = new System.Drawing.Size(35, 19);
+            this.lblSum.TabIndex = 10;
+            this.lblSum.Text = "数量";
+            // 
             // FrmMedBuyInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -147,5 +158,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dgvShow;
         private System.Windows.Forms.CheckBox chkInMed;
+        private System.Windows.Forms.Label lblSum;
     }
 }

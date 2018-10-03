@@ -14,8 +14,11 @@ namespace UI
         {
             InitializeComponent();
             DgvColumns();
-
-           // btnCreate.Enabled = btnChange.Enabled =btnDelete.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.中级权限.SafeDbValue<int>());
+            //权限
+            btnCreate.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.员工创建.SafeDbValue<int>());
+            btnModify.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.员工修改.SafeDbValue<int>());
+            btnDelete.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.员工删除.SafeDbValue<int>());
+            btnSearch.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.员工查询.SafeDbValue<int>());
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -24,6 +27,8 @@ namespace UI
             dgvEmployee.AutoGenerateColumns = false; 
             DataTable dtTable = bllEmployee.GetEmployeeInfo(txtKey.Text.Trim());
             dgvEmployee.DataSource = dtTable;
+            lblSum.Text = "总数：" + dtTable.Rows.Count;
+            dtTable.Dispose();
         }
 
         private void DgvColumns()

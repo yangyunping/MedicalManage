@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using DAL;
+using Model;
 
 namespace BLL
 {
@@ -6,17 +7,23 @@ namespace BLL
     {
         public bool AddTreatment(Treatment treatment)
         {
-            DataClassesDataContext dataClasses = new DataClassesDataContext();
-            dataClasses.Treatment.InsertOnSubmit(treatment);
-            dataClasses.SubmitChanges();
-            return true;
+            return ErpServer.AddTreatment(treatment);
+            //using (DataClassesDataContext dataClasses = new DataClassesDataContext())
+            //{
+            //    dataClasses.Treatment.InsertOnSubmit(treatment);
+            //    dataClasses.SubmitChanges();
+            //    return true;
+            //};
         }
         public bool DeleteTreatment(Treatment treatment)
         {
-            DataClassesDataContext dataClasses = new DataClassesDataContext();
-            dataClasses.Treatment.DeleteOnSubmit(treatment);
-            dataClasses.SubmitChanges();
-            return true;
+            return ErpServer.DeleteTreatment(treatment);
+            //using (DataClassesDataContext dataClasses = new DataClassesDataContext())
+            //{
+            //    dataClasses.Treatment.DeleteOnSubmit(treatment);
+            //    dataClasses.SubmitChanges();
+            //    return true;
+            //};
         }
     }
 }

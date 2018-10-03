@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsButtons = new System.Windows.Forms.ToolStrip();
-            this.tsBtnLookPat = new System.Windows.Forms.ToolStripButton();
+            this.tmsLookPat = new System.Windows.Forms.ToolStripButton();
             this.btnStaticsSearch = new System.Windows.Forms.ToolStripButton();
             this.sbtnMedicine = new System.Windows.Forms.ToolStripButton();
             this.sbtnEmployee = new System.Windows.Forms.ToolStripButton();
@@ -39,7 +39,7 @@
             this.tsmSettingMenues = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCheckSetting = new System.Windows.Forms.ToolStripMenuItem();
-            this.密码修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPws = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmThemes = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.picShow = new System.Windows.Forms.PictureBox();
@@ -82,7 +82,7 @@
             this.tsButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsButtons.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.tsButtons.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsBtnLookPat,
+            this.tmsLookPat,
             this.btnStaticsSearch,
             this.sbtnMedicine,
             this.sbtnEmployee,
@@ -96,19 +96,19 @@
             this.tsButtons.Text = "门诊";
             this.tsButtons.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsButtons_ItemClicked);
             // 
-            // tsBtnLookPat
+            // tmsLookPat
             // 
-            this.tsBtnLookPat.BackColor = System.Drawing.Color.Transparent;
-            this.tsBtnLookPat.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.tsBtnLookPat.ForeColor = System.Drawing.Color.Black;
-            this.tsBtnLookPat.Image = global::UI.Properties.Resources.heart;
-            this.tsBtnLookPat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnLookPat.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.tsBtnLookPat.Name = "tsBtnLookPat";
-            this.tsBtnLookPat.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.tsBtnLookPat.Size = new System.Drawing.Size(75, 50);
-            this.tsBtnLookPat.Text = "门诊";
-            this.tsBtnLookPat.Click += new System.EventHandler(this.tsBtnLookPat_Click);
+            this.tmsLookPat.BackColor = System.Drawing.Color.Transparent;
+            this.tmsLookPat.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
+            this.tmsLookPat.ForeColor = System.Drawing.Color.Black;
+            this.tmsLookPat.Image = global::UI.Properties.Resources.heart;
+            this.tmsLookPat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tmsLookPat.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.tmsLookPat.Name = "tmsLookPat";
+            this.tmsLookPat.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.tmsLookPat.Size = new System.Drawing.Size(75, 50);
+            this.tmsLookPat.Text = "门诊";
+            this.tmsLookPat.Click += new System.EventHandler(this.tsBtnLookPat_Click);
             // 
             // btnStaticsSearch
             // 
@@ -164,7 +164,7 @@
             this.tsmSettingMenues.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmSetting,
             this.tsmCheckSetting,
-            this.密码修改ToolStripMenuItem,
+            this.tsmPws,
             this.tsmThemes});
             this.tsmSettingMenues.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold);
             this.tsmSettingMenues.ForeColor = System.Drawing.Color.Black;
@@ -190,13 +190,13 @@
             this.tsmCheckSetting.Text = "检查费调整";
             this.tsmCheckSetting.Click += new System.EventHandler(this.检查费调整ToolStripMenuItem_Click);
             // 
-            // 密码修改ToolStripMenuItem
+            // tsmPws
             // 
-            this.密码修改ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.密码修改ToolStripMenuItem.Name = "密码修改ToolStripMenuItem";
-            this.密码修改ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.密码修改ToolStripMenuItem.Text = "密码修改";
-            this.密码修改ToolStripMenuItem.Click += new System.EventHandler(this.密码修改ToolStripMenuItem_Click);
+            this.tsmPws.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.tsmPws.Name = "tsmPws";
+            this.tsmPws.Size = new System.Drawing.Size(137, 22);
+            this.tsmPws.Text = "密码修改";
+            this.tsmPws.Click += new System.EventHandler(this.密码修改ToolStripMenuItem_Click);
             // 
             // tsmThemes
             // 
@@ -393,7 +393,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStrip tsButtons;
-        private System.Windows.Forms.ToolStripButton tsBtnLookPat;
+        private System.Windows.Forms.ToolStripButton tmsLookPat;
         private System.Windows.Forms.ToolStripButton btnPations;
         private System.Windows.Forms.ToolStripButton sbtnMedicine;
         private System.Windows.Forms.Panel panel2;
@@ -405,7 +405,7 @@
         private System.Windows.Forms.ToolStripDropDownButton tsmSettingMenues;
         private System.Windows.Forms.ToolStripMenuItem tsmSetting;
         private System.Windows.Forms.ToolStripMenuItem tsmCheckSetting;
-        private System.Windows.Forms.ToolStripMenuItem 密码修改ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmPws;
         private System.Windows.Forms.TabControl tbContent;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblWeather;

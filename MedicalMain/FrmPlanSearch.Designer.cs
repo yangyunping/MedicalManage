@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class FrmPlan
+    partial class FrmPlanSearch
     {
         /// <summary>
         /// Required designer variable.

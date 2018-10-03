@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Model;
+using System;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Model;
 
 namespace UI
 {
@@ -16,19 +10,20 @@ namespace UI
         public FrmAllServePatInfo()
         {
             InitializeComponent();
-            //btnNumSearch.Visible = Information.UsePower.ContainsKey(CommonInfo.UserPowers.高级权限.SafeDbValue<int>());
+            //权限
+            btnServerSearch.Visible = Information.UsePower.ContainsKey(CommonInfo.UserPowers.门诊量查询.SafeDbValue<int>());
         }
 
         private void btnServePatSearch_Click(object sender, EventArgs e)
         {
-            FrmServerpatMed frmServerpatMed = new FrmServerpatMed() {Dock = DockStyle.Fill};
+            FrmServerPatSearch frmServerpatMed = new FrmServerPatSearch() {Dock = DockStyle.Fill};
             CreatNewPag(btnServePatSearch.Text, frmServerpatMed);
         }
 
         private void btnNumSearch_Click(object sender, EventArgs e)
         {
             FrmPrescription frmMedOut = new FrmPrescription() {Dock = DockStyle.Fill};
-            CreatNewPag(btnNumSearch.Text,frmMedOut);
+            CreatNewPag(btnServerSearch.Text,frmMedOut);
         }
         private void CreatNewPag(string name, Control control)
         {

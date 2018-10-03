@@ -79,10 +79,10 @@ namespace UI
                 }
                 foreach (TreeNode treeNode in twPower.Nodes)
                 {
-                    if (keyValues.ContainsKey(treeNode.Name))
-                    {
-                        treeNode.Checked = true;
-                    }
+                    //if (keyValues.ContainsKey(treeNode.Name))
+                    //{
+                    //    treeNode.Checked = true;
+                    //}
                     foreach (TreeNode item in treeNode.Nodes)
                     {
                         if (keyValues.ContainsKey(item.Name))

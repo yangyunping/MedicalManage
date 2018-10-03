@@ -19,6 +19,13 @@ namespace UI
 
         private void InitData()
         {
+            //权限
+            btnSearch.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.药品查询.SafeDbValue<int>());
+            btnAddNewMed.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.药品新增.SafeDbValue<int>());
+            btnModify.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.药品修改.SafeDbValue<int>());
+            btnDelete.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.药品删除.SafeDbValue<int>());
+            btnAdd.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.库存新增.SafeDbValue<int>());
+
             DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow = dtStyle.NewRow();
             drRow["SignID"] = @"-1";

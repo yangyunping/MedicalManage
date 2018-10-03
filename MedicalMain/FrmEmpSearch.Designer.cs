@@ -30,20 +30,22 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnChange = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
+            this.lblSum = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblSum);
             this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.btnChange);
+            this.panel1.Controls.Add(this.btnModify);
             this.panel1.Controls.Add(this.btnCreate);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.label1);
@@ -68,18 +70,18 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnChange
+            // btnModify
             // 
-            this.btnChange.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnChange.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btnChange.Location = new System.Drawing.Point(401, 21);
-            this.btnChange.Margin = new System.Windows.Forms.Padding(0);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(72, 31);
-            this.btnChange.TabIndex = 4;
-            this.btnChange.Text = "修改员工";
-            this.btnChange.UseVisualStyleBackColor = false;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            this.btnModify.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnModify.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.btnModify.Location = new System.Drawing.Point(401, 21);
+            this.btnModify.Margin = new System.Windows.Forms.Padding(0);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(72, 31);
+            this.btnModify.TabIndex = 4;
+            this.btnModify.Text = "修改员工";
+            this.btnModify.UseVisualStyleBackColor = false;
+            this.btnModify.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // btnCreate
             // 
@@ -145,6 +147,15 @@
             this.dgvEmployee.Size = new System.Drawing.Size(1192, 571);
             this.dgvEmployee.TabIndex = 1;
             // 
+            // lblSum
+            // 
+            this.lblSum.AutoSize = true;
+            this.lblSum.Location = new System.Drawing.Point(594, 39);
+            this.lblSum.Name = "lblSum";
+            this.lblSum.Size = new System.Drawing.Size(35, 19);
+            this.lblSum.TabIndex = 6;
+            this.lblSum.Text = "数量";
+            // 
             // FrmEmpSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -169,8 +180,9 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtKey;
-        private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.DataGridView dgvEmployee;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblSum;
     }
 }

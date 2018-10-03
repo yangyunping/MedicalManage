@@ -180,7 +180,6 @@
             this.dgvServePats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvServePats.Size = new System.Drawing.Size(1005, 550);
             this.dgvServePats.TabIndex = 1;
-            this.dgvServePats.DoubleClick += new System.EventHandler(this.dgvServePats_DoubleClick);
             // 
             // FrmPrescription
             // 

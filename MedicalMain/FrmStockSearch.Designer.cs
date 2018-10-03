@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class FrmStock
+    partial class FrmStockSearch
     {
         /// <summary> 
         /// 必需的设计器变量。

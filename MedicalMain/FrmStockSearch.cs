@@ -13,10 +13,10 @@ using BLL;
 
 namespace UI
 {
-    public partial class FrmStock : UserControl
+    public partial class FrmStockSearch : UserControl
     {
         BllConfig bllConfig = new BllConfig();
-        public FrmStock()
+        public FrmStockSearch()
         {
             InitializeComponent();
             IniteData();
@@ -24,6 +24,9 @@ namespace UI
 
         private void IniteData()
         {
+            //权限
+            btnSearch.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.库存查询.SafeDbValue<int>());
+
             DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow = dtStyle.NewRow();
             drRow["SignID"] = @"-1";
