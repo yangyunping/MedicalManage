@@ -1,23 +1,38 @@
 ﻿using DAL;
 using Model;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
     public class BllPations
     {
-       public static  bool InsertPation(Patient patient, MedLog medLog)
+        /// <summary>
+        /// 新增修改
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <param name="medLog"></param>
+        /// <returns></returns>
+       public bool InsertOrUpdatePation(Patient patient, MedLog medLog)
         {
-            return ErpServer.InsertPation(patient, medLog);
+            return ErpServer.InsertOrUpdatePation(patient, medLog);
         }
-        public static DataTable GetPationes(string sKey)
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="sKey"></param>
+        /// <returns></returns>
+        public  DataTable GetPationes(string sKey)
         {
             return ErpServer.GetPationes(sKey).Tables[0];
+        }
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <returns></returns>
+        public  bool DeletePationes(string key)
+        {
+            return ErpServer.DeletePationes(key);
         }
     }
 }

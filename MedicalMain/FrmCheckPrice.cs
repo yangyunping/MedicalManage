@@ -9,6 +9,7 @@ namespace UI
     public partial class FrmCheckPrice : Form
     {
         BllConfig bllConfig = new BllConfig();
+        BllExaminePrice bllExaminePrice = new BllExaminePrice();
         public FrmCheckPrice()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace UI
                     CheckName = cmbCheckStyle.Text.Trim(),
                     CheckPrice = Convert.ToDecimal(txtPrice.Text.Trim())
                 };
-                if (BllExaminePrice.AddExamine(examinePrice))
+                if (bllExaminePrice.AddExamine(examinePrice))
                 {
                     MessageBox.Show(@"修改保存成功！");
                     cmbCheckStyle.SelectedIndex = 0;
@@ -38,7 +39,7 @@ namespace UI
 
         private void cmbCheckStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dtCheck = BllExaminePrice.GetExamineInfo().Select($@" CheckID = '{cmbCheckStyle.SelectedValue}'").CopyToDataTable();
+            DataTable dtCheck = bllExaminePrice.GetExamineInfo().Select($@" CheckID = '{cmbCheckStyle.SelectedValue}'").CopyToDataTable();
             if (dtCheck.Rows.Count > 0)
             {
                 txtPrice.Text = dtCheck.Rows[0]["CheckPrice"].ToString();

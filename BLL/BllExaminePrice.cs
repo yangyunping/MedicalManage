@@ -6,12 +6,12 @@ namespace BLL
 {
     public class BllExaminePrice
     {
-        public static bool AddExamine(ExaminePrice examinePrice)
+        public  bool AddExamine(ExaminePrice examinePrice)
         {
             return ErpServer.AddExamine(examinePrice);
         }
 
-        public static DataTable GetExamineInfo()
+        public  DataTable GetExamineInfo()
         {
             return ErpServer.GetExamineInfo().Tables[0];
         }

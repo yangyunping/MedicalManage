@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMedicine));
             this.trButton = new System.Windows.Forms.ToolStrip();
-            this.sbtnCreate = new System.Windows.Forms.ToolStripButton();
             this.SbtnAddMed = new System.Windows.Forms.ToolStripButton();
             this.sBtnMedSearch = new System.Windows.Forms.ToolStripButton();
+            this.sbtnCreate = new System.Windows.Forms.ToolStripButton();
             this.tbContent = new System.Windows.Forms.TabControl();
             this.trButton.SuspendLayout();
             this.SuspendLayout();
@@ -55,18 +55,6 @@
             this.trButton.Text = "toolStrip1";
             this.trButton.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.trButton_ItemClicked);
             // 
-            // sbtnCreate
-            // 
-            this.sbtnCreate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.sbtnCreate.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
-            this.sbtnCreate.Image = global::UI.Properties.Resources.Pencil;
-            this.sbtnCreate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.sbtnCreate.Name = "sbtnCreate";
-            this.sbtnCreate.Size = new System.Drawing.Size(102, 39);
-            this.sbtnCreate.Text = "创建药品";
-            this.sbtnCreate.Visible = false;
-            this.sbtnCreate.Click += new System.EventHandler(this.sbtnCreate_Click);
-            // 
             // SbtnAddMed
             // 
             this.SbtnAddMed.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -76,7 +64,7 @@
             this.SbtnAddMed.Name = "SbtnAddMed";
             this.SbtnAddMed.Padding = new System.Windows.Forms.Padding(3);
             this.SbtnAddMed.Size = new System.Drawing.Size(102, 45);
-            this.SbtnAddMed.Text = "库存新增";
+            this.SbtnAddMed.Text = "药品查询";
             this.SbtnAddMed.ToolTipText = "库存新增";
             this.SbtnAddMed.Click += new System.EventHandler(this.SbtnAddMed_Click);
             // 
@@ -92,6 +80,18 @@
             this.sBtnMedSearch.Text = "库存查询";
             this.sBtnMedSearch.ToolTipText = "库存查询";
             this.sBtnMedSearch.Click += new System.EventHandler(this.sBtnMedSearch_Click);
+            // 
+            // sbtnCreate
+            // 
+            this.sbtnCreate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.sbtnCreate.Font = new System.Drawing.Font("微软雅黑", 9.5F, System.Drawing.FontStyle.Bold);
+            this.sbtnCreate.Image = global::UI.Properties.Resources.Pencil;
+            this.sbtnCreate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.sbtnCreate.Name = "sbtnCreate";
+            this.sbtnCreate.Size = new System.Drawing.Size(102, 39);
+            this.sbtnCreate.Text = "创建药品";
+            this.sbtnCreate.Visible = false;
+            this.sbtnCreate.Click += new System.EventHandler(this.sbtnCreate_Click);
             // 
             // tbContent
             // 

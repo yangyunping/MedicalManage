@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnChange = new System.Windows.Forms.Button();
@@ -37,12 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.修改员工信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除员工ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -138,7 +133,6 @@
             this.dgvEmployee.AllowUserToAddRows = false;
             this.dgvEmployee.BackgroundColor = System.Drawing.Color.White;
             this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployee.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployee.Location = new System.Drawing.Point(0, 69);
             this.dgvEmployee.Margin = new System.Windows.Forms.Padding(0);
@@ -150,29 +144,6 @@
             this.dgvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmployee.Size = new System.Drawing.Size(1192, 571);
             this.dgvEmployee.TabIndex = 1;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.修改员工信息ToolStripMenuItem,
-            this.删除员工ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
-            // 
-            // 修改员工信息ToolStripMenuItem
-            // 
-            this.修改员工信息ToolStripMenuItem.Name = "修改员工信息ToolStripMenuItem";
-            this.修改员工信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.修改员工信息ToolStripMenuItem.Text = "修改员工";
-            this.修改员工信息ToolStripMenuItem.Click += new System.EventHandler(this.修改员工信息ToolStripMenuItem_Click);
-            // 
-            // 删除员工ToolStripMenuItem
-            // 
-            this.删除员工ToolStripMenuItem.Name = "删除员工ToolStripMenuItem";
-            this.删除员工ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除员工ToolStripMenuItem.Text = "删除员工";
-            this.删除员工ToolStripMenuItem.Click += new System.EventHandler(this.删除员工ToolStripMenuItem_Click);
             // 
             // FrmEmpSearch
             // 
@@ -187,7 +158,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -201,9 +171,6 @@
         private System.Windows.Forms.TextBox txtKey;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.DataGridView dgvEmployee;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 修改员工信息ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 删除员工ToolStripMenuItem;
         private System.Windows.Forms.Button btnDelete;
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbUnits = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,15 +51,14 @@
             this.label12 = new System.Windows.Forms.Label();
             this.numSum = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.numSale = new System.Windows.Forms.TextBox();
             this.numBid = new System.Windows.Forms.TextBox();
             this.cmbProduce = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtMedId = new System.Windows.Forms.TextBox();
             this.dtpDue = new System.Windows.Forms.DateTimePicker();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numSum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -113,9 +111,9 @@
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnSave.Location = new System.Drawing.Point(183, 530);
+            this.btnSave.Location = new System.Drawing.Point(331, 524);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(188, 41);
+            this.btnSave.Size = new System.Drawing.Size(71, 35);
             this.btnSave.TabIndex = 34;
             this.btnSave.Text = "保    存";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -283,10 +281,6 @@
             this.label13.TabIndex = 55;
             this.label13.Text = "数      量：";
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // numSale
             // 
             this.numSale.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -337,11 +331,23 @@
             this.dtpDue.Size = new System.Drawing.Size(130, 26);
             this.dtpDue.TabIndex = 64;
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnClose.Location = new System.Drawing.Point(163, 524);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(71, 35);
+            this.btnClose.TabIndex = 65;
+            this.btnClose.Text = "保    存";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // FrmAddMedStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 583);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dtpDue);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtMedId);
@@ -377,7 +383,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "药品库存添加";
             ((System.ComponentModel.ISupportInitialize)(this.numSum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,12 +413,12 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown numSum;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox numBid;
         private System.Windows.Forms.TextBox numSale;
         private System.Windows.Forms.ComboBox cmbProduce;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtMedId;
         private System.Windows.Forms.DateTimePicker dtpDue;
+        private System.Windows.Forms.Button btnClose;
     }
 }

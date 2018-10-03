@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -44,13 +43,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvMedicine = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.增加药品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.修改药品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除药品ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).BeginInit();
-            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -213,7 +207,6 @@
             this.dgvMedicine.BackgroundColor = System.Drawing.Color.White;
             this.dgvMedicine.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dgvMedicine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMedicine.ContextMenuStrip = this.contextMenuStrip2;
             this.dgvMedicine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMedicine.EnableHeadersVisualStyles = false;
             this.dgvMedicine.Location = new System.Drawing.Point(0, 69);
@@ -235,36 +228,6 @@
             this.dgvMedicine.Size = new System.Drawing.Size(907, 524);
             this.dgvMedicine.TabIndex = 3;
             // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.增加药品ToolStripMenuItem,
-            this.修改药品ToolStripMenuItem,
-            this.删除药品ToolStripMenuItem});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(125, 70);
-            // 
-            // 增加药品ToolStripMenuItem
-            // 
-            this.增加药品ToolStripMenuItem.Name = "增加药品ToolStripMenuItem";
-            this.增加药品ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.增加药品ToolStripMenuItem.Text = "库存增加";
-            this.增加药品ToolStripMenuItem.Click += new System.EventHandler(this.增加药品ToolStripMenuItem_Click);
-            // 
-            // 修改药品ToolStripMenuItem
-            // 
-            this.修改药品ToolStripMenuItem.Name = "修改药品ToolStripMenuItem";
-            this.修改药品ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.修改药品ToolStripMenuItem.Text = "修改药品";
-            this.修改药品ToolStripMenuItem.Click += new System.EventHandler(this.修改药品ToolStripMenuItem_Click);
-            // 
-            // 删除药品ToolStripMenuItem
-            // 
-            this.删除药品ToolStripMenuItem.Name = "删除药品ToolStripMenuItem";
-            this.删除药品ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除药品ToolStripMenuItem.Text = "删除药品";
-            this.删除药品ToolStripMenuItem.Click += new System.EventHandler(this.删除药品ToolStripMenuItem_Click);
-            // 
             // FrmMedInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -279,7 +242,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedicine)).EndInit();
-            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,10 +254,6 @@
         private System.Windows.Forms.TextBox txtKeys;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem 增加药品ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 修改药品ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 删除药品ToolStripMenuItem;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cmbStyle;
         private System.Windows.Forms.Label label2;

@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class FrmPations
+    partial class FrmPationsSearch
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -42,6 +42,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.txtKey);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnSearch);
@@ -52,6 +53,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(872, 63);
             this.panel1.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDelete.Location = new System.Drawing.Point(543, 17);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(64, 30);
+            this.btnDelete.TabIndex = 49;
+            this.btnDelete.Text = "删  除";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // txtKey
             // 
@@ -104,14 +116,6 @@
             // 
             this.dgvPat.AllowUserToAddRows = false;
             this.dgvPat.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPat.Location = new System.Drawing.Point(0, 63);
@@ -122,7 +126,7 @@
             this.dgvPat.Size = new System.Drawing.Size(872, 494);
             this.dgvPat.TabIndex = 1;
             // 
-            // FrmPations
+            // FrmPationsSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,7 +134,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.5F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FrmPations";
+            this.Name = "FrmPationsSearch";
             this.Size = new System.Drawing.Size(872, 557);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -148,5 +152,6 @@
         private System.Windows.Forms.TextBox txtKey;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

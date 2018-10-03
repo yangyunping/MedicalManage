@@ -1,18 +1,23 @@
 ﻿using DAL;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
     public class BllEmployee
     {
-        public static DataSet GetEmployeeInfo(string empId)
+        /// <summary>
+        /// 获取员工信息
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public  DataTable GetEmployeeInfo(string key)
         {
-            return ErpServer.GetEmployeeInfo($@" and DocID ='{empId}'");
+            string sSql = string.Empty;
+            if (string.IsNullOrEmpty(key))
+            {
+                sSql +=$@" and (DocName like '%{key}%' or DocID like '%{key}%')";
+            }
+            return ErpServer.GetEmployeeInfo(sSql).Tables[0];
         }
     }
 }

@@ -80,77 +80,85 @@ namespace UI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbEmpID.Text.Trim()) || string.IsNullOrEmpty(txtPassword.Text))
-            {
-                MessageBox.Show(@"请输入账号和密码！");
-                return;
-            }
             try
             {
-                using (DataSet dsUser = BllEmployee.GetEmployeeInfo(cmbEmpID.Text.Trim()))
+                if (string.IsNullOrEmpty(cmbEmpID.Text.Trim()) || string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    if (dsUser == null)
-                    {
-                        MessageBox.Show(@"工号输入错误或不存在该人员工号！");
-                        cmbEmpID.Text = string.Empty;
-                        txtPassword.Text = string.Empty;
-                        cmbEmpID.Focus();
-                        return;
-                    }
-                    if (dsUser.Tables[0].Rows.Count == 0)
-                    {
-                        MessageBox.Show(@"没有创建该用户！");
-                        cmbEmpID.Text = string.Empty;
-                        txtPassword.Text = string.Empty;
-                        cmbEmpID.Focus();
-                        return;
-                    }
-                    if (!dsUser.Tables[0].Rows[0]["DocPassword"].SafeDbValue<string>().Equals(txtPassword.Text))
-                    {
-                        MessageBox.Show(@"密码错误，请重新输入！");
-                        txtPassword.Text = string.Empty;
-                        txtPassword.Focus();
-                        return;
-                    }
-                    //保存登录用户信息
-                    Information.CurrentUser = dsUser.Tables[0].Rows[0];
-                    dsUser.Dispose();
+                    MessageBox.Show(@"请输入账号和密码！");
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(@"数据库无法访问！" + ex.ToString());
-            }
-            empID = this.cmbEmpID.Text.Trim();
-            //记住用户名
-            if (chkRemenber.Checked)
-            {
-                List<string> lstLoginName = new List<string>
+                try
+                {
+                    BllEmployee bllEmployee = new BllEmployee();
+                    using (DataTable dsUser = bllEmployee.GetEmployeeInfo(cmbEmpID.Text.Trim()))
+                    {
+                        if (dsUser == null)
+                        {
+                            MessageBox.Show(@"工号输入错误或不存在该人员工号！");
+                            cmbEmpID.Text = string.Empty;
+                            txtPassword.Text = string.Empty;
+                            cmbEmpID.Focus();
+                            return;
+                        }
+                        if (dsUser.Rows.Count == 0)
+                        {
+                            MessageBox.Show(@"没有创建该用户！");
+                            cmbEmpID.Text = string.Empty;
+                            txtPassword.Text = string.Empty;
+                            cmbEmpID.Focus();
+                            return;
+                        }
+                        if (!dsUser.Rows[0]["DocPassword"].SafeDbValue<string>().Equals(txtPassword.Text))
+                        {
+                            MessageBox.Show(@"密码错误，请重新输入！");
+                            txtPassword.Text = string.Empty;
+                            txtPassword.Focus();
+                            return;
+                        }
+                        //保存登录用户信息
+                        Information.CurrentUser = dsUser.Rows[0];
+                        dsUser.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(@"数据库无法访问！" + ex.ToString());
+                }
+                empID = this.cmbEmpID.Text.Trim();
+                //记住用户名
+                if (chkRemenber.Checked)
+                {
+                    List<string> lstLoginName = new List<string>
                                             {
                                                     empID
                                             };
-                string[] registry = ResistryKey.GetRegistry(RegisterValueName);
-                if (null != registry)
-                {
-                    foreach (string name in registry.TakeWhile(name => lstLoginName.Count < MaxLoginNameSaveCount).Where(name => 0 != StringComparer.CurrentCulture.Compare(empID.ToUpper(), name.ToUpper())))
-                        lstLoginName.Add(name);
+                    string[] registry = ResistryKey.GetRegistry(RegisterValueName);
+                    if (null != registry)
+                    {
+                        foreach (string name in registry.TakeWhile(name => lstLoginName.Count < MaxLoginNameSaveCount).Where(name => 0 != StringComparer.CurrentCulture.Compare(empID.ToUpper(), name.ToUpper())))
+                            lstLoginName.Add(name);
+                    }
+                    ResistryKey.SetRegistry(RegisterValueName, lstLoginName.ToArray());
                 }
-                ResistryKey.SetRegistry(RegisterValueName, lstLoginName.ToArray());
-            }
 
-            //用户权限
-            DataTable dtPower = BllEmpPower.GetEmpPower(empID);
-            for (int i = 0; i < dtPower.Rows.Count; i++)
+                //用户权限
+                DataTable dtPower = BllEmpPower.GetEmpPower(empID);
+                for (int i = 0; i < dtPower.Rows.Count; i++)
+                {
+                    Information.UsePower.Add(Convert.ToInt32(dtPower.Rows[i]["PowerID"]), dtPower.Rows[i]["DocID"].ToString());
+                }
+
+                //主界面
+                FrmMain frmMain = new FrmMain();
+                this.Hide();
+                frmMain.ShowDialog();
+                GC.Collect();
+                Application.Exit();
+            }
+            catch (Exception ex)
             {
-                Information.UsePower.Add(dtPower.Rows[i]["PowerID"].ToString(), dtPower.Rows[i]["DocID"].ToString());
+                MessageBox.Show(ex.ToString());
             }
-
-            //主界面
-            FrmMain frmMain = new FrmMain();
-            this.Hide();
-            frmMain.ShowDialog();
-            GC.Collect();
-            Application.Exit();
         }
 
         private void lblClose_Click(object sender, EventArgs e)

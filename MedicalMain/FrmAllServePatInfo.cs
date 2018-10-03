@@ -16,7 +16,7 @@ namespace UI
         public FrmAllServePatInfo()
         {
             InitializeComponent();
-            btnNumSearch.Visible = Information.UsePower.ContainsKey(CommonInfo.UserPowers.门诊量管理.ToString());
+            //btnNumSearch.Visible = Information.UsePower.ContainsKey(CommonInfo.UserPowers.高级权限.SafeDbValue<int>());
         }
 
         private void btnServePatSearch_Click(object sender, EventArgs e)

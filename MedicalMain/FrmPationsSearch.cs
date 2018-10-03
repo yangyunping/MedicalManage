@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
+﻿using BLL;
+using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL;
 
 namespace UI
 {
-    public partial class FrmPations : UserControl
+    public partial class FrmPationsSearch : UserControl
     {
-        public FrmPations()
+        BllPations bllPations = new BllPations();
+        public FrmPationsSearch()
         {
             InitializeComponent();
             DgvCloumn();
-            DataTable dtPat = ErpServer.GetPationes(string.Empty).Tables[0];
+            DataTable dtPat = bllPations.GetPationes(string.Empty);
             DataRow drRow = dtPat.NewRow();
             drRow["PatID"] = @"-1";
             drRow["PatName"] = @"全部";
@@ -51,10 +46,21 @@ namespace UI
             {
                 sSql += $@" and PatName like '%{cmbPatName.Text}%'";
             }
-            DataTable dtPat = ErpServer.GetPationes(sSql).Tables[0];
+            DataTable dtPat = bllPations.GetPationes(sSql);
             dgvPat.AutoGenerateColumns = false;
             dgvPat.DataSource = dtPat;
             dtPat.Dispose();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvPat.CurrentRow != null)
+            {
+                if (bllPations.DeletePationes(dgvPat.CurrentRow.Cells["PatID"].Value.ToString()))
+                {
+                    MessageBox.Show("删除成功！");
+                }
+            }
         }
     }
 }

@@ -11,6 +11,9 @@ namespace UI
 {
     public partial class FrmServerpatMed : UserControl
     {
+        BllPations bllPations = new BllPations();
+        BllConfig bllConfig = new BllConfig();
+        BllEmployee bllEmployee = new BllEmployee();
         public FrmServerpatMed()
         {
             InitializeComponent();
@@ -20,7 +23,7 @@ namespace UI
 
         private void IniteData()
         {
-            DataTable dtTable = BllEmployee.GetEmployeeInfo(string.Empty).Tables[0];
+            DataTable dtTable = bllEmployee.GetEmployeeInfo(string.Empty);
             DataRow drRow1 = dtTable.NewRow();
             drRow1["DocName"] = @"全部";
             drRow1["DocID"] = @"-1";
@@ -29,7 +32,7 @@ namespace UI
             cmbEmployees.DisplayMember = @"DocName";
             cmbEmployees.ValueMember = @"DocID";
 
-            DataTable dtStyle = ErpServer.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+            DataTable dtStyle = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             DataRow drRow2 = dtStyle.NewRow();
             drRow2["SignID"] = @"-1";
             drRow2["Name"] = @"全部";
@@ -38,7 +41,7 @@ namespace UI
             cmbStyle.DisplayMember = @"Name";
             cmbStyle.DataSource = dtStyle;
 
-            DataTable dtPat = BllPations.GetPationes(string.Empty);
+            DataTable dtPat = bllPations.GetPationes(string.Empty);
             DataRow drRow3 = dtPat.NewRow();
             drRow3["PatID"] = @"-1";
             drRow3["PatName"] = @"全部";
@@ -133,7 +136,7 @@ namespace UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DataTable dtPat = ErpServer.GetPationes($@" and  PatName like '{cmbPations.Text}%'").Tables[0];
+                DataTable dtPat = bllPations.GetPationes($@" and  PatName like '{cmbPations.Text}%'");
                 DataRow drRow = dtPat.NewRow();
                 drRow["PatID"] = @"-1";
                 drRow["PatName"] = @"全部";

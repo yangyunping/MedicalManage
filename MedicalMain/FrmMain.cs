@@ -16,7 +16,6 @@ namespace UI
         /// 配置文件存放路径
         /// </summary>
         private readonly string _configPath = Application.StartupPath + @"\\" + @"Config.ini";
-        private string skinName = string.Empty;
         public FrmMain()
         {
             InitializeComponent();
@@ -29,40 +28,66 @@ namespace UI
         }
         private void InitiData()
         {
-            Image.GetThumbnailImageAbort callBack = new Image.GetThumbnailImageAbort(ThumbnailCallback);
-            picShow.Image = Resources.MedicalLogo.GetThumbnailImage(picShow.Width, picShow.Height, callBack, IntPtr.Zero);
-            this.Closing += (sender, args) => Application.Exit();
-            tsmSetting.DropDownOpened += (sender, args) => tsmSetting.ForeColor = Color.Black;
-            tsmSetting.DropDownClosed += (sender, args) => tsmSetting.ForeColor = Color.White;
-            JsonRead jsonRead = new JsonRead();
             try
             {
-                string weatherAddress = CallWebPage.CallWeb("http://www.weather.com.cn/data/cityinfo/101040100.html", 60000, Encoding.UTF8);
-                Weather weather = jsonRead.JsonReadInfo(weatherAddress);
-                lblWeather.Text ="城市: " +weather.city + "   天气: "+ weather.weather + "   温度: " + weather.temp1+"-" + weather.temp2;
-            }
-            catch { }
+                //主界面控件各类事件
+                Image.GetThumbnailImageAbort callBack = new Image.GetThumbnailImageAbort(ThumbnailCallback);
+                picShow.Image = Resources.MedicalLogo.GetThumbnailImage(picShow.Width, picShow.Height, callBack, IntPtr.Zero);
+                this.Closing += (sender, args) => Application.Exit();
+                tsmSettingMenues.DropDownOpened += (sender, args) => tsmSettingMenues.ForeColor = Color.Black;
+                tsmSettingMenues.DropDownClosed += (sender, args) => tsmSettingMenues.ForeColor = Color.White;
 
-            lblWelcome.Text = @"欢迎 " + Information.CurrentUser.Name +"  "+ Information.CurrentUser.DutyName + "         ";
+                //权限
+              // btnPations.Enabled = tsBtnLookPat.Enabled = sbtnMedicine.Enabled  = Information.UsePower.ContainsKey(CommonInfo.UserPowers.一般权限.SafeDbValue<int>());
+              // tsmCheckSetting.Enabled = tsmSetting.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.高级权限.SafeDbValue<int>());
 
-            DataTable drInMed = ErpServer.GetInMedDataSet(null).Tables[0];
-            string MedStock = string.Empty;
-            string MedDate = string.Empty;
-            DataRow[] rowsStock = drInMed.Select("Quantity <= 30");//库存少于30
-            for (int i = 0; i < rowsStock.Length; i++)
-            {
-                MedStock += ", " + rowsStock[i]["MedName"].ToString();
+                //加载底部信息栏
+                JsonRead jsonRead = new JsonRead();
+                try
+                {
+                    string weatherAddress = CallWebPage.CallWeb("http://www.weather.com.cn/data/cityinfo/101040100.html", 60000, Encoding.UTF8);
+                    Weather weather = jsonRead.JsonReadInfo(weatherAddress);
+                    lblWeather.Text = "城市: " + weather.city + "   天气: " + weather.weather + "   温度: " + weather.temp1 + "-" + weather.temp2;
+                }
+                catch { }
+                lblWelcome.Text = @"欢迎 " + Information.CurrentUser.Name + "  " + Information.CurrentUser.DutyName + "         ";
+
+                //提示到期、库存少的药品
+                DataTable drInMed = ErpServer.GetInMedDataSet(null).Tables[0];
+                string StockMedicines = string.Empty;
+                string DueDateMedicines = string.Empty;
+                DataRow[] rowsStock = drInMed.Select("Quantity <= 30");//库存少于30
+                for (int i = 0; i < rowsStock.Length; i++)
+                {
+                    StockMedicines += ", " + rowsStock[i]["MedName"].ToString();
+                }
+                DataRow[] rowsDate = drInMed.Select($@"DueDate <= '{DateTime.Now}'");//药品到了保质期
+                for (int i = 0; i < rowsStock.Length; i++)
+                {
+                    DueDateMedicines += ", " + rowsStock[i]["MedName"].ToString();
+                }
+                string medicinesInfo = string.Empty;
+                if (!string.IsNullOrEmpty(DueDateMedicines))
+                {
+                    medicinesInfo += "库存少于30的药品：" + DueDateMedicines;
+                }
+                if (!string.IsNullOrEmpty(DueDateMedicines))
+                {
+                    medicinesInfo += "\r\n" + "到了保质期的药品：" + DueDateMedicines;
+                }
+                if (!string.IsNullOrEmpty(medicinesInfo))
+                {
+                    MessageBox.Show(medicinesInfo, "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                }
+                drInMed.Dispose();
+
+
+                //时间实时刷新
+                timer1.Start();
             }
-            DataRow[] rowsDate = drInMed.Select($@"DueDate <= '{DateTime.Now}'");//药品到了保质期
-            for (int i = 0; i < rowsStock.Length; i++)
+            catch (Exception ex)
             {
-                MedDate += ", " + rowsStock[i]["MedName"].ToString();
-            }
-            drInMed.Dispose();
-            timer1.Start();
-            if (!string.IsNullOrEmpty(MedDate) || !string.IsNullOrEmpty(MedDate))
-            {
-                MessageBox.Show("库存少于30的药品：" + MedDate + "\r\n" + "到了保质期的药品：" + MedDate, "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                MessageBox.Show("主界面初始化数据加载失败！"+ex.ToString());
             }
         }
 
@@ -76,7 +101,11 @@ namespace UI
             };
             CreatNewPag(sbtnEmployee.Text, frmEmpSearch);
         }
-
+        /// <summary>
+        /// 在TabPage加载指定界面
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="control"></param>
         private void CreatNewPag(string name, Control control)
         {
             foreach (TabPage tabPage in tbContent.TabPages)
@@ -97,7 +126,11 @@ namespace UI
             tbContent.TabPages.Add(tbPage);
             tbContent.SelectedTab = tbPage;
         }
-
+        /// <summary>
+        /// 双击关闭当前TabPage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbContent_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             TabControl tabControl = (TabControl)sender;
@@ -118,7 +151,7 @@ namespace UI
                 }
             }
         }
-
+        
         private void sbtnMedicine_Click(object sender, EventArgs e)
         {
             FrmMedicine frmMedicine = new FrmMedicine()
@@ -155,14 +188,8 @@ namespace UI
 
         private void btnPations_Click(object sender, EventArgs e)
         {
-            FrmPations frmPations = new FrmPations() { Dock = DockStyle.Fill };
+            FrmPationsSearch frmPations = new FrmPationsSearch() { Dock = DockStyle.Fill };
             CreatNewPag(btnPations.Text, frmPations);
-        }
-
-        private void 要素设置ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmConfig frmConfig = new FrmConfig();
-            frmConfig.ShowDialog();
         }
 
         private void 基础设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -194,7 +221,11 @@ namespace UI
                 e.ClickedItem.BackColor = Color.BurlyWood;
             }
         }
-
+        /// <summary>
+        /// 时间实时刷新
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text ="  时间:"+ DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString();
@@ -218,7 +249,7 @@ namespace UI
                     _configPath);
                 if (!string.IsNullOrEmpty(selectOrder.ToString()))
                 {
-                    skinName = selectOrder.ToString();
+                    string skinName = selectOrder.ToString();
                     skinEngine.SkinFile = skinName;
                     skinEngine.SkinAllForm = true;
                     skinEngine.DisableTag = 9999;
@@ -233,7 +264,11 @@ namespace UI
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// 主题皮肤切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstbThemes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstbThemes.SelectedItem != null)
@@ -257,7 +292,11 @@ namespace UI
         {
             pnlThemes.Visible = false;
         }
-
+        /// <summary>
+        /// 恢复默认主题皮肤
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnThemeOrigal_Click(object sender, EventArgs e)
         {
             skinEngine.Active = false;

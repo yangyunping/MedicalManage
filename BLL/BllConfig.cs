@@ -15,9 +15,14 @@ namespace BLL
         public IEnumerable<Config> GetConfigStyleInfo()
         {
             DataClassesDataContext dataClasses = new DataClassesDataContext();
-            var query = dataClasses.Config.Where(p => p.StyleID == 10000);
+            var query = dataClasses.Config.Where(p => p.StyleID == 10000 || p.StyleID == 5);
             return query.AsEnumerable<Config>();
         }
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
         public bool AddConfig(Config config)
         {
             DataClassesDataContext dataClasses = new DataClassesDataContext();
@@ -25,6 +30,11 @@ namespace BLL
             dataClasses.SubmitChanges();
             return true;
         }
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
         public bool DeleteConfig(Config config)
         {
             DataClassesDataContext dataClasses = new DataClassesDataContext();
@@ -32,7 +42,11 @@ namespace BLL
             dataClasses.SubmitChanges();
             return true;
         }
-        
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
         public bool ModifyConfig(Config config)
         {
             DataClassesDataContext dataClasses = new DataClassesDataContext();

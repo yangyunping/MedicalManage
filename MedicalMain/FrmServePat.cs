@@ -21,6 +21,8 @@ namespace UI
         private string _medStandard = string.Empty;
         private string _medStyleName = string.Empty;
         BllConfig bllConfig = new BllConfig();
+        BllPations bllPations = new BllPations();
+        BllExaminePrice bllExaminePrice = new BllExaminePrice();
         public FrmServePat()
         {
             InitializeComponent();
@@ -227,7 +229,7 @@ namespace UI
                 }
                 if (CheckList.Count > 0)
                 {
-                    ErpServer.SaveCheckInfo(CheckList, Information.CurrentUser.Id, txtAge.Text.Trim(), txtName.Text.Trim());
+                   ErpServer.SaveCheckInfo(CheckList, Information.CurrentUser.Id, txtAge.Text.Trim(), txtName.Text.Trim());
                 }
                 if (medList.Count > 0)
                 {
@@ -262,7 +264,7 @@ namespace UI
             Information.PatId = string.Empty;
             if (e.KeyCode == Keys.Enter)
             {
-                _dtPat = ErpServer.GetPationes($@" and  PatName like '%{txtName.Text.Trim()}%'").Tables[0];
+                _dtPat = bllPations.GetPationes($@" and  PatName like '%{txtName.Text.Trim()}%'");
                 txtName.DataSource = _dtPat;
                 txtName.ValueMember = @"PatID";
                 txtName.DisplayMember = @"PatName";
@@ -293,7 +295,7 @@ namespace UI
                 Notes = txtName.Text.Trim() + "  " + txtAge.Text.Trim() + "  " + cmbGender.Text.Trim() + "  " + txtPhone.Text.Trim() + "  " + txtAddress.Text.Trim(),
                 OperateEmpID = Information.CurrentUser.Id
             };
-            if (!BllPations.InsertPation(patient, medLog))
+            if (!bllPations.InsertOrUpdatePation(patient, medLog))
             {
                 MessageBox.Show(@"信息有误，请核对病人信息！");
                 return;
@@ -344,7 +346,7 @@ namespace UI
 
                 if (dtSouce != null)
                 {
-                    string treatments = ErpServer.GetTreatmentInfo().ToString();
+                    string treatments =ErpServer.GetTreatmentInfo().ToString();
                     string useAge = string.Empty;
                     if (!string.IsNullOrEmpty(treatments))
                     {
@@ -607,7 +609,7 @@ namespace UI
             try
             {
                 DataTable dtSouce = dgvMedicines.DataSource as DataTable;
-                string treatments = ErpServer.GetTreatmentInfo().ToString();
+                string treatments =ErpServer.GetTreatmentInfo().ToString();
                 string useAge = string.Empty;
                 if (!string.IsNullOrEmpty(treatments))
                 {
@@ -642,7 +644,7 @@ namespace UI
             try
             {
                 DataTable dtSouce = dgvMedicines.DataSource as DataTable;
-                string treatments = ErpServer.GetTreatmentInfo().ToString();
+                string treatments =ErpServer.GetTreatmentInfo().ToString();
                 string useAge = string.Empty;
                 if (!string.IsNullOrEmpty(treatments))
                 {
@@ -686,7 +688,7 @@ namespace UI
                 //分组，暂时最多5组
                 if (dtSouce != null)
                 {
-                    string treatments = ErpServer.GetTreatmentInfo().ToString();
+                    string treatments =ErpServer.GetTreatmentInfo().ToString();
                     string useAge = string.Empty;
                     if (!string.IsNullOrEmpty(treatments))
                     {
@@ -1087,7 +1089,7 @@ namespace UI
                 sSql = $@" and  MedID = '{cmbMedicines.SelectedValue}'";
                 _medValues = cmbMedicines.SelectedValue.ToString().Trim();
             }
-            dtMedicine = ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
+            dtMedicine =ErpServer.GetMedInfo(sSql, CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>()).Tables[0];
             if (dtMedicine != null && dtMedicine.Rows.Count != 0)
             {
                 _medBarCode = dtMedicine.Rows[0]["MedBarCode"].SafeDbValue<string>();
@@ -1123,7 +1125,7 @@ namespace UI
                     foreach (DataRow rowInfo in Information.CopyPlanInfo.Rows)
                     {
                         DataTable dtTable =
-                            ErpServer.GetMedInfo($@" and  MedID = {rowInfo["MedID"]}", CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>())
+                           ErpServer.GetMedInfo($@" and  MedID = {rowInfo["MedID"]}", CommonInfo.ConfigStyle.药品类别.SafeDbValue<int>())
                                 .Tables[0];
                         if (dtTable.Rows.Count == 0)
                         {
@@ -1253,7 +1255,7 @@ namespace UI
             frmBase.Text = @"门诊病人记录";
             frmBase.Controls.Add(frmPrescription);
             frmBase.ShowDialog();
-            _dtPat = ErpServer.GetPationes($@" and  PatID like '%{ Information.PatId}%'").Tables[0];
+            _dtPat = bllPations.GetPationes($@" and  PatID like '%{ Information.PatId}%'");
             txtName.DataSource = _dtPat;
             txtName.ValueMember = @"PatID";
             txtName.DisplayMember = @"PatName";
@@ -1263,7 +1265,7 @@ namespace UI
         {
             if (!string.IsNullOrEmpty(Information.PatId))
             {
-                _dtPat = ErpServer.GetPationes($@" and (PatID like '%{Information.PatId}%')").Tables[0];
+                _dtPat = bllPations.GetPationes($@" and (PatID like '%{Information.PatId}%')");
                 txtName.DataSource = _dtPat;
                 txtName.ValueMember = @"PatID";
                 txtName.DisplayMember = @"PatName";
@@ -1386,7 +1388,7 @@ namespace UI
             {
                 if (cmbExamination.SelectedValue != null)
                 {
-                    DataTable dtCheck = ErpServer.GetExamineInfo().Tables[0].Select($@" CheckID = '{cmbExamination.SelectedValue}'").CopyToDataTable();
+                    DataTable dtCheck = bllExaminePrice.GetExamineInfo().Select($@" CheckID = '{cmbExamination.SelectedValue}'").CopyToDataTable();
                     if (dtCheck.Rows.Count > 0)
                     {
                         txtPayCheck.Text = dtCheck.Rows[0]["CheckPrice"].ToString();

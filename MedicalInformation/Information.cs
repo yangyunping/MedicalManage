@@ -16,7 +16,7 @@ namespace Model
         {
             CurrentUser = new Doctor();
             Medicine = new Medicine();
-            UsePower = new Dictionary<string, string>();
+            UsePower = new Dictionary<int, string>();
         }
         /// <summary>
         /// 员工
@@ -30,7 +30,7 @@ namespace Model
         /// <summary>
         /// 用户
         /// </summary>
-        public static Dictionary<string,string> UsePower { get; set; }
+        public static Dictionary<int,string> UsePower { get; set; }
         /// <summary>
         /// 复制方案信息
         /// </summary>

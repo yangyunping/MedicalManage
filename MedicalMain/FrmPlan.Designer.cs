@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbEmployees = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             this.cmsMenue = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlan)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -54,6 +55,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnCopy);
             this.panel1.Controls.Add(this.cmbEmployees);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnSearch);
@@ -135,8 +137,8 @@
             this.dgvPlan.Name = "dgvPlan";
             this.dgvPlan.ReadOnly = true;
             this.dgvPlan.RowHeadersWidth = 11;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvPlan.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvPlan.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPlan.RowTemplate.Height = 23;
             this.dgvPlan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPlan.Size = new System.Drawing.Size(433, 529);
@@ -169,8 +171,8 @@
             this.dgvDetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDetail.Name = "dgvDetail";
             this.dgvDetail.RowHeadersWidth = 11;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dgvDetail.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dgvDetail.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDetail.RowTemplate.Height = 23;
             this.dgvDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetail.Size = new System.Drawing.Size(835, 529);
@@ -188,16 +190,28 @@
             // 复制ToolStripMenuItem
             // 
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
-            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.复制ToolStripMenuItem.Text = "复制";
             this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
             // 
             // tsmDelete
             // 
             this.tsmDelete.Name = "tsmDelete";
-            this.tsmDelete.Size = new System.Drawing.Size(100, 22);
+            this.tsmDelete.Size = new System.Drawing.Size(180, 22);
             this.tsmDelete.Text = "删除";
             this.tsmDelete.Click += new System.EventHandler(this.tsmDelete_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnCopy.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.btnCopy.Location = new System.Drawing.Point(598, 19);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(72, 29);
+            this.btnCopy.TabIndex = 41;
+            this.btnCopy.Text = "复  制";
+            this.btnCopy.UseVisualStyleBackColor = false;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // FrmPlan
             // 
@@ -237,5 +251,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmDelete;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tmsDeletePro;
+        private System.Windows.Forms.Button btnCopy;
     }
 }

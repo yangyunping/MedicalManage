@@ -138,24 +138,23 @@ namespace DAL
         /// <param name="age"></param>
         /// <param name="telPhone"></param>
         /// <param name="dutyId"></param>
-        /// <param name="powerIdlList"></param>
+        /// <param name="powerLst"></param>
         /// <returns></returns>
-        public static bool InsertEmpInfo(string empId, string empName, string passWord, string sex, string age,
-            string telPhone, string dutyId, List<string> powerIdlList)
+        public static bool InsertEmpInfo(Doctor doctor, List<EmpPower> powerLst)
         {
             string sql =
                 $@"
-if not Exists(select * from Doctor where DocID = '{empId}')
+if not Exists(select * from Doctor where DocID = '{doctor.Id}')
 Begin
 insert into Doctor(DocID,DocName,DocPassword,DocSex,DocAge,DocTel,DocDutyID) 
-values('{empId}','{empName}','{passWord}','{sex}','{age}','{telPhone}','{dutyId}')
+values('{doctor.Id}','{doctor.Name}','{doctor.PassWord}','{doctor.Gender}','{doctor.DocAge}','{doctor.PhoneNumber}','{doctor.DutyId}')
 End
 Else
 Begin
-update Doctor set DocName = '{empName}',DocPassword = '{passWord}',
-DocSex = '{sex}',DocAge = '{age}',DocTel = '{telPhone}',DocDutyID = '{dutyId }' where  DocID = '{empId}'
+update Doctor set DocName = '{doctor.Name}',DocPassword = '{doctor.PassWord}',
+DocSex = '{doctor.Gender}',DocAge = '{doctor.DocAge}',DocTel = '{doctor.PhoneNumber}',DocDutyID = '{doctor.DutyId }' where  DocID = '{doctor.Id}'
 End";
-            sql = powerIdlList.Aggregate(sql, (current, powerId) => current + $@"  insert into EmpPower(PowerID,DocID) values('{powerId}','{empId}')");
+            sql = powerLst.Aggregate(sql, (current, EmpPower) => current + $@"  insert into EmpPower(PowerID,DocID) values('{EmpPower.PowerID}','{EmpPower.DocID}')");
             return ExecuteNonQuery(sql) > 0;
         }
 
@@ -282,7 +281,7 @@ End";
         /// <param name="patient"></param>
         /// <param name="medLog"></param>
         /// <returns></returns>
-        public static bool InsertPation(Patient patient, MedLog medLog)
+        public static bool InsertOrUpdatePation(Patient patient, MedLog medLog)
         {
             string sql =
                 $@"
@@ -353,8 +352,18 @@ Insert into Examination(CheckID,CheckName,DoctorID,PatID,CheckPrice,CheckDate) v
         /// <returns></returns>
         public static DataSet GetPationes(string key)
         {
-            string sSql = $@"select * from Patient where 1=1 {key}";
+            string sSql = $@"select * from Patient where IsDelete=0 {key}";
             return ExecuteQuery(sSql);
+        }
+        /// <summary>
+        /// 查询病人信息
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static bool DeletePationes(string key)
+        {
+            string sSql = $@"Update Patient set IsDelete = 1 where  PatID = {key}";
+            return ExecuteNonQuery(sSql)>0;
         }
         /// <summary>
         /// 问诊量

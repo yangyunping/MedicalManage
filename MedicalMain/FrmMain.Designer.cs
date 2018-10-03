@@ -36,9 +36,9 @@
             this.sbtnMedicine = new System.Windows.Forms.ToolStripButton();
             this.sbtnEmployee = new System.Windows.Forms.ToolStripButton();
             this.btnPations = new System.Windows.Forms.ToolStripButton();
-            this.tsmSetting = new System.Windows.Forms.ToolStripDropDownButton();
-            this.基础设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.检查费调整ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSettingMenues = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsmSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCheckSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.密码修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmThemes = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -87,7 +87,7 @@
             this.sbtnMedicine,
             this.sbtnEmployee,
             this.btnPations,
-            this.tsmSetting});
+            this.tsmSettingMenues});
             this.tsButtons.Location = new System.Drawing.Point(83, 0);
             this.tsButtons.Name = "tsButtons";
             this.tsButtons.Padding = new System.Windows.Forms.Padding(10, 3, 3, 3);
@@ -159,36 +159,36 @@
             this.btnPations.Text = "患者管理";
             this.btnPations.Click += new System.EventHandler(this.btnPations_Click);
             // 
-            // tsmSetting
+            // tsmSettingMenues
             // 
-            this.tsmSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.基础设置ToolStripMenuItem,
-            this.检查费调整ToolStripMenuItem,
+            this.tsmSettingMenues.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmSetting,
+            this.tsmCheckSetting,
             this.密码修改ToolStripMenuItem,
             this.tsmThemes});
-            this.tsmSetting.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tsmSetting.ForeColor = System.Drawing.Color.Black;
-            this.tsmSetting.Image = global::UI.Properties.Resources.System;
-            this.tsmSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmSettingMenues.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tsmSettingMenues.ForeColor = System.Drawing.Color.Black;
+            this.tsmSettingMenues.Image = global::UI.Properties.Resources.System;
+            this.tsmSettingMenues.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmSettingMenues.Name = "tsmSettingMenues";
+            this.tsmSettingMenues.Size = new System.Drawing.Size(78, 49);
+            this.tsmSettingMenues.Text = "设置";
+            // 
+            // tsmSetting
+            // 
+            this.tsmSetting.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.tsmSetting.Name = "tsmSetting";
-            this.tsmSetting.Size = new System.Drawing.Size(78, 49);
-            this.tsmSetting.Text = "设置";
+            this.tsmSetting.Size = new System.Drawing.Size(137, 22);
+            this.tsmSetting.Text = "基础设置";
+            this.tsmSetting.Click += new System.EventHandler(this.基础设置ToolStripMenuItem_Click);
             // 
-            // 基础设置ToolStripMenuItem
+            // tsmCheckSetting
             // 
-            this.基础设置ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.基础设置ToolStripMenuItem.Name = "基础设置ToolStripMenuItem";
-            this.基础设置ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.基础设置ToolStripMenuItem.Text = "基础设置";
-            this.基础设置ToolStripMenuItem.Click += new System.EventHandler(this.基础设置ToolStripMenuItem_Click);
-            // 
-            // 检查费调整ToolStripMenuItem
-            // 
-            this.检查费调整ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.检查费调整ToolStripMenuItem.Name = "检查费调整ToolStripMenuItem";
-            this.检查费调整ToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.检查费调整ToolStripMenuItem.Text = "检查费调整";
-            this.检查费调整ToolStripMenuItem.Click += new System.EventHandler(this.检查费调整ToolStripMenuItem_Click);
+            this.tsmCheckSetting.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.tsmCheckSetting.Name = "tsmCheckSetting";
+            this.tsmCheckSetting.Size = new System.Drawing.Size(137, 22);
+            this.tsmCheckSetting.Text = "检查费调整";
+            this.tsmCheckSetting.Click += new System.EventHandler(this.检查费调整ToolStripMenuItem_Click);
             // 
             // 密码修改ToolStripMenuItem
             // 
@@ -402,9 +402,9 @@
         private System.Windows.Forms.ToolStripButton btnStaticsSearch;
         private System.Windows.Forms.ToolStripButton sbtnEmployee;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ToolStripDropDownButton tsmSetting;
-        private System.Windows.Forms.ToolStripMenuItem 基础设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 检查费调整ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton tsmSettingMenues;
+        private System.Windows.Forms.ToolStripMenuItem tsmSetting;
+        private System.Windows.Forms.ToolStripMenuItem tsmCheckSetting;
         private System.Windows.Forms.ToolStripMenuItem 密码修改ToolStripMenuItem;
         private System.Windows.Forms.TabControl tbContent;
         private System.Windows.Forms.Timer timer1;

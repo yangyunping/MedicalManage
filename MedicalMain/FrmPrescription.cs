@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL;
+using DAL;
 using Model;
 using System;
 using System.Data;
@@ -8,12 +9,13 @@ namespace UI
 {
     public partial class FrmPrescription : UserControl
     {
+        BllEmployee bllEmployee = new BllEmployee();
         public FrmPrescription()
         {
             InitializeComponent();
             DgvColumn();
             
-            DataTable dtTable = ErpServer.GetEmployeeInfo(string.Empty).Tables[0];
+            DataTable dtTable = bllEmployee.GetEmployeeInfo(string.Empty);
             DataRow drRow = dtTable.NewRow();
             drRow["DocName"] = "全部";
             drRow["DocID"] = "0";

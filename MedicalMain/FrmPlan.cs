@@ -12,11 +12,12 @@ namespace UI
     public partial class FrmPlan : Form
     {
         BllConfig bllConfig = new BllConfig();
+        BllEmployee bllEmployee = new BllEmployee();
         public FrmPlan()
         {
             InitializeComponent();
             DgvColumns();
-            DataTable dtTable = BllEmployee.GetEmployeeInfo(string.Empty).Tables[0];
+            DataTable dtTable = bllEmployee.GetEmployeeInfo(string.Empty);
             DataRow drRow = dtTable.NewRow();
             drRow["DocName"] = "全部";
             drRow["DocID"] = "0";
@@ -87,29 +88,14 @@ namespace UI
 
         private void 复制ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Information.CopyPlanInfo = new DataTable();
-            List<string> medIdLstList = new List<string>();
-            if (dgvDetail.SelectedRows.Count > 0)
-            {
-                medIdLstList.AddRange(from DataGridViewRow medRow in dgvDetail.SelectedRows select medRow.Cells["MedID"].Value.ToString());
-                DataTable newTable = dgvDetail.DataSource as DataTable;
-                if (newTable != null)
-                    Information.CopyPlanInfo =
-                        newTable.Select($@" MedID in({@"'"+ string.Join(@"','", medIdLstList.ToArray())+ @"'"})").CopyToDataTable();
-                MessageBox.Show(@"复制成功！");
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show(@"没有选中需要复制的行！");
-            }
+            btnCopy_Click(null,null);
         }
 
         private void tmsDeletePro_Click(object sender, EventArgs e)
         {
             if (dgvPlan.CurrentRow != null)
             {
-                if (DAL.ErpServer.DeletePlan(dgvPlan.CurrentRow.Cells["SignID"].Value.ToString()))
+                if (ErpServer.DeletePlan(dgvPlan.CurrentRow.Cells["SignID"].Value.ToString()))
                 {
                     MessageBox.Show(@"删除成功！");
                     dgvPlan.Rows.Remove(dgvPlan.CurrentRow);
@@ -121,11 +107,31 @@ namespace UI
         {
             if (dgvDetail.CurrentRow != null)
             {
-                if (DAL.ErpServer.DeletePlanMed(dgvDetail.CurrentRow.Cells["ID"].Value.ToString()))
+                if (ErpServer.DeletePlanMed(dgvDetail.CurrentRow.Cells["ID"].Value.ToString()))
                 {
                     MessageBox.Show(@"删除成功！");
                     dgvDetail.Rows.Remove(dgvDetail.CurrentRow);
                 }
+            }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            Information.CopyPlanInfo = new DataTable();
+            List<string> medIdLstList = new List<string>();
+            if (dgvDetail.SelectedRows.Count > 0)
+            {
+                medIdLstList.AddRange(from DataGridViewRow medRow in dgvDetail.SelectedRows select medRow.Cells["MedID"].Value.ToString());
+                DataTable newTable = dgvDetail.DataSource as DataTable;
+                if (newTable != null)
+                    Information.CopyPlanInfo =
+                        newTable.Select($@" MedID in({@"'" + string.Join(@"','", medIdLstList.ToArray()) + @"'"})").CopyToDataTable();
+                MessageBox.Show(@"复制成功！");
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show(@"没有选中需要复制的行！");
             }
         }
     }

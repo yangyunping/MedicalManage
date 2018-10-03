@@ -1,29 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BLL;
 using DAL;
+using Model;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace UI
 {
     public partial class FrmEmpSearch : UserControl
     {
+        BllEmployee bllEmployee = new BllEmployee();
         public FrmEmpSearch()
         {
             InitializeComponent();
             DgvColumns();
+
+           // btnCreate.Enabled = btnChange.Enabled =btnDelete.Enabled = Information.UsePower.ContainsKey(CommonInfo.UserPowers.中级权限.SafeDbValue<int>());
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             dgvEmployee.DataSource = null;
             dgvEmployee.AutoGenerateColumns = false; 
-            DataTable dtTable = ErpServer.GetEmployeeInfo( $@" and (DocName like '%{txtKey.Text.Trim()}%' or DocID like '%{txtKey.Text.Trim()}%')").Tables[0];
+            DataTable dtTable = bllEmployee.GetEmployeeInfo(txtKey.Text.Trim());
             dgvEmployee.DataSource = dtTable;
         }
 
@@ -32,7 +31,7 @@ namespace UI
             dgvEmployee.Columns.AddRange(
                 new DataGridViewTextBoxColumn { Name = @"DocID", DataPropertyName = @"DocID", HeaderText = @"员工ID", Width = 100 },
                 new DataGridViewTextBoxColumn { Name = @"DocName", DataPropertyName = @"DocName", HeaderText = @"员工姓名", Width = 100 },
-                new DataGridViewTextBoxColumn { Name = @"DocPassword", DataPropertyName = @"DocPassword", HeaderText = @"密码", Width = 100 },
+                new DataGridViewTextBoxColumn { Name = @"DocPassword", DataPropertyName = @"DocPassword", HeaderText = @"密码", Width = 100,Visible = false },
                 new DataGridViewTextBoxColumn { Name = @"DocSex", DataPropertyName = @"DocSex", HeaderText = @"性别", Width = 80 },
                 new DataGridViewTextBoxColumn { Name = @"DocAge", DataPropertyName = @"DocAge", HeaderText = @"年龄", Width = 80 },
                 new DataGridViewTextBoxColumn { Name = @"DocDutyID", DataPropertyName = @"DocDutyID", HeaderText = @"职称ID", Width = 100 },
@@ -43,7 +42,7 @@ namespace UI
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FrmEmployee frmEmployee = new FrmEmployee(string.Empty);
+            FrmEmployee frmEmployee = new FrmEmployee();
             frmEmployee.ShowDialog();
             btnSearch_Click(null, null);
         }
@@ -57,7 +56,17 @@ namespace UI
         {
             if (dgvEmployee.CurrentRow != null)
             {
-                FrmEmployee frmEmployee = new FrmEmployee(dgvEmployee.CurrentRow.Cells["DocID"].Value.ToString());
+                Doctor doctor = new Doctor()
+                {
+                    Id = dgvEmployee.CurrentRow.Cells["DocID"].Value.ToString(),
+                    Name = dgvEmployee.CurrentRow.Cells["DocName"].Value.ToString(),
+                    Gender = dgvEmployee.CurrentRow.Cells["DocSex"].Value.ToString(),
+                    DocAge = dgvEmployee.CurrentRow.Cells["DocAge"].Value.ToString(),
+                    PhoneNumber = dgvEmployee.CurrentRow.Cells["DocTel"].Value.ToString(),
+                    PassWord = dgvEmployee.CurrentRow.Cells["DocPassword"].Value.ToString(),
+                    DutyId = dgvEmployee.CurrentRow.Cells["DocDutyID"].Value.ToString(),
+                };
+                FrmEmployee frmEmployee = new FrmEmployee(doctor);
                 frmEmployee.ShowDialog();
                 btnSearch_Click(null,null);
             }
