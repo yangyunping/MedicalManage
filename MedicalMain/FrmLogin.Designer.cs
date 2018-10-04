@@ -61,7 +61,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9.5F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(74, 101);
+            this.label2.Location = new System.Drawing.Point(76, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 19);
             this.label2.TabIndex = 1;
@@ -73,7 +73,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9.5F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(74, 139);
+            this.label3.Location = new System.Drawing.Point(76, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 19);
             this.label3.TabIndex = 2;
@@ -82,7 +82,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("微软雅黑", 9.5F);
-            this.txtPassword.Location = new System.Drawing.Point(125, 136);
+            this.txtPassword.Location = new System.Drawing.Point(127, 135);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(144, 24);
@@ -92,7 +92,7 @@
             // 
             this.btnLogin.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnLogin.Location = new System.Drawing.Point(78, 193);
+            this.btnLogin.Location = new System.Drawing.Point(80, 192);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(191, 35);
             this.btnLogin.TabIndex = 5;
@@ -126,7 +126,7 @@
             // 
             this.cmbEmpID.Font = new System.Drawing.Font("微软雅黑", 9.5F);
             this.cmbEmpID.FormattingEnabled = true;
-            this.cmbEmpID.Location = new System.Drawing.Point(125, 97);
+            this.cmbEmpID.Location = new System.Drawing.Point(127, 96);
             this.cmbEmpID.Name = "cmbEmpID";
             this.cmbEmpID.Size = new System.Drawing.Size(144, 27);
             this.cmbEmpID.TabIndex = 9;
@@ -137,7 +137,7 @@
             this.chkRemenber.Checked = true;
             this.chkRemenber.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRemenber.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.chkRemenber.Location = new System.Drawing.Point(142, 166);
+            this.chkRemenber.Location = new System.Drawing.Point(144, 165);
             this.chkRemenber.Name = "chkRemenber";
             this.chkRemenber.Size = new System.Drawing.Size(75, 21);
             this.chkRemenber.TabIndex = 10;

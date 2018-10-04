@@ -220,7 +220,7 @@ namespace UI
                     var days = dgvMedicines.Rows[i].Cells["Days"].Value.ToString();
                     var timesUse = dgvMedicines.Rows[i].Cells["TimesUse"].Value.ToString();
                     var medBarCode = dgvMedicines.Rows[i].Cells["MedBarCode"].Value.ToString();
-                    var spliteNum = dgvMedicines.Rows[i].Cells["SpliteNum"].Value == null ? string.Empty:dgvMedicines.Rows[i].Cells["SpliteNum"].Value.ToString();
+                    var spliteNum = dgvMedicines.Rows[i].Cells["SpliteNum"].Value == null ? "0":dgvMedicines.Rows[i].Cells["SpliteNum"].Value.ToString();
                     _allMedBid +=  Convert.ToDecimal(dgvMedicines.Rows[i].Cells["MedBid"].Value)* Convert.ToDecimal(dgvMedicines.Rows[i].Cells["TimesUse"].Value);
                     string[] medStrings = { medId, medBarCode, medName, timesUse, onePrice, price, useAge, eachTimes, days, oneTimeUse, spliteNum };
                     List<string> medicine = new List<string>();
@@ -482,7 +482,7 @@ namespace UI
                     rowInfo.Add(dgvMedicines.Rows[i].Cells["Days"].Value.ToString());
                     rowInfo.Add(dgvMedicines.Rows[i].Cells["TimesUse"].Value.ToString());
                     rowInfo.Add(cmbPlan.Text.Trim());
-                    rowInfo.Add(dgvMedicines.Rows[i].Cells["SpliteNum"].Value == null ? string.Empty: dgvMedicines.Rows[i].Cells["SpliteNum"].Value.ToString());
+                    rowInfo.Add(dgvMedicines.Rows[i].Cells["SpliteNum"].Value == null ? "0": dgvMedicines.Rows[i].Cells["SpliteNum"].Value.ToString());
                     medPlans.Add(rowInfo);
                 }
                 if (ErpServer.InsertMedPlan(medPlans, txtName.Text.Trim(), txtAge.Text.Trim()))
@@ -696,7 +696,7 @@ namespace UI
                     }
                     DataTable dtNewSouce = dtSouce.Select($@"UseAge in({useAge})").CopyToDataTable();
                     DataTable newDt0 = null, newDt1 = null, newDt2 = null, newDt3 = null, newDt4 = null, newDt5 = null;
-                    if (dtNewSouce.Select(@" SpliteNum is null or SpliteNum = 0").Any())
+                    if (dtNewSouce.Select(@"SpliteNum = 0").Any())
                     {
                         newDt0 = dtNewSouce.Select(@" SpliteNum is null or SpliteNum = 0").CopyToDataTable();
                     }

@@ -136,23 +136,27 @@ namespace UI
         /// <param name="e"></param>
         private void tbContent_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            TabControl tabControl = (TabControl)sender;
-            Point pt = new Point(e.X, e.Y);
-            for (int i = 0; i < tbContent.TabCount; i++)
+            try
             {
-                Rectangle rectangle = tbContent.GetTabRect(i);
-                if (rectangle.Contains(pt))
+                TabControl tabControl = (TabControl)sender;
+                Point pt = new Point(e.X, e.Y);
+                for (int i = 0; i < tbContent.TabCount; i++)
                 {
-                    TabPage tabPage = tbContent.SelectedTab;
-                    int selectIndex = tbContent.SelectedIndex;
-                    tbContent.TabPages.Remove(tabPage);
-                    if (selectIndex != 0)
+                    Rectangle rectangle = tbContent.GetTabRect(i);
+                    if (rectangle.Contains(pt))
                     {
-                        tbContent.SelectTab(selectIndex - 1);
+                        TabPage tabPage = tbContent.SelectedTab;
+                        int selectIndex = tbContent.SelectedIndex;
+                        tbContent.TabPages.Remove(tabPage);
+                        if (selectIndex != 0)
+                        {
+                            tbContent.SelectTab(selectIndex - 1);
+                        }
+                        return;
                     }
-                    return;
                 }
             }
+            catch { }
         }
         
         private void sbtnMedicine_Click(object sender, EventArgs e)
@@ -274,11 +278,19 @@ namespace UI
         /// <param name="e"></param>
         private void lstbThemes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstbThemes.SelectedItem != null)
+            try
             {
-                skinEngine.SkinFile = (lstbThemes.SelectedItem as FileInfo).FullName;
-                skinEngine.Active = true;
+                this.Invoke(new Action(()=>
+                {
+                    if (lstbThemes.SelectedItem != null)
+                    {
+                        skinEngine.SkinFile = (lstbThemes.SelectedItem as FileInfo).FullName;
+                        skinEngine.Active = true;
+                    }
+                }));
+               
             }
+            catch { }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

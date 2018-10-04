@@ -152,12 +152,12 @@ namespace UI
                 FrmMain frmMain = new FrmMain();
                 this.Hide();
                 frmMain.ShowDialog();
-                GC.Collect();
-                Application.Exit();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                GC.Collect();
+                Application.Exit();
             }
         }
 

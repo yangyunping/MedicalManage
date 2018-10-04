@@ -80,5 +80,13 @@ namespace UI
                 }
             }
         }
+
+        private void txtKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(null,null);
+            }
+        }
     }
 }

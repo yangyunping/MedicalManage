@@ -13,7 +13,7 @@ namespace BLL
         public  DataTable GetEmployeeInfo(string key)
         {
             string sSql = string.Empty;
-            if (string.IsNullOrEmpty(key))
+            if (!string.IsNullOrEmpty(key))
             {
                 sSql +=$@" and (DocName like '%{key}%' or DocID like '%{key}%')";
             }

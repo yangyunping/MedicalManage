@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSum = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvPat = new System.Windows.Forms.DataGridView();
-            this.lblSum = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPat)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +51,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(872, 63);
             this.panel1.TabIndex = 0;
+            // 
+            // lblSum
+            // 
+            this.lblSum.AutoSize = true;
+            this.lblSum.Location = new System.Drawing.Point(428, 34);
+            this.lblSum.Name = "lblSum";
+            this.lblSum.Size = new System.Drawing.Size(48, 19);
+            this.lblSum.TabIndex = 50;
+            this.lblSum.Text = "数量：";
             // 
             // btnDelete
             // 
@@ -69,6 +78,7 @@
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(125, 24);
             this.txtKey.TabIndex = 47;
+            this.txtKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKey_KeyDown);
             // 
             // label1
             // 
@@ -105,15 +115,6 @@
             this.dgvPat.Size = new System.Drawing.Size(872, 494);
             this.dgvPat.TabIndex = 1;
             this.dgvPat.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPat_MouseDoubleClick);
-            // 
-            // lblSum
-            // 
-            this.lblSum.AutoSize = true;
-            this.lblSum.Location = new System.Drawing.Point(428, 34);
-            this.lblSum.Name = "lblSum";
-            this.lblSum.Size = new System.Drawing.Size(48, 19);
-            this.lblSum.TabIndex = 50;
-            this.lblSum.Text = "数量：";
             // 
             // FrmPationsSearch
             // 
