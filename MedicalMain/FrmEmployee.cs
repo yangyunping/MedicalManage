@@ -12,6 +12,7 @@ namespace UI
     {
         BllConfig bllConfig = new BllConfig();
         BllEmployee bllEmployee = new BllEmployee();
+        BllEmpPower bllEmpPower = new BllEmpPower();
         public FrmEmployee(Doctor doctor)
         {
             InitializeComponent();
@@ -34,70 +35,77 @@ namespace UI
         }
         private void IniteData()
         {
-            DataTable dtDuty = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.职称类别.SafeDbValue<int>()).Tables[0];
-            cmbDuty.DataSource = dtDuty;
-            cmbDuty.ValueMember = @"SignID";
-            cmbDuty.DisplayMember = @"Name";
-          
-            DataTable dtPower = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用户权限.SafeDbValue<int>()).Tables[0];
-            for (int i = 0; i < dtPower.Rows.Count; i++)//第一级
+            try
             {
-                TreeNode treeNode = new TreeNode()
-                {
-                   Name =  dtPower.Rows[i]["SignID"].SafeDbValue<string>(),
-                   Text = dtPower.Rows[i]["Name"].SafeDbValue<string>()
-                };
-                DataTable dtPower1 = bllConfig.GetConfigInfo(dtPower.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
-                for (int j = 0; j < dtPower1.Rows.Count; j++)//第二级
-                {
-                    TreeNode treeNode1 = new TreeNode()
-                    {
-                        Name = dtPower1.Rows[j]["SignID"].SafeDbValue<string>(),
-                        Text = dtPower1.Rows[j]["Name"].SafeDbValue<string>()
-                    };
-                    DataTable dtPower2 = bllConfig.GetConfigInfo(dtPower1.Rows[j]["SignID"].SafeDbValue<int>()).Tables[0];
-                    for (int h = 0; h < dtPower2.Rows.Count; h++)//第三级
-                    {
-                        treeNode1.Nodes.Add(dtPower2.Rows[i]["SignID"].SafeDbValue<string>(), dtPower2.Rows[i]["Name"].SafeDbValue<string>());
-                    }
-                    treeNode.Nodes.Add(treeNode1);
-                    dtPower2.Dispose();
-                }
-                twPower.Nodes.Add(treeNode);
-                dtPower1.Dispose();
-            }
-            dtPower.Dispose();
+                DataTable dtDuty = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.职称类别.SafeDbValue<int>()).Tables[0];
+                cmbDuty.DataSource = dtDuty;
+                cmbDuty.ValueMember = @"SignID";
+                cmbDuty.DisplayMember = @"Name";
 
-            if (!string.IsNullOrEmpty(txtID.Text.Trim()))
-            {
-                //勾选员工已有的权限
-                DataTable dtPowerInfo = BllEmpPower.GetEmpPower(txtID.Text.Trim());
-                Dictionary<string, string> keyValues = new Dictionary<string, string>();
-                foreach (DataRow row in dtPowerInfo.Rows)
+                DataTable dtPower = bllConfig.GetConfigInfo(CommonInfo.ConfigStyle.用户权限.SafeDbValue<int>()).Tables[0];
+                for (int i = 0; i < dtPower.Rows.Count; i++)//第一级
                 {
-                    keyValues.Add(row["PowerID"].ToString(), row["DocID"].ToString());
-                }
-                foreach (TreeNode treeNode in twPower.Nodes)
-                {
-                    //if (keyValues.ContainsKey(treeNode.Name))
-                    //{
-                    //    treeNode.Checked = true;
-                    //}
-                    foreach (TreeNode item in treeNode.Nodes)
+                    TreeNode treeNode = new TreeNode()
                     {
-                        if (keyValues.ContainsKey(item.Name))
+                        Name = dtPower.Rows[i]["SignID"].SafeDbValue<string>(),
+                        Text = dtPower.Rows[i]["Name"].SafeDbValue<string>()
+                    };
+                    DataTable dtPower1 = bllConfig.GetConfigInfo(dtPower.Rows[i]["SignID"].SafeDbValue<int>()).Tables[0];
+                    for (int j = 0; j < dtPower1.Rows.Count; j++)//第二级
+                    {
+                        TreeNode treeNode1 = new TreeNode()
                         {
-                            item.Checked = true;
+                            Name = dtPower1.Rows[j]["SignID"].SafeDbValue<string>(),
+                            Text = dtPower1.Rows[j]["Name"].SafeDbValue<string>()
+                        };
+                        DataTable dtPower2 = bllConfig.GetConfigInfo(dtPower1.Rows[j]["SignID"].SafeDbValue<int>()).Tables[0];
+                        for (int h = 0; h < dtPower2.Rows.Count; h++)//第三级
+                        {
+                            treeNode1.Nodes.Add(dtPower2.Rows[i]["SignID"].SafeDbValue<string>(), dtPower2.Rows[i]["Name"].SafeDbValue<string>());
                         }
-                        foreach (TreeNode item1 in item.Nodes)
+                        treeNode.Nodes.Add(treeNode1);
+                        dtPower2.Dispose();
+                    }
+                    twPower.Nodes.Add(treeNode);
+                    dtPower1.Dispose();
+                }
+                dtPower.Dispose();
+
+                if (!string.IsNullOrEmpty(txtID.Text.Trim()))
+                {
+                    //勾选员工已有的权限
+                    DataTable dtPowerInfo = bllEmpPower.GetEmpPower(txtID.Text.Trim());
+                    Dictionary<string, string> keyValues = new Dictionary<string, string>();
+                    foreach (DataRow row in dtPowerInfo.Rows)
+                    {
+                        keyValues.Add(row["PowerID"].ToString(), row["DocID"].ToString());
+                    }
+                    foreach (TreeNode treeNode in twPower.Nodes)
+                    {
+                        //if (keyValues.ContainsKey(treeNode.Name))
+                        //{
+                        //    treeNode.Checked = true;
+                        //}
+                        foreach (TreeNode item in treeNode.Nodes)
                         {
-                            if (keyValues.ContainsKey(item1.Name))
+                            if (keyValues.ContainsKey(item.Name))
                             {
-                                item1.Checked = true;
+                                item.Checked = true;
+                            }
+                            foreach (TreeNode item1 in item.Nodes)
+                            {
+                                if (keyValues.ContainsKey(item1.Name))
+                                {
+                                    item1.Checked = true;
+                                }
                             }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 

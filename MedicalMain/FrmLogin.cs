@@ -33,6 +33,7 @@ namespace UI
         /// 记录的用户名用到的注册表信息路径
         /// </summary>
         private static readonly Registry ResistryKey = new Registry(@"HKEY_CURRENT_USER\software\MedicalManage\");
+        BllEmpPower bllEmpPower = new BllEmpPower();
         public FrmLogin()
         {
             InitializeComponent();
@@ -142,7 +143,8 @@ namespace UI
                 }
 
                 //用户权限
-                DataTable dtPower = BllEmpPower.GetEmpPower(empID);
+                
+                DataTable dtPower = bllEmpPower.GetEmpPower(empID);
                 for (int i = 0; i < dtPower.Rows.Count; i++)
                 {
                     Information.UsePower.Add(Convert.ToInt32(dtPower.Rows[i]["PowerID"]), dtPower.Rows[i]["DocID"].ToString());

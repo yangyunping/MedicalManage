@@ -86,7 +86,7 @@ namespace UI
 
 
                 //时间实时刷新
-                //timer1.Start();
+                timer1.Start();
             }
             catch (Exception ex)
             {
@@ -235,7 +235,7 @@ namespace UI
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblTime.Text ="  时间:"+ DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString();
+            lblTime.Text ="  时间: "+ DateTime.Now.ToLongDateString() +"  "+ DateTime.Now.ToLongTimeString();
         }
 
         private void tsmThemes_Click(object sender, EventArgs e)
