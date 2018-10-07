@@ -162,11 +162,11 @@
     <Compile Include="FrmStockSearch.Designer.cs">
       <DependentUpon>FrmStockSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Encrypt.cs">
+    <Compile Include="FrmEncrypt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Encrypt.designer.cs">
-      <DependentUpon>Encrypt.cs</DependentUpon>
+    <Compile Include="FrmEncrypt.designer.cs">
+      <DependentUpon>FrmEncrypt.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -236,8 +236,8 @@
     <EmbeddedResource Include="FrmStockSearch.resx">
       <DependentUpon>FrmStockSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Encrypt.resx">
-      <DependentUpon>Encrypt.cs</DependentUpon>
+    <EmbeddedResource Include="FrmEncrypt.resx">
+      <DependentUpon>FrmEncrypt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
