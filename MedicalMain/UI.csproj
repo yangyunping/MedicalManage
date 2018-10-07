@@ -36,9 +36,8 @@
     <ApplicationIcon>MedicalLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IrisSkin4, Version=2006.3.22.45, Culture=neutral, PublicKeyToken=127be25a6db25e07, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\IrisSkin4.dll</HintPath>
+    <Reference Include="IrisSkin4">
+      <HintPath>.\IrisSkin4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -163,6 +162,12 @@
     <Compile Include="FrmStockSearch.Designer.cs">
       <DependentUpon>FrmStockSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Encrypt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encrypt.designer.cs">
+      <DependentUpon>Encrypt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FrmMedsSearch.cs">
@@ -230,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStockSearch.resx">
       <DependentUpon>FrmStockSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encrypt.resx">
+      <DependentUpon>Encrypt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
