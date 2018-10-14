@@ -124,6 +124,7 @@ namespace UI
                 catch (Exception ex)
                 {
                     MessageBox.Show(@"数据库无法访问！" + ex.ToString());
+                    return;
                 }
                 empID = this.cmbEmpID.Text.Trim();
                 //记住用户名
@@ -143,7 +144,6 @@ namespace UI
                 }
 
                 //用户权限
-                
                 DataTable dtPower = bllEmpPower.GetEmpPower(empID);
                 for (int i = 0; i < dtPower.Rows.Count; i++)
                 {
@@ -158,8 +158,6 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                GC.Collect();
-                Application.Exit();
             }
         }
 

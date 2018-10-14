@@ -1,6 +1,6 @@
-﻿namespace Encrypt
+﻿namespace UI
 {
-    partial class Main
+    partial class FrmEncrypt
     {
         /// <summary>
         /// 必需的设计器变量。

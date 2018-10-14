@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Encrypt
+namespace UI
 {
-    public partial class Main : Form
+    public partial class FrmEncrypt : Form
     {
         private string sEncryptionKey = "";
-        public Main()
+        public FrmEncrypt()
         {
             InitializeComponent();
         }
