@@ -71,14 +71,7 @@ namespace UI
 
         private void dgvPat_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (dgvPat.CurrentRow != null)
-            {
-                Information.PatId = dgvPat.CurrentRow.Cells["PatID"].Value.ToString();
-                if (this.Parent is Form)
-                {
-                    ((Form)this.Parent).Close();
-                }
-            }
+            btnCopy_Click(null,null);
         }
 
         private void txtKey_KeyDown(object sender, KeyEventArgs e)
@@ -86,6 +79,22 @@ namespace UI
             if (e.KeyCode == Keys.Enter)
             {
                 btnSearch_Click(null,null);
+            }
+        }
+        /// <summary>
+        /// 复制选中病人
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            if (dgvPat.CurrentRow != null)
+            {
+                Information.PatId = dgvPat.CurrentRow.Cells["PatID"].Value.ToString();
+                if (this.Parent is Form)
+                {
+                    ((Form)this.Parent).Close();
+                }
             }
         }
     }

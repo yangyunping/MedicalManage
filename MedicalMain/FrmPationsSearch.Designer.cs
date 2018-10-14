@@ -35,12 +35,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvPat = new System.Windows.Forms.DataGridView();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPat)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnCopy);
             this.panel1.Controls.Add(this.lblSum);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.txtKey);
@@ -55,7 +57,7 @@
             // lblSum
             // 
             this.lblSum.AutoSize = true;
-            this.lblSum.Location = new System.Drawing.Point(428, 34);
+            this.lblSum.Location = new System.Drawing.Point(537, 41);
             this.lblSum.Name = "lblSum";
             this.lblSum.Size = new System.Drawing.Size(48, 19);
             this.lblSum.TabIndex = 50;
@@ -116,6 +118,17 @@
             this.dgvPat.TabIndex = 1;
             this.dgvPat.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPat_MouseDoubleClick);
             // 
+            // btnCopy
+            // 
+            this.btnCopy.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnCopy.Location = new System.Drawing.Point(414, 17);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(64, 30);
+            this.btnCopy.TabIndex = 51;
+            this.btnCopy.Text = "复 制";
+            this.btnCopy.UseVisualStyleBackColor = false;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
             // FrmPationsSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -142,5 +155,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblSum;
+        private System.Windows.Forms.Button btnCopy;
     }
 }
