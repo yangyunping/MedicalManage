@@ -9,7 +9,7 @@ namespace DAL
 {
     public class ErpServer
     {
-        public static string ConnectionString =Information.Decrypt(ConfigurationManager.AppSettings["MName"].SafeDbValue<string>(),"yangyunping");
+        public static string ConnectionString = ConfigurationManager.AppSettings["MName"].SafeDbValue<string>();// Information.Decrypt(ConfigurationManager.AppSettings["MName"].SafeDbValue<string>(),"yangyunping");
         // @"Data Source=.;User Id='sa';Password='yangyunping1991';Initial Catalog='ERP'";
 
         protected const int ExecuteTimeout = 60;

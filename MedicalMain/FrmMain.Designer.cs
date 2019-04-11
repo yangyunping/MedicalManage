@@ -369,11 +369,11 @@
             this.Controls.Add(this.tbContent);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("微软雅黑", 9.5F);
+            this.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "门诊管理系统";
+            this.Text = "医疗管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);

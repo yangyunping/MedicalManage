@@ -173,7 +173,11 @@ namespace UI
                 dgvMedicines.Rows.RemoveAt(dgvMedicines.CurrentRow.Index);
             }
         }
-
+        /// <summary>
+        /// 保存门诊信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -619,7 +623,11 @@ namespace UI
                 {
                     //西药
                     PrintPreviewDialog frmPreviewUk = new PrintPreviewDialog()
-                    { Document = printDocumentUK };
+                    {
+                        Document = printDocumentUK ,
+                        Width = 800,
+                        Height = 800
+                    };
                     frmPreviewUk.ShowDialog();
                 }
 
@@ -627,7 +635,11 @@ namespace UI
                 {
                     //中药
                     PrintPreviewDialog frmPreviewCh = new PrintPreviewDialog()
-                    { Document = printDocumentCH };
+                    {
+                        Document = printDocumentCH,
+                        Width = 800,
+                        Height = 800
+                    };
                     frmPreviewCh.ShowDialog();
                 }
                 dtSouce?.Dispose();
@@ -653,7 +665,11 @@ namespace UI
                 if (dtSouce != null && dtSouce.Select($@"UseAge in({useAge})").Any())
                 {
                     PrintPreviewDialog frmPreviewDialog = new PrintPreviewDialog()
-                    { Document = printDocumentInject };
+                    {
+                        Document = printDocumentInject,
+                        Width = 800,
+                        Height = 800
+                    };
                     frmPreviewDialog.ShowDialog();
                 }
                 else
